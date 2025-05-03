@@ -1,0 +1,279 @@
+---
+import logo from "@/assets/logo.png";
+import { NavItems } from "@/lib/NavItems";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+const { pathname } = Astro.url;
+
+const isActive = (itemPath: string) => {
+  return pathname === itemPath || pathname.startsWith(itemPath + "/");
+};
+---
+
+<div id="main-navbar" class="sticky top-0 z-50 bg-[#0A0A1B]">
+  <div class="cyber-noise absolute inset-0 opacity-10"></div>
+  <div class="cyber-scanline"></div>
+  
+  <div class="container relative z-10 mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <!-- Logo section - centered -->
+    <div class="flex items-center justify-center">
+      <a href="/" class="cyber-brand group flex items-center gap-3">
+        <div class="cyber-logo-frame relative">
+          <Image src={logo} alt="Logo" class="size-10" />
+          <div class="cyber-logo-glow"></div>
+        </div>
+        <span class="text-xl font-bold text-cyan-400 transition-all group-hover:text-cyan-300 whitespace-nowrap">
+          ICT Central Asia
+        </span>
+      </a>
+    </div>
+
+    <!-- Desktop menu - centered -->
+    <div class="hidden flex-1 xl:block">
+      <ul class="cyber-menu flex items-center justify-center gap-4">
+        {
+          NavItems.map((item) =>
+            item.subItems ? (
+              <li class="flex items-center">
+                <details class={`cyber-dropdown ${isActive(item.href) ? "open" : ""}`}>
+                  <summary class={`cyber-link whitespace-nowrap ${isActive(item.href) ? "active" : ""}`}>
+                    {item.title}
+                  </summary>
+                  <ul class="cyber-dropdown-content">
+                    {item.subItems.map((subItem) =>
+                      subItem.innerItems ? (
+                        <li>
+                          <details class={`cyber-dropdown-inner ${isActive(subItem.href) ? "open" : ""}`}>
+                            <summary class={`cyber-link ${isActive(subItem.href) ? "active" : ""}`}>
+                              {subItem.title}
+                            </summary>
+                            <ul class="cyber-dropdown-content-inner">
+                              {subItem.innerItems.map((innerItem) => (
+                                <li>
+                                  <a href={innerItem.href} class={`cyber-link ${isActive(innerItem.href) ? "active" : ""}`}>
+                                    {innerItem.title}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </details>
+                        </li>
+                      ) : (
+                        <li>
+                          <a href={subItem.href} class={`cyber-link whitespace-nowrap ${isActive(subItem.href) ? "active" : ""}`}>
+                            {subItem.title}
+                          </a>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </details>
+              </li>
+            ) : (
+              <li class="flex items-center">
+                <a href={item.href} class={`cyber-link whitespace-nowrap ${isActive(item.href) ? "active" : ""}`}>
+                  {item.title}
+                </a>
+              </li>
+            )
+          )
+        }
+      </ul>
+    </div>
+
+    <!-- Mobile menu button - centered -->
+    <div class="flex items-center justify-center xl:hidden">
+      <label for="navbar-menu" class="cyber-button">
+        <Icon name="mdi:menu" class="h-6 w-6 text-cyan-400" />
+      </label>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cyber-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .cyber-scanline {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 255, 255, 0.2),
+      transparent
+    );
+    animation: scanline 2s linear infinite;
+  }
+
+  .cyber-brand {
+    position: relative;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .cyber-logo-frame {
+    position: relative;
+    padding: 2px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .cyber-logo-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(0, 255, 255, 0.2),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .cyber-brand:hover .cyber-logo-glow {
+    opacity: 1;
+  }
+
+  .cyber-menu {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cyber-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+    color: rgba(0, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .cyber-link:hover, .cyber-link.active {
+    color: rgba(0, 255, 255, 1);
+    background: rgba(0, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.2);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+
+  .cyber-dropdown-content,
+  .cyber-dropdown-content-inner {
+    background: rgba(10, 10, 27, 0.95);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem;
+    min-width: 200px;
+    text-align: left;
+  }
+
+  .cyber-brand span {
+    white-space: nowrap;
+  }
+
+  @keyframes scanline {
+    0% { transform: translateX(-100%); opacity: 0; }
+    50% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+  }
+</style>
+
+<!-- Mobile menu drawer -->
+<input type="checkbox" id="navbar-menu" class="drawer-toggle" />
+<div class="drawer-side z-50">
+  <label for="navbar-menu" class="drawer-overlay"></label>
+  <ul class="menu bg-base-100 text-base-content min-h-full w-80 gap-2 p-4">
+    {
+      NavItems.map((item) =>
+        item.subItems ? (
+          <li class="mb-1">
+            <details class={isActive(item.href) ? "open" : ""}>
+              <summary
+                class={`hover:bg-primary/10 hover:text-primary active:!bg-primary/20 transition-colors ${
+                  isActive(item.href)
+                    ? "bg-primary/10 text-primary font-medium"
+                    : ""
+                }`}
+              >
+                {item.title}
+              </summary>
+              <ul class="mt-1 space-y-1 pl-2">
+                {item.subItems.map((subItem) =>
+                  subItem.innerItems ? (
+                    <li class="mb-1">
+                      <details class={isActive(subItem.href) ? "open" : ""}>
+                        <summary
+                          class={`hover:bg-primary/10 hover:text-primary active:!bg-primary/20 transition-colors ${
+                            isActive(subItem.href)
+                              ? "bg-primary/10 text-primary font-medium"
+                              : ""
+                          }`}
+                        >
+                          {subItem.title}
+                        </summary>
+                        <ul class="mt-1 space-y-1 pl-2">
+                          {subItem.innerItems.map((innerItem) => (
+                            <li>
+                              <a
+                                href={innerItem.href}
+                                class={`hover:bg-primary/10 hover:text-primary active:!bg-primary/20 transition-colors ${
+                                  isActive(innerItem.href)
+                                    ? "bg-primary/10 text-primary font-medium"
+                                    : ""
+                                }`}
+                              >
+                                {innerItem.title}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    </li>
+                  ) : (
+                    <li>
+                      <a
+                        href={subItem.href}
+                        class={`hover:bg-primary/10 hover:text-primary active:!bg-primary/20 transition-colors ${
+                          isActive(subItem.href)
+                            ? "bg-primary/10 text-primary font-medium"
+                            : ""
+                        }`}
+                      >
+                        {subItem.title}
+                      </a>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </details>
+          </li>
+        ) : (
+          <li>
+            <a
+              href={item.href}
+              class={`hover:bg-primary/10 hover:text-primary active:!bg-primary/20 rounded-lg transition-colors ${
+                isActive(item.href)
+                  ? "bg-primary/10 text-primary font-medium"
+                  : ""
+              }`}
+            >
+              {item.title}
+            </a>
+          </li>
+        ),
+      )
+    }
+  </ul>
+</div>

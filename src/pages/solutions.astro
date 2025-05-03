@@ -1,0 +1,574 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+import heroImage from "@/assets/page-solutions.png";
+import placeholderImg1 from "@/assets/placeholder.svg";
+---
+
+<Layout title="Решения | ICT Central Asia">
+  {/* Hero Section */}
+  <section class="py-16">
+    <div class="relative container mx-auto max-w-5xl px-4">
+      <div>
+        <h1 class="mb-6 text-4xl font-bold md:text-5xl">
+          Решения для мониторинга и защиты лесов
+        </h1>
+        <p class="max-w-xl text-lg">
+          Инновационные технологии для эффективного управления лесными
+          ресурсами, предотвращения пожаров и сохранения экосистем.
+        </p>
+      </div>
+      <div>
+        <Image
+          src={heroImage}
+          alt="Решения для мониторинга и защиты лесов"
+          class="w-full rounded-lg object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  {/* Solutions Cards */}
+  <section class="py-12">
+    <div class="container mx-auto max-w-5xl px-4">
+      {/* Example using DaisyUI Card component structure */}
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div
+          class="card bg-base-100 shadow-sm transition-shadow hover:shadow-md"
+        >
+          {/* DaisyUI card */}
+          <div class="card-body">
+            {/* DaisyUI card-body */}
+            <div class="mb-4">
+              <Icon name="mdi:bell" class="h-8 w-8 text-yellow-400" />
+            </div>
+            <h3 class="card-title text-xl font-semibold">
+              Раннее обнаружение пожаров
+            </h3>
+            {/* DaisyUI card-title */}
+            <p class="text-base-content/80 mb-4">
+              Комплексная система прогнозирования и выявления лесных пожаров на
+              ранних стадиях
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="card bg-base-100 shadow-sm transition-shadow hover:shadow-md"
+        >
+          <div class="card-body">
+            <div class="mb-4">
+              <Icon
+                name="mdi:chart-bell-curve-cumulative"
+                class="h-8 w-8 text-blue-400"
+              />
+            </div>
+            <h3 class="card-title text-xl font-semibold">
+              Цифровой двойник лесов
+            </h3>
+            <p class="text-base-content/80 mb-4">
+              Интеллектуальная система мониторинга состояния деревьев в режиме
+              реального времени
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="card bg-base-100 shadow-sm transition-shadow hover:shadow-md"
+        >
+          <div class="card-body">
+            <div class="mb-4">
+              <Icon name="mdi:location" class="h-8 w-8 text-red-400" />
+            </div>
+            <h3 class="card-title text-xl font-semibold">
+              Экологический мониторинг
+            </h3>
+            <p class="text-base-content/80 mb-4">
+              Комплексный анализ состояния лесных экосистем и биоразнообразия
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Solution 1 Detail */}
+  <section id="fire-detection" class="scroll-mt-20 py-16">
+    {/* Added scroll-mt */}
+    <div class="container mx-auto max-w-5xl px-4">
+      <div class="flex flex-col items-center gap-8 md:flex-row md:gap-12">
+        <div class="mb-8 md:mb-0 md:w-1/2">
+          {/* Removed md:pr-12, using gap now */}
+          <h2 class="mb-6 text-3xl font-bold">
+            Прогнозирование и раннее обнаружение лесных пожаров
+          </h2>
+          <p class="text-base-content/80 mb-6">
+            Лесные пожары становятся все более частыми и разрушительными из-за
+            климатических изменений, засух и антропогенного воздействия. Для
+            эффективного управления рисками и минимизации ущерба важно не только
+            оперативно выявлять возгорания, но и прогнозировать их
+            возникновение.
+          </p>
+          <p class="text-base-content/80 mb-6">
+            Наша система использует комплексное решение, основанное на
+            современных технологиях, позволяющее не только фиксировать уже
+            произошедшие возгорания, но и заранее определять зоны повышенной
+            пожарной опасности.
+          </p>
+        </div>
+        <div class="md:w-1/2">
+          <Image
+            src={placeholderImg1}
+            alt="Система обнаружения лесных пожаров"
+            width={600}
+            height={400}
+            format="webp"
+            quality={80}
+            class="h-full w-full rounded-lg object-cover shadow-lg"
+          />
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h3 class="mb-8 text-2xl font-semibold">Как это работает</h3>
+
+        {/* Using slightly different card style for detail sections */}
+        <div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h4 class="mb-4 flex items-center text-lg font-semibold">
+                Метеостанции для оценки пожарной опасности
+              </h4>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Измерение температуры воздуха, влажности, осадков, скорости
+                    и направления ветра позволяет прогнозировать условия,
+                    благоприятные для возникновения пожаров.
+                  </span>
+                </li>
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Мониторинг влажности почвы и растительности (так называемого
+                    "топлива") помогает оценивать степень сухости, что является
+                    ключевым фактором риска.
+                  </span>
+                </li>
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Спектральный анализ растительности (NDVI) определяет уровень
+                    стресса растений и предсказывает их склонность к возгоранию.
+                  </span>
+                </li>
+              </ul>
+              <Icon
+                name="mdi:cloud-warning"
+                class="mt-4 ml-auto size-12 text-orange-400"
+              />
+            </div>
+          </div>
+
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h4 class="mb-4 flex items-center text-lg font-semibold">
+                Сеть IoT-датчиков для мониторинга окружающей среды
+              </h4>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Датчики температуры, вланости, задымленности и инфракрасного
+                    излучения размещаются в лесных массивах и передают данные в
+                    реальном времени.
+                  </span>
+                </li>
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Контроль уровня аэрозолей в воздухе помогает выявлять
+                    скрытые или малозаметные возгорания на ранних стадиях.
+                  </span>
+                </li>
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Мониторинг водопотребления деревьями позволяет определять их
+                    устойчивость к засухе и предсказывать риск самовозгорания.
+                  </span>
+                </li>
+              </ul>
+              <Icon
+                name="mdi:monitor-eye"
+                class="mt-4 ml-auto size-12 text-blue-400"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h4 class="mb-4 flex items-center text-lg font-semibold">
+                Искусственный интеллект и анализ данных
+              </h4>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Алгоритмы машинного обучения обрабатывают данные с датчиков,
+                    спутниковых снимков и метеостанций, прогнозируя вероятность
+                    возникновения и развития пожаров.
+                  </span>
+                </li>
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Анализ аномалий позволяет заранее выявлять опасные условия и
+                    повышенные риски возгораний.
+                  </span>
+                </li>
+              </ul>
+              <Icon
+                name="mdi:robot"
+                class="mt-4 ml-auto size-12 text-gray-400"
+              />
+            </div>
+          </div>
+
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h4 class="mb-4 flex items-center text-lg font-semibold">
+                Оперативное оповещение экстренных служб
+              </h4>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Автоматизированная система уведомлений позволяет мгновенно
+                    передавать информацию о рисках и возгораниях в МЧС, лесные
+                    хозяйства и местные администрации.
+                  </span>
+                </li>
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Прогнозирование маршрутов распространения пожара помогает
+                    более эффективно распределять силы и ресурсы для его
+                    тушения.
+                  </span>
+                </li>
+              </ul>
+              <Icon
+                name="mdi:alarm-light"
+                class="mt-4 ml-auto size-12 text-red-400"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Results Section - Using DaisyUI Alert component style */}
+        <div role="alert" class="alert alert-outline alert-success">
+          <div class="text-base-content">
+            <h3 class="mb-4 text-xl font-bold">Ожидаемые результаты</h3>
+            <div
+              class="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              <div class="flex items-start">
+                <Icon
+                  name="mdi:check"
+                  class="text-success mt-1 mr-2 h-5 w-5 flex-shrink-0"
+                />
+                <span
+                  >Предотвращение пожаров за счет раннего прогнозирования зон
+                  риска</span
+                >
+              </div>
+              <div class="flex items-start">
+                <Icon
+                  name="mdi:check"
+                  class="text-success mt-1 mr-2 h-5 w-5 flex-shrink-0"
+                />
+                <span
+                  >Оперативное обнаружение очагов возгорания на самых ранних
+                  стадиях</span
+                >
+              </div>
+              <div class="flex items-start">
+                <Icon
+                  name="mdi:check"
+                  class="text-success mt-1 mr-2 h-5 w-5 flex-shrink-0"
+                />
+                <span>Повышение скорости реагирования экстренных служб</span>
+              </div>
+              <div class="flex items-start">
+                <Icon
+                  name="mdi:check"
+                  class="text-success mt-1 mr-2 h-5 w-5 flex-shrink-0"
+                />
+                <span>Оптимизация затрат на ликвидацию пожаров</span>
+              </div>
+              <div class="flex items-start">
+                <Icon
+                  name="mdi:check"
+                  class="text-success mt-1 mr-2 h-5 w-5 flex-shrink-0"
+                />
+                <span
+                  >Снижение ущерба для экосистем и безопасности населения</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Solution 2 Detail */}
+  <section id="digital-twin" class="py-16">
+    {/* Added scroll-mt */}
+    <div class="container mx-auto max-w-5xl px-4">
+      <div
+        class="flex flex-col items-center gap-8 md:flex-row-reverse md:gap-12"
+      >
+        <div class="mb-8 md:mb-0 md:w-1/2">
+          {/* Removed md:pl-12 */}
+          <h2 class="mb-6 text-3xl font-bold">
+            Цифровой двойник лесов: интеллектуальная система мониторинга
+            деревьев
+          </h2>
+          <p class="text-base-content/80 mb-6">
+            Мы являемся вендорами технологии «цифровой двойник лесов» –
+            комплексная система мониторинга деревьев, обеспечивающая анализ их
+            состояния в режиме реального времени. Это инновационное решение
+            помогает оптимизировать уход за лесами, повышать устойчивость
+            деревьев и эффективно управлять природными ресурсами.
+          </p>
+        </div>
+        <div class="md:w-1/2">
+          <Image
+            src={placeholderImg1}
+            alt="Система обнаружения лесных пожаров"
+            width={600}
+            height={400}
+            format="webp"
+            quality={80}
+            class="h-full w-full rounded-lg object-cover shadow-lg"
+          />
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h3 class="mb-8 text-2xl font-semibold">
+          Как работает цифровой двойник леса
+        </h3>
+
+        <div class="mb-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h4 class="mb-4 flex items-center text-lg font-semibold">
+                Мониторинг водопотребления деревьев
+              </h4>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Сенсоры Sap Flow измеряют объем влаги, поглощаемой
+                    деревьями, что позволяет оценивать их физиологическое
+                    состояние.
+                  </span>
+                </li>
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Психрометры PSY1 фиксируют уровень водного стресса деревьев,
+                    предупреждая о его негативном влиянии на рост и развитие.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h4 class="mb-4 flex items-center text-lg font-semibold">
+                Оценка состояния почвы и окружающей среды
+              </h4>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Датчики влажности и засоленности почвы отслеживают ее
+                    состояние, помогая корректировать полив и агротехнические
+                    меры.
+                  </span>
+                </li>
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Спектральный анализ растительности (NDVI) определяет уровень
+                    фотосинтетической активности.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h4 class="mb-4 flex items-center text-lg font-semibold">
+                Анализ и управление в режиме реального времени
+              </h4>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Данные с датчиков передаются на цифровую платформу, где
+                    анализируются с использованием алгоритмов искусственного
+                    интеллекта.
+                  </span>
+                </li>
+                <li class="flex items-start">
+                  <span class="mt-1 mr-2">•</span>
+                  <span>
+                    Визуализация информации в дашбордах позволяет отслеживать
+                    динамику изменений.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Benefits Section */}
+        <div class="mt-12">
+          <div class="flex flex-col items-center gap-8 md:flex-row md:gap-12">
+            <div class="mb-8 md:mb-0 md:w-1/2">
+              {/* Removed md:pr-12 */}
+              <h3 class="mb-6 text-2xl font-semibold">
+                Преимущества цифрового двойника лесов
+              </h3>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <Icon
+                    name="mdi:check"
+                    class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-500"
+                  />
+                  <p>
+                    Объективный контроль состояния деревьев – непрерывный поток
+                    данных позволяет оперативно реагировать на изменения.
+                  </p>
+                </div>
+                <div class="flex items-start">
+                  <Icon
+                    name="mdi:check"
+                    class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-500"
+                  />
+                  <p>
+                    Оптимизация использования водных ресурсов – управление
+                    поливами на основе реальных потребностей деревьев.
+                  </p>
+                </div>
+                <div class="flex items-start">
+                  <Icon
+                    name="mdi:check"
+                    class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-500"
+                  />
+                  <p>
+                    Продление жизненного цикла лесных массивов – своевременное
+                    выявление стрессовых факторов способствует сохранению
+                    здоровья деревьев.
+                  </p>
+                </div>
+                <div class="flex items-start">
+                  <Icon
+                    name="mdi:check"
+                    class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-500"
+                  />
+                  <p>
+                    Принятие обоснованных решений – доступ к аналитике помогает
+                    разработке долгосрочных стратегий по управлению лесами.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="md:w-1/2">
+              <Image
+                src={placeholderImg1}
+                alt="Преимущества цифрового двойника"
+                width={600}
+                height={400}
+                format="webp"
+                quality={80}
+                class="h-full w-full rounded-lg object-cover shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Features Section */}
+  <section class="py-16">
+    <div class="container mx-auto max-w-5xl px-4">
+      <div class="mb-12 text-center">
+        <h2 class="mb-4 text-3xl font-bold">
+          Ключевые особенности наших решений
+        </h2>
+        <p class="text-base-content/80 mx-auto max-w-2xl">
+          Наши технологии объединяют передовые методы мониторинга, анализа
+          данных и искусственного интеллекта для обеспечения эффективной защиты
+          лесных экосистем.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div class="p-4 text-center">
+          <div
+            class="bg-primary/70 ring-primary/50 mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full ring-4"
+          >
+            <Icon name="mdi:clipboard-text" class="h-8 w-8" />
+          </div>
+          <h3 class="mb-2 text-xl font-semibold">Организационный обзор</h3>
+          <p class="text-base-content/80">
+            Данные собираются со всех локаций, обеспечивая единый обзор
+            состояния лесных массивов и эффективности принимаемых мер.
+          </p>
+        </div>
+
+        <div class="p-4 text-center">
+          <div
+            class="bg-primary/70 ring-primary/50 mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full ring-4"
+          >
+            <Icon name="mdi:interaction-double-tap" class="h-8 w-8" />
+          </div>
+          <h3 class="mb-2 text-xl font-semibold">
+            Удобный пользовательский интерфейс
+          </h3>
+          <p class="text-base-content/80">
+            Настраиваемые дашборды и интуитивно понятный интерфейс обеспечивают
+            удобный доступ к данным и управление системой.
+          </p>
+        </div>
+
+        <div class="p-4 text-center">
+          <div
+            class="bg-primary/70 ring-primary/50 mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full ring-4"
+          >
+            <Icon name="mdi:star-rate" class="h-8 w-8" />
+          </div>
+          <h3 class="mb-2 text-xl font-semibold">Соответствие стандартам</h3>
+          <p class="text-base-content/80">
+            Наши решения соответствуют всем экологическим стандартам и
+            требованиям к системам мониторинга природных ресурсов.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,247 @@
+---
+import { Image } from "astro:assets";
+import "swiper/css";
+import "swiper/css/autoplay";
+
+import logo1 from "@/assets/partners/AB-InBev.svg";
+import logo2 from "@/assets/partners/Abbott.svg";
+import logo3 from "@/assets/partners/Bayreuth.svg";
+import logo4 from "@/assets/partners/Harvard_University.svg";
+import logo5 from "@/assets/partners-1/Ikea.svg";
+import logo6 from "@/assets/partners/Komatsu.svg";
+import logo7 from "@/assets/partners/Northern_Arizona_Athletics.svg";
+import logo8 from "@/assets/partners/Unilever.svg";
+import logo9 from "@/assets/partners/the-university-of-sydney.svg";
+
+const images = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9];
+---
+
+<section class="relative min-h-[60vh] overflow-hidden bg-[#1A1A3A] py-20">
+  <!-- Cyber grid overlay -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="cyber-grid-hex"></div>
+  </div>
+
+  <!-- Animated data streams -->
+  <div class="absolute inset-0 overflow-hidden">
+    {Array.from({ length: 20 }).map(() => (
+      <div
+        class="data-stream absolute w-[1px]"
+        style={{
+          left: `${Math.random() * 100}%`,
+          height: `${Math.random() * 100 + 100}px`,
+          animationDelay: `${Math.random() * 5}s`,
+          animationDuration: `${Math.random() * 2 + 2}s`
+        }}
+      ></div>
+    ))}
+  </div>
+
+  <div class="relative z-10 container mx-auto max-w-6xl px-4">
+    <!-- Section header -->
+    <div class="mb-16 text-center">
+      <div class="cyber-badge-large mx-auto mb-6" data-aos="zoom-in">
+        <div class="cyber-badge-large-glitch"></div>
+        <span class="relative z-10 text-2xl font-bold text-cyan-400">Наши Партнеры</span>
+      </div>
+      <p
+        data-aos="fade-up"
+        class="cyber-text mx-auto mt-4 max-w-2xl text-cyan-200/70"
+      >
+        Мы объединяем усилия с ведущими организациями для создания инновационных решений
+        будущего в области устойчивого развития
+      </p>
+    </div>
+
+    <!-- Partners slider -->
+    <div class="cyber-frame relative mx-auto">
+      <div class="cyber-scanner-horizontal"></div>
+      <div class="cyber-corner-tl"></div>
+      <div class="cyber-corner-br"></div>
+      
+      <div class="swiper partners-swiper">
+        <div class="swiper-wrapper">
+          {images.map((partner, index) => (
+            <div class="swiper-slide">
+              <div class="cyber-partner-card group">
+                <div class="cyber-partner-glitch"></div>
+                <Image
+                  data-aos="fade-up"
+                  data-aos-delay={index * 100}
+                  src={partner}
+                  alt={`Partner ${index + 1}`}
+                  class="partner-logo relative z-10 mx-auto h-24 object-contain transition-all duration-300 group-hover:scale-110"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cyber-grid-hex {
+    background-image: radial-gradient(
+      circle at center,
+      rgba(0, 255, 255, 0.1) 2px,
+      transparent 2px
+    );
+    background-size: 30px 30px;
+    width: 100%;
+    height: 100%;
+    animation: gridPulse 4s ease-in-out infinite;
+  }
+
+  .data-stream {
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(0, 255, 255, 0.5),
+      transparent
+    );
+    animation: dataFlow linear infinite;
+    transform: translateY(-100%);
+  }
+
+  .cyber-frame {
+    position: relative;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 2rem;
+    background: rgba(0, 255, 255, 0.02);
+  }
+
+  .cyber-scanner-horizontal {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    left: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 255, 255, 0.5),
+      transparent
+    );
+    filter: blur(1px);
+    animation: scanHorizontal 4s ease-in-out infinite;
+  }
+
+  .cyber-corner-tl,
+  .cyber-corner-br {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(0, 255, 255, 0.4);
+  }
+
+  .cyber-corner-tl {
+    top: -1px;
+    left: -1px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .cyber-corner-br {
+    bottom: -1px;
+    right: -1px;
+    border-left: 0;
+    border-top: 0;
+  }
+
+  .cyber-partner-card {
+    position: relative;
+    padding: 2rem;
+    background: rgba(0, 255, 255, 0.03);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .cyber-partner-card:hover {
+    background: rgba(0, 255, 255, 0.05);
+    box-shadow: 
+      0 0 20px rgba(0, 255, 255, 0.1),
+      0 0 40px rgba(0, 255, 255, 0.05);
+  }
+
+  .cyber-partner-glitch {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .cyber-partner-card:hover .cyber-partner-glitch {
+    opacity: 1;
+    animation: partnerGlitch 2s infinite;
+  }
+
+  .partner-logo {
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  .cyber-partner-card:hover .partner-logo {
+    opacity: 1;
+    filter: brightness(1) invert(0) drop-shadow(0 0 5px rgba(0, 255, 255, 0.5));
+  }
+
+  @keyframes gridPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  @keyframes dataFlow {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+
+  @keyframes scanHorizontal {
+    0%, 100% { left: 0; opacity: 0; }
+    50% { left: 100%; opacity: 1; }
+  }
+
+  @keyframes partnerGlitch {
+    0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+    20% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
+    40% { clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); }
+    60% { clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%); }
+  }
+</style>
+
+<script>
+  import Swiper from "swiper";
+  import { Autoplay } from "swiper/modules";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const swiper = new Swiper(".partners-swiper", {
+      modules: [Autoplay],
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 40,
+        },
+      },
+    });
+  });
+</script>

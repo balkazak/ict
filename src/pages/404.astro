@@ -1,0 +1,191 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import notFoundImage from "@/assets/placeholder.svg";
+---
+
+<Layout title="Page Not Found | ICT Central Asia">
+  <section class="py-20 md:py-32">
+    <div class="container mx-auto max-w-5xl px-4 text-center">
+      <div class="mx-auto max-w-3xl">
+        <div class="relative mb-12 inline-block">
+          <Image
+            src={notFoundImage}
+            alt="Page not found illustration"
+            width={200}
+            height={200}
+            class="mx-auto"
+          />
+          <div
+            class="from-primary/20 to-accent/20 absolute inset-0 -z-10 rounded-full bg-gradient-to-r opacity-30 blur-3xl"
+          >
+          </div>
+        </div>
+
+        <h1 class="text-primary mb-4 text-8xl font-bold">404</h1>
+        <h2 class="mb-6 text-3xl font-bold md:text-4xl">Page Not Found</h2>
+        <p class="text-base-content/70 mx-auto mb-10 max-w-xl text-lg">
+          The page you are looking for might have been removed, had its name
+          changed, or is temporarily unavailable.
+        </p>
+
+        <div class="flex flex-col justify-center gap-4 sm:flex-row">
+          <a href="/" class="btn btn-primary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="mr-2 h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7m-14 0l2 2m0 0l7 7 7-7m-14 0l2-2"
+              ></path>
+            </svg>
+            Back to Home
+          </a>
+          <a href="/contact" class="btn btn-outline">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="mr-2 h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+            Contact Support
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-base-200 py-12">
+    <div class="container mx-auto max-w-5xl px-4">
+      <div class="mx-auto max-w-3xl">
+        <h3 class="mb-6 text-center text-xl font-bold">
+          You might be looking for:
+        </h3>
+        <div class="grid gap-6 md:grid-cols-2">
+          <a
+            href="/"
+            class="card bg-base-100 shadow-md transition-all hover:shadow-lg"
+          >
+            <div class="card-body">
+              <h4 class="card-title">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="text-primary h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 12l2-2m0 0l7-7 7 7m-14 0l2 2m0 0l7 7 7-7m-14 0l2-2"
+                  ></path>
+                </svg>
+                Home Page
+              </h4>
+              <p class="text-base-content/70">
+                Our main page with an overview of our services
+              </p>
+            </div>
+          </a>
+          <a
+            href="/about"
+            class="card bg-base-100 shadow-md transition-all hover:shadow-lg"
+          >
+            <div class="card-body">
+              <h4 class="card-title">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="text-primary h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                About Us
+              </h4>
+              <p class="text-base-content/70">
+                Learn about our company history and mission
+              </p>
+            </div>
+          </a>
+          <a
+            href="/solutions"
+            class="card bg-base-100 shadow-md transition-all hover:shadow-lg"
+          >
+            <div class="card-body">
+              <h4 class="card-title">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="text-primary h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                  ></path>
+                </svg>
+                Our Solutions
+              </h4>
+              <p class="text-base-content/70">
+                Explore our environmental monitoring products
+              </p>
+            </div>
+          </a>
+          <a
+            href="/contact"
+            class="card bg-base-100 shadow-md transition-all hover:shadow-lg"
+          >
+            <div class="card-body">
+              <h4 class="card-title">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="text-primary h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                Contact Us
+              </h4>
+              <p class="text-base-content/70">
+                Get in touch with our team for inquiries
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

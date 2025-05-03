@@ -1,0 +1,129 @@
+---
+import { Image } from "astro:assets";
+
+type Specification =
+  | {
+      name: string;
+      value: string;
+    }
+  | { type: "divider" };
+
+export interface Props {
+  id: string;
+  name: string;
+  image?: any;
+  overview: string;
+  features?: string;
+  specifications?: Specification[];
+}
+
+const { id, name, image, overview, features, specifications } = Astro.props;
+---
+
+<div id={id} class="card bg-base-100 overflow-hidden">
+  <div class="card-body">
+    <h2 class="card-title text-xl font-bold md:text-2xl">{name}</h2>
+
+    <div class="mt-4 flex flex-col gap-6 md:flex-row">
+      {
+        image && (
+          <figure class="md:w-1/3">
+            <Image
+              src={image}
+              alt={name}
+              class="mx-auto max-h-72 w-auto rounded-xl object-contain"
+              width={400}
+              height={300}
+            />
+          </figure>
+        )
+      }
+
+      <div class="md:w-2/3">
+        <h3 class="mb-2 text-lg font-semibold md:text-xl">Overview</h3>
+        <div class="text-base-content/80 md:text-lg">
+          <Fragment set:html={overview} />
+        </div>
+      </div>
+    </div>
+
+    {
+      (features || specifications) && (
+        <Fragment>
+          <div class="divider" />
+          <div role="tablist" class="tabs tabs-border">
+            {features && (
+              <Fragment>
+                <input
+                  type="radio"
+                  name={id}
+                  class="tab"
+                  aria-label="Features"
+                  checked
+                />
+                <div class="tab-content text-base-content/80 px-4 pt-4 md:text-base">
+                  <Fragment set:html={features} />
+                </div>
+              </Fragment>
+            )}
+
+            {specifications && (
+              <Fragment>
+                <input
+                  type="radio"
+                  name={id}
+                  class="tab"
+                  aria-label="Specifications"
+                  checked={!features}
+                />
+                <div class="tab-content px-4 pt-4">
+                  <div class="overflow-x-auto">
+                    {(() => {
+                      // Group specifications by dividers
+                      const groups: Specification[][] = [];
+                      let currentGroup: Specification[] = [];
+
+                      specifications.forEach((spec) => {
+                        if ("type" in spec && spec.type === "divider") {
+                          if (currentGroup.length > 0) {
+                            groups.push(currentGroup);
+                            currentGroup = [];
+                          }
+                        } else {
+                          currentGroup.push(spec);
+                        }
+                      });
+
+                      // Add the last group if it has items
+                      if (currentGroup.length > 0) {
+                        groups.push(currentGroup);
+                      }
+
+                      return groups.map((group, index) => (
+                        <div class={index > 0 ? "mt-6" : ""}>
+                          <table class="table-zebra table w-full">
+                            <tbody>
+                              {group.map(
+                                (spec) =>
+                                  "name" in spec && (
+                                    <tr>
+                                      <td class="font-medium">{spec.name}</td>
+                                      <td>{spec.value}</td>
+                                    </tr>
+                                  ),
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                      ));
+                    })()}
+                  </div>
+                </div>
+              </Fragment>
+            )}
+          </div>
+        </Fragment>
+      )
+    }
+  </div>
+</div>
