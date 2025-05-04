@@ -6,12 +6,11 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://balkazak.github.io", // Replace with your GitHub username
-  base: "/ict", // Replace with your repository name
   vite: {
     plugins: [tailwindcss()],
   },
-
+  output: "static",
+  base: "/ict/",
   integrations: [
     icon({
       include: {
