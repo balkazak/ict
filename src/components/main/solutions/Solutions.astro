@@ -5,17 +5,22 @@ import image2 from "@/assets/solutions/2.jpg";
 import image3 from "@/assets/solutions/3.jpg";
 ---
 
-<section class="relative min-h-screen overflow-hidden bg-[#1A1A3A]">
-  <!-- Cyber grid background -->
-  <div class="absolute inset-0 opacity-10">
-    <div class="cyber-grid-diagonal"></div>
+<section class="relative min-h-screen overflow-hidden bg-[#F0FAF9]">
+  <!-- Water drop effect container -->
+  <div id="water-effect" class="absolute inset-0 pointer-events-none">
+    <canvas id="water-canvas"></canvas>
   </div>
 
-  <!-- Animated lines -->
+  <!-- Leaf grid background -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="leaf-grid"></div>
+  </div>
+
+  <!-- Flowing streams -->
   <div class="absolute inset-0 overflow-hidden">
     {Array.from({ length: 5 }).map((_, i) => (
       <div
-        class="cyber-line absolute h-[1px] w-full"
+        class="eco-stream absolute h-[1px] w-full"
         style={{
           top: `${i * 20}%`,
           left: "0",
@@ -28,12 +33,12 @@ import image3 from "@/assets/solutions/3.jpg";
   <!-- Main content -->
   <div class="relative z-10 container mx-auto max-w-6xl px-4 py-32">
     <div class="mb-20 text-center">
-      <div class="cyber-badge-large mx-auto mb-6" data-aos="zoom-in">
-        <div class="cyber-badge-large-glitch"></div>
-        <span class="relative z-10 text-2xl font-bold text-cyan-400">Наши решения</span>
+      <div class="eco-badge-large mx-auto mb-6" data-aos="zoom-in">
+        <div class="eco-badge-large-glow"></div>
+        <span class="relative z-10 text-2xl font-bold text-[#0A7B76]">Наши решения</span>
       </div>
       <h2 
-        class="cyber-heading text-4xl font-bold text-white md:text-5xl"
+        class="eco-heading text-4xl font-bold text-[#0A5B56] md:text-5xl"
         data-aos="fade-up"
         data-aos-delay="200"
       >
@@ -86,15 +91,15 @@ import image3 from "@/assets/solutions/3.jpg";
 </section>
 
 <style>
-  .cyber-grid-diagonal {
+  .leaf-grid {
     background-image: linear-gradient(
       45deg,
-      rgba(0, 255, 255, 0.1) 1px,
+      rgba(10, 123, 118, 0.1) 1px,
       transparent 1px
     ),
     linear-gradient(
       -45deg,
-      rgba(0, 255, 255, 0.1) 1px,
+      rgba(10, 123, 118, 0.1) 1px,
       transparent 1px
     );
     background-size: 40px 40px;
@@ -103,39 +108,45 @@ import image3 from "@/assets/solutions/3.jpg";
     animation: gridScroll 20s linear infinite;
   }
 
-  .cyber-line {
+  .eco-stream {
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(0, 255, 255, 0.3),
+      rgba(10, 123, 118, 0.3),
       transparent
     );
-    animation: scanline 3s linear infinite;
+    animation: streamFlow 3s linear infinite;
   }
 
-  .cyber-badge-large {
+  .eco-badge-large {
     position: relative;
     width: fit-content;
     padding: 1rem 3rem;
-    background: rgba(0, 255, 255, 0.1);
-    border: 1px solid rgba(0, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(10, 123, 118, 0.2);
     border-radius: 4px;
     overflow: hidden;
+    backdrop-filter: blur(5px);
   }
 
-  .cyber-badge-large-glitch {
+  .eco-badge-large-glow {
     position: absolute;
     inset: 0;
-    background: rgba(0, 255, 255, 0.2);
-    animation: badgeGlitch 4s infinite;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(10, 123, 118, 0.2),
+      transparent 70%
+    );
+    animation: pulseGlow 4s ease-in-out infinite;
   }
 
-  .cyber-heading {
+  .eco-heading {
     position: relative;
-    text-shadow: 
-      0 0 10px rgba(0, 255, 255, 0.5),
-      0 0 20px rgba(0, 255, 255, 0.3),
-      0 0 30px rgba(0, 255, 255, 0.2);
+    background: linear-gradient(90deg, #0A5B56, #0A7B76, #0A5B56);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textFlow 8s linear infinite;
   }
 
   @keyframes gridScroll {
@@ -143,16 +154,141 @@ import image3 from "@/assets/solutions/3.jpg";
     100% { transform: translateY(40px); }
   }
 
-  @keyframes scanline {
+  @keyframes streamFlow {
     0% { transform: translateX(-100%); opacity: 0; }
     50% { transform: translateX(0); opacity: 1; }
     100% { transform: translateX(100%); opacity: 0; }
   }
 
-  @keyframes badgeGlitch {
-    0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-    20% { clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%); }
-    40% { clip-path: polygon(0 45%, 100% 45%, 100% 65%, 0 65%); }
-    60% { clip-path: polygon(0 60%, 100% 60%, 100% 75%, 0 75%); }
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+
+  @keyframes textFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  #water-canvas {
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('water-canvas') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d')!;
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    
+    // Water ripple parameters
+    const ripples: any[] = [];
+    const maxRipples = 5;
+    const baseRadius = Math.min(width, height) * 0.1;
+    let mouseX = 0;
+    let mouseY = 0;
+    let isMoving = false;
+
+    class Ripple {
+      x: number;
+      y: number;
+      radius: number;
+      maxRadius: number;
+      opacity: number;
+      color: string;
+
+      constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+        this.radius = 0;
+        this.maxRadius = baseRadius * (0.8 + Math.random() * 0.4);
+        this.opacity = 0.7;
+        this.color = '#0A7B76';
+      }
+
+      update() {
+        this.radius += 2;
+        this.opacity -= 0.003;
+        return this.opacity > 0;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(10, 123, 118, ${this.opacity})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Inner glow
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.radius
+        );
+        gradient.addColorStop(0, `rgba(10, 123, 118, ${this.opacity * 0.2})`);
+        gradient.addColorStop(1, 'rgba(10, 123, 118, 0)');
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
+    }
+
+    function createRipple(x: number, y: number) {
+      if (ripples.length >= maxRipples) {
+        ripples.shift();
+      }
+      ripples.push(new Ripple(x, y));
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Create ambient ripples
+      if (Math.random() < 0.03) {
+        createRipple(
+          Math.random() * width,
+          Math.random() * height
+        );
+      }
+
+      // Create mouse-following ripples
+      if (isMoving && Math.random() < 0.1) {
+        createRipple(mouseX, mouseY);
+      }
+
+      // Update and draw ripples
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        if (!ripples[i].update()) {
+          ripples.splice(i, 1);
+          continue;
+        }
+        ripples[i].draw();
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // Track mouse movement
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      isMoving = true;
+
+      // Reset moving state after delay
+      clearTimeout(window.moveTimeout);
+      window.moveTimeout = setTimeout(() => {
+        isMoving = false;
+      }, 100);
+    });
+
+    // Start animation
+    animate();
+  });
+</script>

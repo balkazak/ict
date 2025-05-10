@@ -4,571 +4,762 @@ import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
 import heroImage from "@/assets/page-solutions.png";
-import placeholderImg1 from "@/assets/placeholder.svg";
+import placeholderImg1 from "@/assets/solution-page/1.jpg";
+import placeholderImg2 from "@/assets/solution-page/2.jpg";
+import placeholderImg3 from "@/assets/solution-page/3.jpg";
+import placeholderImg4 from "@/assets/placeholder.svg";
+import monitoringImg from "@/assets/solution-page/monitoring.webp";
+import controlImg from "@/assets/solution-page/control.jpg";
+import analyticsImg from "@/assets/solution-page/analytics.png";
+
+// Define feature cards data
+const features = [
+  {
+    icon: "mdi:tree",
+    title: "Сенсоры сокодвижения",
+    description: "Фиксируют водопотребление деревьев и их реакции на окружающую среду",
+    image: placeholderImg1
+  },
+  {
+    icon: "mdi:weather-cloudy",
+    title: "Метеостанции",
+    description: "Анализируют климатические параметры и водный баланс экосистемы",
+    image: placeholderImg2
+  },
+  {
+    icon: "mdi:camera",
+    title: "NDVI-сканеры",
+    description: "Оценивают фотосинтетическую активность и выявляют стрессы",
+    image: placeholderImg3
+  }
+];
+
+// Define tab images
+const tabImages = {
+  monitoring: monitoringImg,
+  control: controlImg,
+  analytics: analyticsImg
+};
 ---
 
 <Layout title="Решения | ICT Central Asia">
-  {/* Hero Section */}
-  <section class="py-16">
-    <div class="relative container mx-auto max-w-5xl px-4">
-      <div>
-        <h1 class="mb-6 text-4xl font-bold md:text-5xl">
-          Решения для мониторинга и защиты лесов
-        </h1>
-        <p class="max-w-xl text-lg">
-          Инновационные технологии для эффективного управления лесными
-          ресурсами, предотвращения пожаров и сохранения экосистем.
-        </p>
-      </div>
-      <div>
-        <Image
-          src={heroImage}
-          alt="Решения для мониторинга и защиты лесов"
-          class="w-full rounded-lg object-cover"
+  {/* Hero Section with Animated Background */}
+  <section class="relative min-h-[90vh] overflow-hidden bg-gradient-to-br from-[#004D45] to-[#003532] text-white">
+    <div class="absolute inset-0">
+      <Image 
+        src={heroImage}
+        alt="Forest monitoring system"
+        width={1920}
+        height={1080}
+        class="w-full h-full object-cover opacity-20"
+      />
+    </div>
+    
+    {/* Floating Elements */}
+    <div class="absolute inset-0 overflow-hidden">
+      {Array.from({ length: 20 }).map((_, i) => (
+        <div
+          class="eco-floating-element absolute"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 5}s`,
+            animationDuration: `${Math.random() * 10 + 10}s`
+          }}
         />
-      </div>
+      ))}
     </div>
-  </section>
 
-  {/* Solutions Cards */}
-  <section class="py-12">
-    <div class="container mx-auto max-w-5xl px-4">
-      {/* Example using DaisyUI Card component structure */}
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-        <div
-          class="card bg-base-100 shadow-sm transition-shadow hover:shadow-md"
-        >
-          {/* DaisyUI card */}
-          <div class="card-body">
-            {/* DaisyUI card-body */}
-            <div class="mb-4">
-              <Icon name="mdi:bell" class="h-8 w-8 text-yellow-400" />
-            </div>
-            <h3 class="card-title text-xl font-semibold">
-              Раннее обнаружение пожаров
-            </h3>
-            {/* DaisyUI card-title */}
-            <p class="text-base-content/80 mb-4">
-              Комплексная система прогнозирования и выявления лесных пожаров на
-              ранних стадиях
-            </p>
-          </div>
+    <div class="container relative mx-auto max-w-6xl px-4 py-24">
+      <div class="flex flex-col items-center text-center">
+        <div class="eco-badge mb-8 animate-float">
+          <span class="text-white font-medium">Инновационные решения</span>
         </div>
+        
+        <h1 class="max-w-4xl text-4xl md:text-6xl font-bold mb-8 leading-tight">
+          Мы являемся вендором <span class="text-[#95C11F] eco-glow">инновационной системы</span>
+        </h1>
+        
+        <p class="text-xl text-white opacity-80 max-w-2xl mb-12">
+          Объединяем IoT-датчики, искусственный интеллект и облачные технологии для создания цифровых двойников лесных экосистем
+        </p>
 
-        <div
-          class="card bg-base-100 shadow-sm transition-shadow hover:shadow-md"
-        >
-          <div class="card-body">
-            <div class="mb-4">
-              <Icon
-                name="mdi:chart-bell-curve-cumulative"
-                class="h-8 w-8 text-blue-400"
-              />
-            </div>
-            <h3 class="card-title text-xl font-semibold">
-              Цифровой двойник лесов
-            </h3>
-            <p class="text-base-content/80 mb-4">
-              Интеллектуальная система мониторинга состояния деревьев в режиме
-              реального времени
-            </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl">
+          <div class="eco-stat-card">
+            <div class="text-4xl font-bold text-[#95C11F]">30%</div>
+            <div class="text-sm opacity-80">Повышение эффективности</div>
           </div>
-        </div>
-
-        <div
-          class="card bg-base-100 shadow-sm transition-shadow hover:shadow-md"
-        >
-          <div class="card-body">
-            <div class="mb-4">
-              <Icon name="mdi:location" class="h-8 w-8 text-red-400" />
-            </div>
-            <h3 class="card-title text-xl font-semibold">
-              Экологический мониторинг
-            </h3>
-            <p class="text-base-content/80 mb-4">
-              Комплексный анализ состояния лесных экосистем и биоразнообразия
-            </p>
+          <div class="eco-stat-card">
+            <div class="text-4xl font-bold text-[#95C11F]">24/7</div>
+            <div class="text-sm opacity-80">Мониторинг в реальном времени</div>
+          </div>
+          <div class="eco-stat-card">
+            <div class="text-4xl font-bold text-[#95C11F]">50+</div>
+            <div class="text-sm opacity-80">Реализованных проектов</div>
           </div>
         </div>
       </div>
     </div>
+
+    {/* Hero Bottom Wave */}
+    <div class="absolute bottom-0 left-0 w-full">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 30L48 35C96 40 192 50 288 55C384 60 480 60 576 55C672 50 768 40 864 35C960 30 1056 30 1152 35C1248 40 1344 50 1392 55L1440 60V120H1392C1344 120 1248 120 1152 120C1056 120 960 120 864 120C768 120 672 120 576 120C480 120 384 120 288 120C192 120 96 120 48 120H0V30Z" fill="white"/>
+      </svg>
+    </div>
   </section>
 
-  {/* Solution 1 Detail */}
-  <section id="fire-detection" class="scroll-mt-20 py-16">
-    {/* Added scroll-mt */}
-    <div class="container mx-auto max-w-5xl px-4">
-      <div class="flex flex-col items-center gap-8 md:flex-row md:gap-12">
-        <div class="mb-8 md:mb-0 md:w-1/2">
-          {/* Removed md:pr-12, using gap now */}
-          <h2 class="mb-6 text-3xl font-bold">
-            Прогнозирование и раннее обнаружение лесных пожаров
-          </h2>
-          <p class="text-base-content/80 mb-6">
-            Лесные пожары становятся все более частыми и разрушительными из-за
-            климатических изменений, засух и антропогенного воздействия. Для
-            эффективного управления рисками и минимизации ущерба важно не только
-            оперативно выявлять возгорания, но и прогнозировать их
-            возникновение.
-          </p>
-          <p class="text-base-content/80 mb-6">
-            Наша система использует комплексное решение, основанное на
-            современных технологиях, позволяющее не только фиксировать уже
-            произошедшие возгорания, но и заранее определять зоны повышенной
-            пожарной опасности.
-          </p>
-        </div>
-        <div class="md:w-1/2">
-          <Image
-            src={placeholderImg1}
-            alt="Система обнаружения лесных пожаров"
-            width={600}
-            height={400}
-            format="webp"
-            quality={80}
-            class="h-full w-full rounded-lg object-cover shadow-lg"
-          />
-        </div>
+  {/* Features Grid with Hover Effects */}
+  <section class="py-20 bg-white relative overflow-hidden fade-up">
+    {/* Interactive background */}
+    <div class="eco-grid-background absolute inset-0 opacity-10">
+      <div class="eco-grid"></div>
+      <div class="eco-grid-glow"></div>
+    </div>
+    
+    {/* Digital particles */}
+    <div class="eco-digital-particles">
+      {Array.from({ length: 30 }).map(() => (
+        <div class="eco-digital-particle"></div>
+      ))}
+    </div>
+
+    <div class="container relative mx-auto max-w-6xl px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#004D45] mb-4">Цифровой двойник лесов</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Комплексная система мониторинга и управления лесными ресурсами</p>
       </div>
 
-      <div class="mt-16">
-        <h3 class="mb-8 text-2xl font-semibold">Как это работает</h3>
-
-        {/* Using slightly different card style for detail sections */}
-        <div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
-          <div class="card bg-base-100">
-            <div class="card-body">
-              <h4 class="mb-4 flex items-center text-lg font-semibold">
-                Метеостанции для оценки пожарной опасности
-              </h4>
-              <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Измерение температуры воздуха, влажности, осадков, скорости
-                    и направления ветра позволяет прогнозировать условия,
-                    благоприятные для возникновения пожаров.
-                  </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Мониторинг влажности почвы и растительности (так называемого
-                    "топлива") помогает оценивать степень сухости, что является
-                    ключевым фактором риска.
-                  </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Спектральный анализ растительности (NDVI) определяет уровень
-                    стресса растений и предсказывает их склонность к возгоранию.
-                  </span>
-                </li>
-              </ul>
-              <Icon
-                name="mdi:cloud-warning"
-                class="mt-4 ml-auto size-12 text-orange-400"
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {features.map((feature) => (
+          <div class="eco-feature-card group">
+            <div class="relative h-48 mb-6 rounded-lg overflow-hidden">
+              <Image 
+                src={feature.image}
+                alt={feature.title}
+                width={400}
+                height={300}
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
+              <div class="absolute inset-0 bg-gradient-to-t from-white to-transparent"></div>
+            </div>
+            <div class="eco-feature-icon">
+              <Icon name={feature.icon} class="w-8 h-8 text-[#95C11F]" />
+            </div>
+            <h3 class="text-xl font-semibold mb-3">{feature.title}</h3>
+            <p class="text-gray-600">{feature.description}</p>
+            <div class="eco-feature-hover"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Interactive Solution Showcase */}
+  <section class="py-20 bg-[#F5F9F9] fade-up">
+    <div class="container mx-auto max-w-6xl px-4">
+      <div class="eco-showcase">
+        <div class="eco-showcase-content">
+          <h2 class="text-3xl font-bold mb-8 text-[#004D45]">Современный питомник</h2>
+          <div class="eco-tabs">
+            <button class="eco-tab active" data-tab="monitoring">Мониторинг</button>
+            <button class="eco-tab" data-tab="control">Управление</button>
+            <button class="eco-tab" data-tab="analytics">Аналитика</button>
+          </div>
+          
+          <div class="eco-tab-content active" data-content="monitoring">
+            <div class="eco-info-grid">
+              <div class="eco-info-item">
+                <div class="eco-info-icon">
+                  <Icon name="mdi:check-circle" class="w-6 h-6 text-[#95C11F]" />
+                </div>
+                <h4 class="text-lg font-medium mb-2">Контроль влажности</h4>
+                <p class="text-gray-600">Оптимизация полива для экономии воды</p>
+              </div>
+              <div class="eco-info-item">
+                <div class="eco-info-icon">
+                  <Icon name="mdi:monitor-eye" class="w-6 h-6 text-[#95C11F]" />
+                </div>
+                <h4 class="text-lg font-medium mb-2">Мониторинг роста</h4>
+                <p class="text-gray-600">Отслеживание развития растений в реальном времени</p>
+              </div>
+              <div class="eco-info-item">
+                <div class="eco-info-icon">
+                  <Icon name="mdi:cloud-warning" class="w-6 h-6 text-[#95C11F]" />
+                </div>
+                <h4 class="text-lg font-medium mb-2">Раннее оповещение</h4>
+                <p class="text-gray-600">Своевременное выявление потенциальных проблем</p>
+              </div>
             </div>
           </div>
 
-          <div class="card bg-base-100">
-            <div class="card-body">
-              <h4 class="mb-4 flex items-center text-lg font-semibold">
-                Сеть IoT-датчиков для мониторинга окружающей среды
-              </h4>
-              <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Датчики температуры, вланости, задымленности и инфракрасного
-                    излучения размещаются в лесных массивах и передают данные в
-                    реальном времени.
-                  </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Контроль уровня аэрозолей в воздухе помогает выявлять
-                    скрытые или малозаметные возгорания на ранних стадиях.
-                  </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Мониторинг водопотребления деревьями позволяет определять их
-                    устойчивость к засухе и предсказывать риск самовозгорания.
-                  </span>
-                </li>
-              </ul>
-              <Icon
-                name="mdi:monitor-eye"
-                class="mt-4 ml-auto size-12 text-blue-400"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
-          <div class="card bg-base-100">
-            <div class="card-body">
-              <h4 class="mb-4 flex items-center text-lg font-semibold">
-                Искусственный интеллект и анализ данных
-              </h4>
-              <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Алгоритмы машинного обучения обрабатывают данные с датчиков,
-                    спутниковых снимков и метеостанций, прогнозируя вероятность
-                    возникновения и развития пожаров.
-                  </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Анализ аномалий позволяет заранее выявлять опасные условия и
-                    повышенные риски возгораний.
-                  </span>
-                </li>
-              </ul>
-              <Icon
-                name="mdi:robot"
-                class="mt-4 ml-auto size-12 text-gray-400"
-              />
+          <div class="eco-tab-content" data-content="control">
+            <div class="eco-info-grid">
+              <div class="eco-info-item">
+                <div class="eco-info-icon">
+                  <Icon name="mdi:robot" class="w-6 h-6 text-[#95C11F]" />
+                </div>
+                <h4 class="text-lg font-medium mb-2">Автоматизация</h4>
+                <p class="text-gray-600">Автоматическое управление системами полива и освещения</p>
+              </div>
+              <div class="eco-info-item">
+                <div class="eco-info-icon">
+                  <Icon name="mdi:alarm-light" class="w-6 h-6 text-[#95C11F]" />
+                </div>
+                <h4 class="text-lg font-medium mb-2">Умное освещение</h4>
+                <p class="text-gray-600">Адаптивное управление системой освещения</p>
+              </div>
             </div>
           </div>
 
-          <div class="card bg-base-100">
-            <div class="card-body">
-              <h4 class="mb-4 flex items-center text-lg font-semibold">
-                Оперативное оповещение экстренных служб
-              </h4>
-              <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Автоматизированная система уведомлений позволяет мгновенно
-                    передавать информацию о рисках и возгораниях в МЧС, лесные
-                    хозяйства и местные администрации.
-                  </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Прогнозирование маршрутов распространения пожара помогает
-                    более эффективно распределять силы и ресурсы для его
-                    тушения.
-                  </span>
-                </li>
-              </ul>
-              <Icon
-                name="mdi:alarm-light"
-                class="mt-4 ml-auto size-12 text-red-400"
-              />
+          <div class="eco-tab-content" data-content="analytics">
+            <div class="eco-info-grid">
+              <div class="eco-info-item">
+                <div class="eco-info-icon">
+                  <Icon name="mdi:chart-bell-curve-cumulative" class="w-6 h-6 text-[#95C11F]" />
+                </div>
+                <h4 class="text-lg font-medium mb-2">Аналитика данных</h4>
+                <p class="text-gray-600">Глубокий анализ показателей роста и развития</p>
+              </div>
+              <div class="eco-info-item">
+                <div class="eco-info-icon">
+                  <Icon name="mdi:clipboard-text" class="w-6 h-6 text-[#95C11F]" />
+                </div>
+                <h4 class="text-lg font-medium mb-2">Отчетность</h4>
+                <p class="text-gray-600">Автоматическая генерация отчетов и рекомендаций</p>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Results Section - Using DaisyUI Alert component style */}
-        <div role="alert" class="alert alert-outline alert-success">
-          <div class="text-base-content">
-            <h3 class="mb-4 text-xl font-bold">Ожидаемые результаты</h3>
-            <div
-              class="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3"
-            >
-              <div class="flex items-start">
-                <Icon
-                  name="mdi:check"
-                  class="text-success mt-1 mr-2 h-5 w-5 flex-shrink-0"
-                />
-                <span
-                  >Предотвращение пожаров за счет раннего прогнозирования зон
-                  риска</span
-                >
-              </div>
-              <div class="flex items-start">
-                <Icon
-                  name="mdi:check"
-                  class="text-success mt-1 mr-2 h-5 w-5 flex-shrink-0"
-                />
-                <span
-                  >Оперативное обнаружение очагов возгорания на самых ранних
-                  стадиях</span
-                >
-              </div>
-              <div class="flex items-start">
-                <Icon
-                  name="mdi:check"
-                  class="text-success mt-1 mr-2 h-5 w-5 flex-shrink-0"
-                />
-                <span>Повышение скорости реагирования экстренных служб</span>
-              </div>
-              <div class="flex items-start">
-                <Icon
-                  name="mdi:check"
-                  class="text-success mt-1 mr-2 h-5 w-5 flex-shrink-0"
-                />
-                <span>Оптимизация затрат на ликвидацию пожаров</span>
-              </div>
-              <div class="flex items-start">
-                <Icon
-                  name="mdi:check"
-                  class="text-success mt-1 mr-2 h-5 w-5 flex-shrink-0"
-                />
-                <span
-                  >Снижение ущерба для экосистем и безопасности населения</span
-                >
-              </div>
+        
+        <div class="eco-showcase-visual">
+          <div class="relative rounded-lg overflow-hidden">
+            <div class="eco-image-container">
+              <Image 
+                src={monitoringImg}
+                alt="Система мониторинга"
+                width={800}
+                height={600}
+                class="w-full h-full object-cover transition-all duration-500 absolute inset-0"
+                data-tab="monitoring"
+              />
+              <Image 
+                src={controlImg}
+                alt="Система управления"
+                width={800}
+                height={600}
+                class="w-full h-full object-cover transition-all duration-500 absolute inset-0 opacity-0"
+                data-tab="control"
+              />
+              <Image 
+                src={analyticsImg}
+                alt="Система аналитики"
+                width={800}
+                height={600}
+                class="w-full h-full object-cover transition-all duration-500 absolute inset-0 opacity-0"
+                data-tab="analytics"
+              />
             </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#004D45]/20 to-transparent"></div>
+            <div class="eco-scan-line"></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  {/* Solution 2 Detail */}
-  <section id="digital-twin" class="py-16">
-    {/* Added scroll-mt */}
-    <div class="container mx-auto max-w-5xl px-4">
-      <div
-        class="flex flex-col items-center gap-8 md:flex-row-reverse md:gap-12"
-      >
-        <div class="mb-8 md:mb-0 md:w-1/2">
-          {/* Removed md:pl-12 */}
-          <h2 class="mb-6 text-3xl font-bold">
-            Цифровой двойник лесов: интеллектуальная система мониторинга
-            деревьев
-          </h2>
-          <p class="text-base-content/80 mb-6">
-            Мы являемся вендорами технологии «цифровой двойник лесов» –
-            комплексная система мониторинга деревьев, обеспечивающая анализ их
-            состояния в режиме реального времени. Это инновационное решение
-            помогает оптимизировать уход за лесами, повышать устойчивость
-            деревьев и эффективно управлять природными ресурсами.
-          </p>
-        </div>
-        <div class="md:w-1/2">
-          <Image
-            src={placeholderImg1}
-            alt="Система обнаружения лесных пожаров"
-            width={600}
-            height={400}
-            format="webp"
-            quality={80}
-            class="h-full w-full rounded-lg object-cover shadow-lg"
-          />
-        </div>
-      </div>
-
-      <div class="mt-16">
-        <h3 class="mb-8 text-2xl font-semibold">
-          Как работает цифровой двойник леса
-        </h3>
-
-        <div class="mb-12 grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div class="card bg-base-100">
-            <div class="card-body">
-              <h4 class="mb-4 flex items-center text-lg font-semibold">
-                Мониторинг водопотребления деревьев
-              </h4>
-              <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Сенсоры Sap Flow измеряют объем влаги, поглощаемой
-                    деревьями, что позволяет оценивать их физиологическое
-                    состояние.
-                  </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Психрометры PSY1 фиксируют уровень водного стресса деревьев,
-                    предупреждая о его негативном влиянии на рост и развитие.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="card bg-base-100">
-            <div class="card-body">
-              <h4 class="mb-4 flex items-center text-lg font-semibold">
-                Оценка состояния почвы и окружающей среды
-              </h4>
-              <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Датчики влажности и засоленности почвы отслеживают ее
-                    состояние, помогая корректировать полив и агротехнические
-                    меры.
-                  </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Спектральный анализ растительности (NDVI) определяет уровень
-                    фотосинтетической активности.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="card bg-base-100">
-            <div class="card-body">
-              <h4 class="mb-4 flex items-center text-lg font-semibold">
-                Анализ и управление в режиме реального времени
-              </h4>
-              <ul class="space-y-3">
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Данные с датчиков передаются на цифровую платформу, где
-                    анализируются с использованием алгоритмов искусственного
-                    интеллекта.
-                  </span>
-                </li>
-                <li class="flex items-start">
-                  <span class="mt-1 mr-2">•</span>
-                  <span>
-                    Визуализация информации в дашбордах позволяет отслеживать
-                    динамику изменений.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Benefits Section */}
-        <div class="mt-12">
-          <div class="flex flex-col items-center gap-8 md:flex-row md:gap-12">
-            <div class="mb-8 md:mb-0 md:w-1/2">
-              {/* Removed md:pr-12 */}
-              <h3 class="mb-6 text-2xl font-semibold">
-                Преимущества цифрового двойника лесов
-              </h3>
-              <div class="space-y-4">
-                <div class="flex items-start">
-                  <Icon
-                    name="mdi:check"
-                    class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-500"
-                  />
-                  <p>
-                    Объективный контроль состояния деревьев – непрерывный поток
-                    данных позволяет оперативно реагировать на изменения.
-                  </p>
-                </div>
-                <div class="flex items-start">
-                  <Icon
-                    name="mdi:check"
-                    class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-500"
-                  />
-                  <p>
-                    Оптимизация использования водных ресурсов – управление
-                    поливами на основе реальных потребностей деревьев.
-                  </p>
-                </div>
-                <div class="flex items-start">
-                  <Icon
-                    name="mdi:check"
-                    class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-500"
-                  />
-                  <p>
-                    Продление жизненного цикла лесных массивов – своевременное
-                    выявление стрессовых факторов способствует сохранению
-                    здоровья деревьев.
-                  </p>
-                </div>
-                <div class="flex items-start">
-                  <Icon
-                    name="mdi:check"
-                    class="mt-1 mr-3 h-6 w-6 flex-shrink-0 text-green-500"
-                  />
-                  <p>
-                    Принятие обоснованных решений – доступ к аналитике помогает
-                    разработке долгосрочных стратегий по управлению лесами.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="md:w-1/2">
-              <Image
-                src={placeholderImg1}
-                alt="Преимущества цифрового двойника"
-                width={600}
-                height={400}
-                format="webp"
-                quality={80}
-                class="h-full w-full rounded-lg object-cover shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* Features Section */}
-  <section class="py-16">
-    <div class="container mx-auto max-w-5xl px-4">
-      <div class="mb-12 text-center">
-        <h2 class="mb-4 text-3xl font-bold">
-          Ключевые особенности наших решений
-        </h2>
-        <p class="text-base-content/80 mx-auto max-w-2xl">
-          Наши технологии объединяют передовые методы мониторинга, анализа
-          данных и искусственного интеллекта для обеспечения эффективной защиты
-          лесных экосистем.
+  {/* Animated Stats Section */}
+  <section class="py-20 bg-[#004D45] text-white relative overflow-hidden">
+    <div class="eco-particles"></div>
+    <div class="container mx-auto max-w-6xl px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Наши достижения</h2>
+        <p class="text-xl opacity-80 max-w-2xl mx-auto">
+          Результаты внедрения наших решений в реальных проектах
         </p>
       </div>
-
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-        <div class="p-4 text-center">
-          <div
-            class="bg-primary/70 ring-primary/50 mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full ring-4"
-          >
-            <Icon name="mdi:clipboard-text" class="h-8 w-8" />
-          </div>
-          <h3 class="mb-2 text-xl font-semibold">Организационный обзор</h3>
-          <p class="text-base-content/80">
-            Данные собираются со всех локаций, обеспечивая единый обзор
-            состояния лесных массивов и эффективности принимаемых мер.
-          </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="eco-stat-box">
+          <div class="eco-stat-number">50%</div>
+          <div class="eco-stat-label">Экономия воды</div>
         </div>
-
-        <div class="p-4 text-center">
-          <div
-            class="bg-primary/70 ring-primary/50 mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full ring-4"
-          >
-            <Icon name="mdi:interaction-double-tap" class="h-8 w-8" />
-          </div>
-          <h3 class="mb-2 text-xl font-semibold">
-            Удобный пользовательский интерфейс
-          </h3>
-          <p class="text-base-content/80">
-            Настраиваемые дашборды и интуитивно понятный интерфейс обеспечивают
-            удобный доступ к данным и управление системой.
-          </p>
+        <div class="eco-stat-box">
+          <div class="eco-stat-number">30%</div>
+          <div class="eco-stat-label">Рост эффективности</div>
         </div>
-
-        <div class="p-4 text-center">
-          <div
-            class="bg-primary/70 ring-primary/50 mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full ring-4"
-          >
-            <Icon name="mdi:star-rate" class="h-8 w-8" />
-          </div>
-          <h3 class="mb-2 text-xl font-semibold">Соответствие стандартам</h3>
-          <p class="text-base-content/80">
-            Наши решения соответствуют всем экологическим стандартам и
-            требованиям к системам мониторинга природных ресурсов.
-          </p>
+        <div class="eco-stat-box">
+          <div class="eco-stat-number">95%</div>
+          <div class="eco-stat-label">Точность прогнозов</div>
+        </div>
+        <div class="eco-stat-box">
+          <div class="eco-stat-number">24/7</div>
+          <div class="eco-stat-label">Мониторинг</div>
         </div>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .eco-floating-element {
+    width: 6px;
+    height: 6px;
+    background: rgba(149, 193, 31, 0.3);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: float-particle var(--duration, 15s) ease-in-out infinite;
+  }
+
+  @keyframes float-particle {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(100px, -50px) rotate(90deg);
+    }
+    50% {
+      transform: translate(0, -100px) rotate(180deg);
+    }
+    75% {
+      transform: translate(-100px, -50px) rotate(270deg);
+    }
+  }
+
+  .eco-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .eco-stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    animation: card-appear 0.6s ease-out backwards;
+  }
+
+  .eco-stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .eco-feature-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .eco-feature-hover {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 77, 69, 0.05), rgba(149, 193, 31, 0.05));
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .eco-feature-card:hover .eco-feature-hover {
+    opacity: 1;
+  }
+
+  .eco-feature-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+  }
+
+  .eco-feature-card:hover .eco-feature-icon {
+    transform: translateZ(20px) scale(1.2);
+  }
+
+  .eco-feature-icon {
+    transition: transform 0.5s ease;
+  }
+
+  .eco-showcase {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .eco-showcase {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .eco-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .eco-tab {
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+  }
+
+  .eco-tab.active {
+    background: #004D45;
+    color: white;
+    box-shadow: 0 0 20px rgba(149, 193, 31, 0.3);
+    animation: tab-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes tab-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(149, 193, 31, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(149, 193, 31, 0.5); }
+  }
+
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 20px rgba(149, 193, 31, 0.3); }
+    50% { text-shadow: 0 0 40px rgba(149, 193, 31, 0.6); }
+  }
+
+  .eco-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .eco-info-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 77, 69, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .eco-info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 77, 69, 0.1);
+  }
+
+  .eco-info-icon {
+    background: rgba(149, 193, 31, 0.1);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .eco-tab-content {
+    display: none;
+  }
+
+  .eco-tab-content.active {
+    display: block;
+  }
+
+  .eco-stat-box {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .eco-stat-box:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .eco-stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #95C11F;
+    margin-bottom: 0.5rem;
+  }
+
+  .eco-stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  .eco-particles {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at center, rgba(149, 193, 31, 0.1) 2px, transparent 2px);
+    background-size: 30px 30px;
+    animation: particlesPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes particlesPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  .eco-scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: vertical-scan 3s ease-in-out infinite;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(149, 193, 31, 0.8),
+      transparent
+    );
+  }
+
+  @keyframes vertical-scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(400%); }
+  }
+
+  .eco-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+  }
+
+  .eco-image-container img {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  /* Stats cards animation */
+  .eco-stat-card:nth-child(1) { animation-delay: 0.2s; }
+  .eco-stat-card:nth-child(2) { animation-delay: 0.4s; }
+  .eco-stat-card:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes card-appear {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Intersection Observer animations */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Grid background effect */
+  .eco-grid-background {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    animation: backgroundRotate 20s linear infinite;
+  }
+
+  .eco-grid {
+    position: absolute;
+    inset: -100%;
+    background-image: 
+      linear-gradient(#004D45 1px, transparent 1px),
+      linear-gradient(90deg, #004D45 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: rotateX(60deg);
+    animation: gridMove 20s linear infinite;
+  }
+
+  .eco-grid-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(149, 193, 31, 0.15),
+      transparent 70%
+    );
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes gridMove {
+    from { transform: rotateX(60deg) translateY(0); }
+    to { transform: rotateX(60deg) translateY(50px); }
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Digital particles */
+  .eco-digital-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .eco-digital-particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #95C11F;
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: 0;
+    animation: digitalFloat 10s linear infinite;
+  }
+
+  .eco-digital-particle:nth-child(odd) {
+    width: 4px;
+    height: 4px;
+    animation-duration: 15s;
+  }
+
+  .eco-digital-particles .eco-digital-particle {
+    --x: 0px;
+    --y: 0px;
+    --delay: 0s;
+  }
+
+  @keyframes digitalFloat {
+    0% {
+      opacity: 0;
+      transform: translate3d(
+        calc(var(--x) - 100px),
+        calc(var(--y) - 100px),
+        0
+      ) scale(0);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translate3d(var(--x), var(--y), 0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(
+        calc(var(--x) + 100px),
+        calc(var(--y) + 100px),
+        0
+      ) scale(0);
+    }
+  }
+</style>
+
+<script>
+  // Tab switching logic
+  const tabs = document.querySelectorAll('.eco-tab');
+  const contents = document.querySelectorAll('.eco-tab-content');
+  const images = document.querySelectorAll('.eco-image-container img');
+
+  tabs.forEach((tab) => {
+    if (tab instanceof HTMLElement) {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+        
+        // Update tabs and content
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        
+        tab.classList.add('active');
+        const targetContent = document.querySelector(`[data-content="${target}"]`);
+        if (targetContent) {
+          targetContent.classList.add('active');
+        }
+
+        // Update images
+        images.forEach(img => {
+          if (img instanceof HTMLElement) {
+            const isTarget = img.getAttribute('data-tab') === target;
+            img.style.opacity = isTarget ? '1' : '0';
+            img.style.zIndex = isTarget ? '1' : '0';
+          }
+        });
+      });
+    }
+  });
+
+  // Add intersection observer for fade-up animations
+  const fadeElements = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  fadeElements.forEach(element => observer.observe(element));
+
+  // Add parallax effect to hero section
+  const heroSection = document.querySelector('.hero-section');
+  window.addEventListener('scroll', () => {
+    if (heroSection) {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * 0.5;
+      heroSection.style.transform = `translate3d(0, ${rate}px, 0)`;
+    }
+  });
+
+  // Add mouse move effect to feature cards
+  document.querySelectorAll('.eco-feature-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+  });
+
+  // Initialize digital particles
+  const particles = document.querySelectorAll('.eco-digital-particle');
+  particles.forEach(particle => {
+    if (particle instanceof HTMLElement) {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      const delay = Math.random() * 10;
+      
+      particle.style.setProperty('--x', `${x}px`);
+      particle.style.setProperty('--y', `${y}px`);
+      particle.style.setProperty('--delay', `${delay}s`);
+      particle.style.animationDelay = `${delay}s`;
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+    }
+  });
+
+  // Add parallax effect to grid background
+  const gridBackground = document.querySelector('.eco-grid-background');
+  window.addEventListener('mousemove', (e) => {
+    if (gridBackground instanceof HTMLElement) {
+      const mouseX = e.clientX / window.innerWidth - 0.5;
+      const mouseY = e.clientY / window.innerHeight - 0.5;
+      gridBackground.style.transform = 
+        `perspective(1000px) rotateY(${mouseX * 5}deg) rotateX(${-mouseY * 5}deg)`;
+    }
+  });
+</script>

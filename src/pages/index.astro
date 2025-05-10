@@ -12,4 +12,99 @@ import Solutions from "@/components/main/solutions/Solutions.astro";
   <Partners />
   <Solutions />
   <Experts />
+  
+  <!-- Go to top button -->
+  <button 
+    id="go-to-top" 
+    class="fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white opacity-0 shadow-lg transition-all duration-300 hover:bg-[#E6F7F7] invisible"
+    aria-label="Вернуться наверх"
+  >
+    <div class="eco-button-inner relative overflow-hidden rounded-full p-3">
+      <div class="eco-button-bg absolute inset-0 opacity-20"></div>
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        class="h-6 w-6 text-[#0A7B76]" 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        stroke="currentColor"
+      >
+        <path 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          stroke-width="2" 
+          d="M5 10l7-7m0 0l7 7m-7-7v18"
+        />
+      </svg>
+      <span class="eco-button-ripple"></span>
+    </div>
+  </button>
 </Layout>
+
+<style>
+  #go-to-top {
+    border: 1px solid rgba(10, 123, 118, 0.2);
+    transform: translateY(20px);
+  }
+  
+  #go-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+  
+  .eco-button-bg {
+    background: radial-gradient(
+      circle at center,
+      rgba(10, 123, 118, 0.3),
+      rgba(10, 123, 118, 0.1)
+    );
+  }
+  
+  .eco-button-ripple {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba(10, 123, 118, 0.4),
+      transparent 70%
+    );
+    transform: scale(0);
+    opacity: 0;
+    transition: all 0.5s ease-out;
+  }
+  
+  #go-to-top:hover .eco-button-ripple {
+    transform: scale(2);
+    opacity: 0.3;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const goToTopButton = document.getElementById('go-to-top');
+    
+    if (goToTopButton) {
+      // Show/hide button based on scroll position
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+          goToTopButton.classList.add('visible');
+        } else {
+          goToTopButton.classList.remove('visible');
+        }
+      });
+      
+      // Scroll to top when clicked
+      goToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  });
+</script>

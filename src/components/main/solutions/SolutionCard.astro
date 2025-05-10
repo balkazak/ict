@@ -13,38 +13,38 @@ interface Props {
 const { title, image, description, points } = Astro.props;
 ---
 
-<div class="cyber-card group">
+<div class="eco-card group">
   <!-- Card frame effects -->
-  <div class="cyber-card-frame">
-    <div class="cyber-card-lines"></div>
-    <div class="cyber-card-corner-bl"></div>
-    <div class="cyber-card-corner-tr"></div>
+  <div class="eco-card-frame">
+    <div class="eco-card-lines"></div>
+    <div class="eco-card-corner-bl"></div>
+    <div class="eco-card-corner-tr"></div>
   </div>
 
   <!-- Card content -->
   <div class="relative z-10 h-full">
     <figure class="relative h-48">
-      <div class="absolute inset-0 z-10 bg-gradient-to-t from-[#1A1A3A] to-transparent opacity-80"></div>
-      <div class="cyber-scan-effect"></div>
+      <div class="absolute inset-0 z-10 bg-gradient-to-t from-[#F0FAF9] to-transparent opacity-80"></div>
+      <div class="eco-scan-effect"></div>
       <Image
         src={image}
         alt={title}
-        class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+        class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-100"
       />
     </figure>
 
     <div class="p-6">
-      <h3 class="cyber-card-title mb-4 text-xl font-bold text-cyan-400">{title}</h3>
-      <p class="mb-6 text-cyan-200/70">{description}</p>
+      <h3 class="eco-card-title mb-4 text-xl font-bold text-[#0A7B76]">{title}</h3>
+      <p class="mb-6 text-[#0A7B76]/80">{description}</p>
       
       <ul class="space-y-3">
         {points.map((point) => (
-          <li class="cyber-list-item flex items-start gap-3">
+          <li class="eco-list-item flex items-start gap-3">
             <Icon
               name="mdi:check-circle"
-              class="mt-1 h-5 w-5 flex-shrink-0 text-cyan-400"
+              class="mt-1 h-5 w-5 flex-shrink-0 text-[#0A7B76]"
             />
-            <span class="text-cyan-200/90">{point}</span>
+            <span class="text-[#0A7B76]/90">{point}</span>
           </li>
         ))}
       </ul>
@@ -53,111 +53,112 @@ const { title, image, description, points } = Astro.props;
 </div>
 
 <style>
-  .cyber-card {
+  .eco-card {
     position: relative;
-    background: rgba(0, 255, 255, 0.03);
-    border: 1px solid rgba(0, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(10, 123, 118, 0.2);
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
   }
 
-  .cyber-card:hover {
+  .eco-card:hover {
     transform: translateY(-5px);
     box-shadow: 
-      0 0 20px rgba(0, 255, 255, 0.1),
-      0 0 40px rgba(0, 255, 255, 0.1);
+      0 0 20px rgba(10, 123, 118, 0.1),
+      0 0 40px rgba(10, 123, 118, 0.1);
   }
 
-  .cyber-card-frame {
+  .eco-card-frame {
     position: absolute;
     inset: 0;
     pointer-events: none;
   }
 
-  .cyber-card-lines {
+  .eco-card-lines {
     position: absolute;
     inset: 0;
     background: 
-      linear-gradient(90deg, transparent 50%, rgba(0, 255, 255, 0.1) 50%),
-      linear-gradient(transparent 50%, rgba(0, 255, 255, 0.1) 50%);
+      linear-gradient(90deg, transparent 50%, rgba(10, 123, 118, 0.1) 50%),
+      linear-gradient(transparent 50%, rgba(10, 123, 118, 0.1) 50%);
     background-size: 4px 4px;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
-  .cyber-card:hover .cyber-card-lines {
+  .eco-card:hover .eco-card-lines {
     opacity: 1;
   }
 
-  .cyber-card-corner-bl,
-  .cyber-card-corner-tr {
+  .eco-card-corner-bl,
+  .eco-card-corner-tr {
     position: absolute;
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(0, 255, 255, 0.4);
+    border: 2px solid rgba(10, 123, 118, 0.4);
     transition: all 0.3s ease;
   }
 
-  .cyber-card-corner-bl {
+  .eco-card-corner-bl {
     left: -1px;
     bottom: -1px;
     border-right: 0;
     border-top: 0;
   }
 
-  .cyber-card-corner-tr {
+  .eco-card-corner-tr {
     right: -1px;
     top: -1px;
     border-left: 0;
     border-bottom: 0;
   }
 
-  .cyber-scan-effect {
+  .eco-scan-effect {
     position: absolute;
     width: 100%;
     height: 2px;
-    background: rgba(0, 255, 255, 0.5);
+    background: rgba(10, 123, 118, 0.5);
     filter: blur(1px);
     animation: scan 4s ease-in-out infinite;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
-  .cyber-card:hover .cyber-scan-effect {
+  .eco-card:hover .eco-scan-effect {
     opacity: 1;
   }
 
-  .cyber-card-title {
+  .eco-card-title {
     position: relative;
     display: inline-block;
   }
 
-  .cyber-card-title::after {
+  .eco-card-title::after {
     content: '';
     position: absolute;
     left: 0;
     bottom: -2px;
     width: 100%;
     height: 1px;
-    background: rgba(0, 255, 255, 0.4);
+    background: rgba(10, 123, 118, 0.4);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease;
   }
 
-  .cyber-card:hover .cyber-card-title::after {
+  .eco-card:hover .eco-card-title::after {
     transform: scaleX(1);
     transform-origin: left;
   }
 
-  .cyber-list-item {
+  .eco-list-item {
     position: relative;
     padding-left: 1rem;
     transition: transform 0.2s ease;
   }
 
-  .cyber-list-item:hover {
+  .eco-list-item:hover {
     transform: translateX(5px);
   }
 

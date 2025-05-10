@@ -3,24 +3,58 @@ import { Image } from "astro:assets";
 import techTreeImage from "@/assets/hero/tech-tree.png";
 ---
 
-<section class="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#0A0A1B] to-[#1A1A3A]">
-  <!-- Animated cyber grid -->
-  <div class="absolute inset-0">
-    <div class="cyber-grid"></div>
+<section class="relative min-h-screen overflow-hidden bg-gradient-to-b from-[#E6F7F7] to-[#C5EBE9]">
+  <!-- Mouse follow effect -->
+  <div id="mouse-circle" class="pointer-events-none fixed opacity-0 transition-opacity duration-500">
+    <div class="eco-mouse-glow"></div>
+    <div class="eco-mouse-ripple"></div>
+    <div class="eco-mouse-ripple" style="animation-delay: 0.5s"></div>
+    <div class="eco-mouse-ripple" style="animation-delay: 1s"></div>
+    <div class="eco-mouse-particles">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div 
+          class="eco-mouse-particle"
+          style={{
+            transform: `rotate(${i * 60}deg) translateY(-100px)`,
+            animationDelay: `${i * 0.5}s`
+          }}
+        ></div>
+      ))}
+    </div>
   </div>
 
-  <!-- Glowing orbs -->
+  <!-- Nature-inspired patterns -->
+  <div class="absolute inset-0 opacity-20">
+    <div class="nature-grid"></div>
+  </div>
+
+  <!-- Floating seeds -->
   <div class="absolute inset-0">
-    {Array.from({ length: 15 }).map(() => (
+    {Array.from({ length: 25 }).map(() => (
       <div
-        class="glow-orb absolute rounded-full"
+        class="seed-particle absolute"
         style={{
           left: `${Math.random() * 100}%`,
           top: `${Math.random() * 100}%`,
-          width: `${Math.random() * 100 + 50}px`,
-          height: `${Math.random() * 100 + 50}px`,
+          width: `${Math.random() * 8 + 3}px`,
+          height: `${Math.random() * 8 + 3}px`,
           animationDelay: `${Math.random() * 5}s`,
-          animationDuration: `${Math.random() * 10 + 10}s`
+          animationDuration: `${Math.random() * 15 + 10}s`
+        }}
+      ></div>
+    ))}
+  </div>
+
+  <!-- Leaf patterns -->
+  <div class="absolute inset-0 opacity-15">
+    {Array.from({ length: 12 }).map(() => (
+      <div
+        class="leaf-pattern absolute"
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          transform: `rotate(${Math.random() * 360}deg) scale(${Math.random() * 0.5 + 0.5})`,
+          animationDelay: `${Math.random() * 10}s`
         }}
       ></div>
     ))}
@@ -30,34 +64,82 @@ import techTreeImage from "@/assets/hero/tech-tree.png";
   <div class="relative z-10 container mx-auto max-w-6xl px-4 py-20">
     <div class="flex min-h-[80vh] flex-col items-center gap-16 lg:flex-row">
       <div class="space-y-8 lg:w-1/2">
-        <!-- Animated tech badge -->
-        <div class="cyber-badge" data-aos="zoom-in">
-          <div class="cyber-badge-glitch"></div>
-          <span class="relative z-10 text-cyan-400">Инновационные технологии будущего</span>
+        <!-- Eco badge -->
+        <div class="eco-badge group" data-aos="zoom-in">
+          <div class="eco-badge-glow"></div>
+          <div class="eco-badge-scanner"></div>
+          <div class="eco-badge-particles">
+            {Array.from({ length: 4 }).map(() => (
+              <div 
+                class="eco-badge-particle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 2}s`
+                }}
+              ></div>
+            ))}
+          </div>
+          <span class="relative z-10 eco-badge-text">Инновационные технологии будущего</span>
         </div>
 
-        <!-- Glitch effect title -->
-        <h1 class="glitch-text text-6xl font-bold text-white md:text-7xl lg:text-8xl" data-text="ICT Central Asia">
-          ICT Central Asia
-        </h1>
+        <!-- Title with effects -->
+        <div class="eco-title-wrapper relative" data-aos="fade-up">
+          <h1 class="eco-title text-6xl font-bold md:text-7xl lg:text-8xl">
+            <span class="eco-text-gradient">ICT Central Asia</span>
+          </h1>
+          <div class="eco-title-decoration"></div>
+          <div class="eco-leaves">
+            {Array.from({ length: 6 }).map(() => (
+              <div 
+                class="eco-leaf"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 2}s`,
+                  animationDuration: `${Math.random() * 3 + 4}s`
+                }}
+              ></div>
+            ))}
+          </div>
+          <div class="eco-light-particles">
+            {Array.from({ length: 8 }).map(() => (
+              <div 
+                class="eco-particle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  width: `${Math.random() * 4 + 2}px`,
+                  height: `${Math.random() * 4 + 2}px`
+                }}
+              ></div>
+            ))}
+          </div>
+        </div>
 
-        <!-- Animated description -->
-        <p class="cyber-text text-lg text-cyan-200/80">
-          Совместное предприятие <span class="text-cyan-400">Proyectae</span> и
-          <span class="text-cyan-400">ICT International</span>, создающее будущее через
+        <!-- Description -->
+        <p class="eco-text text-lg text-[#0A7B76]/90">
+          Совместное предприятие <span class="text-[#0A7B76] font-medium">Proyectae</span> и
+          <span class="text-[#0A7B76] font-medium">ICT International</span>, создающее будущее через
           передовые технологии и инновации в области устойчивого развития.
         </p>
 
-        <!-- Stats with cyber effect -->
-        <div class="cyber-stats grid grid-cols-3 gap-6">
+        <!-- Stats with enhanced eco effect -->
+        <div class="eco-stats grid grid-cols-3 gap-6">
           {[
-            { number: "40+", text: "лет опыта" },
-            { number: "500+", text: "проектов" },
-            { number: "50+", text: "стран" }
+            { number: "40+", text: "лет опыта", icon: "🌱" },
+            { number: "500+", text: "проектов", icon: "🌿" },
+            { number: "50+", text: "стран", icon: "🍃" }
           ].map((stat) => (
-            <div class="cyber-stat-card group">
-              <div class="cyber-stat-number">{stat.number}</div>
-              <div class="cyber-stat-text">{stat.text}</div>
+            <div class="eco-stat-card group">
+              <div class="eco-stat-shine"></div>
+              <div class="eco-stat-content">
+                <div class="eco-stat-icon">{stat.icon}</div>
+                <div class="eco-stat-number">{stat.number}</div>
+                <div class="eco-stat-text">{stat.text}</div>
+              </div>
+              <div class="eco-stat-corners">
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <div class="eco-stat-hover-effect"></div>
             </div>
           ))}
         </div>
@@ -65,16 +147,16 @@ import techTreeImage from "@/assets/hero/tech-tree.png";
 
       <!-- Animated image section -->
       <div class="relative lg:w-1/2">
-        <div class="cyber-frame">
-          <div class="cyber-scanner"></div>
+        <div class="eco-frame">
+          <div class="eco-scanner"></div>
           <Image
             src={techTreeImage}
             alt="Future Technology Concept"
-            class="cyber-image"
+            class="eco-image"
             width={600}
             height={600}
           />
-          <div class="cyber-corners"></div>
+          <div class="eco-frame-decoration"></div>
         </div>
       </div>
     </div>
@@ -82,10 +164,10 @@ import techTreeImage from "@/assets/hero/tech-tree.png";
 </section>
 
 <style>
-  .cyber-grid {
+  .nature-grid {
     background: 
-      linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px),
-      linear-gradient(rgba(0,255,255,0.1) 1px, transparent 1px);
+      linear-gradient(90deg, rgba(10, 123, 118, 0.1) 1px, transparent 1px),
+      linear-gradient(rgba(10, 123, 118, 0.1) 1px, transparent 1px);
     background-size: 50px 50px;
     width: 100%;
     height: 100%;
@@ -94,101 +176,251 @@ import techTreeImage from "@/assets/hero/tech-tree.png";
     transform: perspective(1000px) rotateX(60deg);
   }
 
-  .glow-orb {
-    background: radial-gradient(circle at 30% 30%, rgba(0,255,255,0.3), transparent);
-    filter: blur(20px);
-    animation: floatOrb infinite ease-in-out both;
+  .seed-particle {
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    animation: floatSeed infinite ease-in-out both;
   }
 
-  .cyber-badge {
+  .leaf-pattern {
+    width: 40px;
+    height: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230A7B76'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0-4-4,4.5,4.5,0,0,0-1.08.14L5.82,10,5,8.76C9.77,5.19,16.2,6.72,17,8ZM8,14a2,2,0,1,1-2,2A2,2,0,0,1,8,14Z'/%3E%3C/svg%3E");
+    background-size: contain;
+    opacity: 0.3;
+    animation: rotateSlow 30s linear infinite;
+  }
+
+  .eco-badge {
     position: relative;
-    padding: 0.5rem 1.5rem;
-    background: rgba(0,255,255,0.1);
-    border: 1px solid rgba(0,255,255,0.2);
+    padding: 0.75rem 2rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(10, 123, 118, 0.3);
     border-radius: 4px;
     overflow: hidden;
-  }
-
-  .cyber-badge-glitch {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,255,255,0.2);
-    animation: glitch 2s infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-
-  .glitch-text {
-    position: relative;
-    text-shadow: 
-      0 0 10px rgba(0,255,255,0.5),
-      0 0 20px rgba(0,255,255,0.3),
-      0 0 30px rgba(0,255,255,0.2);
-    animation: textGlitch 3s infinite;
-  }
-
-  .cyber-frame {
-    position: relative;
-    border: 2px solid rgba(0,255,255,0.2);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .cyber-scanner {
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: rgba(0,255,255,0.5);
-    filter: blur(2px);
-    animation: scan 3s ease-in-out infinite;
-  }
-
-  .cyber-corners::before,
-  .cyber-corners::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(0,255,255,0.5);
-  }
-
-  .cyber-corners::before {
-    top: -2px;
-    left: -2px;
-    border-right: 0;
-    border-bottom: 0;
-  }
-
-  .cyber-corners::after {
-    bottom: -2px;
-    right: -2px;
-    border-left: 0;
-    border-top: 0;
-  }
-
-  .cyber-stat-card {
-    background: rgba(0,255,255,0.05);
-    border: 1px solid rgba(0,255,255,0.1);
-    padding: 1rem;
-    border-radius: 4px;
+    backdrop-filter: blur(5px);
     transition: all 0.3s ease;
   }
 
-  .cyber-stat-card:hover {
-    background: rgba(0,255,255,0.1);
+  .eco-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(10, 123, 118, 0.1);
+  }
+
+  .eco-badge-text {
+    background: linear-gradient(90deg, #0A5B56, #0A7B76, #2A9B96);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: textGradient 8s linear infinite;
+  }
+
+  .eco-badge-scanner {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(10, 123, 118, 0.4), transparent);
+    filter: blur(1px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: scanHorizontal 2s ease-in-out infinite;
+  }
+
+  .eco-badge:hover .eco-badge-scanner {
+    opacity: 1;
+  }
+
+  .eco-badge-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .eco-badge-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(10, 123, 118, 0.3);
+    border-radius: 50%;
+    animation: floatBadgeParticle 3s ease-in-out infinite;
+  }
+
+  .eco-title-wrapper {
+    padding: 2rem;
+  }
+
+  .eco-text-gradient {
+    background: linear-gradient(
+      90deg,
+      #0A5B56,
+      #0A7B76,
+      #2A9B96,
+      #0A7B76,
+      #0A5B56
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGradient 8s linear infinite;
+  }
+
+  .eco-title-decoration {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(10, 123, 118, 0.1),
+      transparent 70%
+    );
+    filter: blur(20px);
+    animation: pulseGlow 4s ease-in-out infinite;
+  }
+
+  .eco-leaves {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .eco-leaf {
+    position: absolute;
+    top: -20px;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230A7B76' opacity='0.3'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0-4-4,4.28,4.28,0,0,0-1.34.24l1.51-3.49L17,8Z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: floatLeaf 5s ease-in-out infinite;
+  }
+
+  .eco-light-particles {
+    position: absolute;
+    inset: -50%;
+    pointer-events: none;
+  }
+
+  .eco-particle {
+    position: absolute;
+    top: 50%;
+    background: rgba(10, 123, 118, 0.4);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(10, 123, 118, 0.3);
+    animation: floatParticle 6s ease-in-out infinite;
+  }
+
+  .eco-frame {
+    position: relative;
+    border: 2px solid rgba(10, 123, 118, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(10, 123, 118, 0.2);
+  }
+
+  .eco-scanner {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(10, 123, 118, 0.8), transparent);
+    filter: blur(2px);
+    animation: scan 3s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  .eco-frame-decoration {
+    position: absolute;
+    inset: 0;
+    border: 8px solid transparent;
+    border-image: linear-gradient(45deg, rgba(10, 123, 118, 0.6), transparent 40%) 1;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .eco-stat-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+  }
+
+  .eco-stat-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .eco-stat-icon {
+    font-size: 1.5rem;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
+
+  .eco-stat-card:hover .eco-stat-icon {
+    transform: scale(1.2) rotate(10deg);
+  }
+
+  .eco-stat-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transform: skewX(-25deg);
+    transition: 0.5s;
+  }
+
+  .eco-stat-card:hover .eco-stat-shine {
+    left: 100%;
+  }
+
+  .eco-stat-corners span {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid rgba(10, 123, 118, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .eco-stat-corners span:nth-child(1) { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+  .eco-stat-corners span:nth-child(2) { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+  .eco-stat-corners span:nth-child(3) { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+  .eco-stat-corners span:nth-child(4) { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+
+  .eco-stat-hover-effect {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(10, 123, 118, 0.1),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .eco-stat-card:hover .eco-stat-hover-effect {
+    opacity: 1;
+  }
+
+  .eco-stat-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,255,255,0.1);
-  }
-
-  .cyber-stat-number {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #00ffff;
-    text-shadow: 0 0 10px rgba(0,255,255,0.5);
-  }
-
-  .cyber-stat-text {
-    color: rgba(0,255,255,0.7);
-    font-size: 0.875rem;
+    box-shadow: 
+      0 10px 20px rgba(10, 123, 118, 0.1),
+      0 0 15px rgba(10, 123, 118, 0.1);
   }
 
   @keyframes gridMove {
@@ -196,28 +428,207 @@ import techTreeImage from "@/assets/hero/tech-tree.png";
     100% { transform: perspective(1000px) rotateX(60deg) translateY(50px); }
   }
 
-  @keyframes floatOrb {
-    0%, 100% { transform: translate(0, 0); opacity: 0.3; }
-    50% { transform: translate(-20px, -20px); opacity: 0.6; }
+  @keyframes floatSeed {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.7; }
+    25% { transform: translate(10px, -30px) rotate(45deg); opacity: 0.9; }
+    50% { transform: translate(20px, -60px) rotate(90deg); opacity: 0.7; }
+    75% { transform: translate(30px, -90px) rotate(135deg); opacity: 0.5; }
+    100% { transform: translate(40px, -120px) rotate(180deg); opacity: 0; }
   }
 
-  @keyframes glitch {
-    0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-    20% { clip-path: polygon(0 20%, 100% 20%, 100% 21%, 0 21%); }
-    40% { clip-path: polygon(0 52%, 100% 52%, 100% 53%, 0 53%); }
-    60% { clip-path: polygon(0 81%, 100% 81%, 100% 82%, 0 82%); }
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
   }
 
-  @keyframes textGlitch {
-    0%, 100% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(2px, -2px); }
-    60% { transform: translate(-2px, -2px); }
+  @keyframes textGradient {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
   }
 
   @keyframes scan {
-    0% { top: 0; }
-    50% { top: 100%; }
-    100% { top: 0; }
+    0% { top: -10%; }
+    50% { top: 110%; }
+    100% { top: -10%; }
+  }
+
+  @keyframes rotateSlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes floatLeaf {
+    0% { 
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 0;
+    }
+    25% { 
+      transform: translate(20px, 100px) rotate(90deg);
+      opacity: 0.6;
+    }
+    50% { 
+      transform: translate(40px, 200px) rotate(180deg);
+      opacity: 0.4;
+    }
+    75% { 
+      transform: translate(60px, 300px) rotate(270deg);
+      opacity: 0.2;
+    }
+    100% { 
+      transform: translate(80px, 400px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes floatParticle {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0;
+    }
+    25% {
+      transform: translate(-20px, -20px) scale(1.2);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translate(-40px, 0px) scale(1);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translate(-20px, 20px) scale(0.8);
+      opacity: 0.2;
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0;
+    }
+  }
+
+  @keyframes floatBadgeParticle {
+    0%, 100% { transform: translate(0, 0); opacity: 0; }
+    25% { transform: translate(10px, -10px); opacity: 0.8; }
+    75% { transform: translate(-10px, 10px); opacity: 0.4; }
+  }
+
+  @keyframes scanHorizontal {
+    0%, 100% { left: -100%; }
+    50% { left: 200%; }
+  }
+
+  #mouse-circle {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+
+  .eco-mouse-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba(10, 123, 118, 0.15),
+      rgba(10, 123, 118, 0.08) 30%,
+      transparent 70%
+    );
+    filter: blur(10px);
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  .eco-mouse-ripple {
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(10, 123, 118, 0.1);
+    border-radius: 50%;
+    animation: mouseRipple 3s ease-out infinite;
+  }
+
+  .eco-mouse-particles {
+    position: absolute;
+    inset: 0;
+    animation: rotateSlow 20s linear infinite;
+  }
+
+  .eco-mouse-particle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    background: rgba(10, 123, 118, 0.2);
+    border-radius: 50%;
+    transform-origin: center 100px;
+    animation: particlePulse 2s ease-in-out infinite;
+  }
+
+  @keyframes mouseRipple {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.2;
+    }
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes particlePulse {
+    0%, 100% {
+      transform: rotate(0deg) translateY(-100px) scale(1);
+      opacity: 0.2;
+    }
+    50% {
+      transform: rotate(0deg) translateY(-150px) scale(1.5);
+      opacity: 0.6;
+    }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mouseCircle = document.getElementById('mouse-circle');
+    let isMoving = false;
+    let moveTimeout: number;
+
+    if (mouseCircle) {
+      // Show circle immediately
+      mouseCircle.style.opacity = '1';
+      
+      // Update position on mouse move
+      document.addEventListener('mousemove', (e) => {
+        mouseCircle.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+        isMoving = true;
+        
+        // Keep the circle visible
+        mouseCircle.style.opacity = '1';
+      });
+
+      // Hide circle only when mouse leaves the window
+      document.addEventListener('mouseleave', () => {
+        mouseCircle.style.opacity = '0';
+        isMoving = false;
+      });
+
+      // Show circle when mouse enters the window
+      document.addEventListener('mouseenter', () => {
+        mouseCircle.style.opacity = '1';
+        isMoving = true;
+      });
+    }
+  });
+</script>

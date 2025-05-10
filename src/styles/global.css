@@ -45,14 +45,14 @@
   --color-base-200: oklch(98% 0 0);
   --color-base-300: oklch(95% 0 0);
   --color-base-content: oklch(21% 0.006 285.885);
-  --color-primary: oklch(76.53% 0.1708 113.19);
-  --color-primary-content: oklch(26% 0.051 172.552);
-  --color-secondary: oklch(37.87% 0.0644 179.62);
+  --color-primary: oklch(62% 0.194 149.214);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(77% 0.152 181.912);
   --color-secondary-content: oklch(100% 0 0);
-  --color-accent: oklch(61.27% 0.1099 160.12);
-  --color-accent-content: oklch(27% 0.046 192.524);
+  --color-accent: oklch(90% 0.182 98.111);
+  --color-accent-content: oklch(38% 0.063 188.416);
   --color-neutral: oklch(14% 0.005 285.823);
-  --color-neutral-content: oklch(100% 0 0);
+  --color-neutral-content: oklch(92% 0.004 286.32);
   --color-info: oklch(74% 0.16 232.661);
   --color-info-content: oklch(29% 0.066 243.157);
   --color-success: oklch(76% 0.177 163.223);
@@ -200,4 +200,189 @@ html,
 body {
   overflow-x: hidden;
   background: #0a0a1b; /* Matching the cyberpunk theme background */
+}
+
+/* Nature-inspired elements */
+.nature-grid {
+  background-image: 
+    linear-gradient(45deg, rgba(10, 123, 118, 0.05) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(10, 123, 118, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  width: 100%;
+  height: 100%;
+  animation: gridMove 20s linear infinite;
+}
+
+.seed-particle {
+  background-color: rgba(10, 123, 118, 0.3);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(10, 123, 118, 0.2);
+  animation: floatSeed 15s ease-in-out infinite;
+}
+
+.leaf-pattern {
+  width: 30px;
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230A7B76' opacity='0.2'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0-4-4,4.28,4.28,0,0,0-1.34.24l1.51-3.49L17,8ZM8,14a2,2,0,1,1-2,2A2,2,0,0,1,8,14Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  animation: floatLeaf 20s ease-in-out infinite;
+}
+
+.floating-leaf {
+  width: 30px;
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230A7B76' opacity='0.2'%3E%3Cpath d='M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20a4,4,0,0,0,4-4,4,4,0,0,0-4-4,4.28,4.28,0,0,0-1.34.24l1.51-3.49L17,8ZM8,14a2,2,0,1,1-2,2A2,2,0,0,1,8,14Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  animation: floatLeaf 20s ease-in-out infinite;
+}
+
+.water-flow {
+  background: linear-gradient(90deg, transparent, rgba(10, 123, 118, 0.3), transparent);
+  animation: waterFlow 8s linear infinite;
+}
+
+.organic-pattern {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(10, 123, 118, 0.1) 2px,
+    transparent 2px
+  );
+  background-size: 30px 30px;
+  width: 100%;
+  height: 100%;
+  animation: patternPulse 10s ease-in-out infinite;
+}
+
+.eco-badge {
+  position: relative;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(10, 123, 118, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+}
+
+.eco-badge-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(10, 123, 118, 0.2),
+    transparent 70%
+  );
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.eco-title {
+  background: linear-gradient(90deg, #0A5B56, #0A7B76, #0A5B56);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFlow 8s linear infinite;
+}
+
+.eco-heading {
+  background: linear-gradient(90deg, #0A5B56, #0A7B76, #0A5B56);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFlow 8s linear infinite;
+}
+
+.eco-scanner {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(10, 123, 118, 0.8), transparent);
+  filter: blur(2px);
+  animation: scan 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+.eco-scanner-horizontal {
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(0deg, transparent, rgba(10, 123, 118, 0.8), transparent);
+  filter: blur(2px);
+  animation: scanHorizontal 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+.eco-corner-tl, .eco-corner-br {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(10, 123, 118, 0.4);
+}
+
+.eco-corner-tl {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.eco-corner-br {
+  bottom: -1px;
+  right: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* Animation keyframes */
+@keyframes gridMove {
+  0% { transform: perspective(1000px) rotateX(60deg) translateY(0); }
+  100% { transform: perspective(1000px) rotateX(60deg) translateY(50px); }
+}
+
+@keyframes floatSeed {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.7; }
+  25% { transform: translate(10px, -30px) rotate(45deg); opacity: 0.9; }
+  50% { transform: translate(20px, -60px) rotate(90deg); opacity: 0.7; }
+  75% { transform: translate(30px, -90px) rotate(135deg); opacity: 0.5; }
+  100% { transform: translate(40px, -120px) rotate(180deg); opacity: 0; }
+}
+
+@keyframes floatLeaf {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.2; }
+  25% { transform: translate(20px, 20px) rotate(90deg); opacity: 0.3; }
+  50% { transform: translate(40px, 0px) rotate(180deg); opacity: 0.2; }
+  75% { transform: translate(20px, -20px) rotate(270deg); opacity: 0.1; }
+  100% { transform: translate(0, 0) rotate(360deg); opacity: 0.2; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes textFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes scan {
+  0% { top: -10%; }
+  50% { top: 110%; }
+  100% { top: -10%; }
+}
+
+@keyframes scanHorizontal {
+  0%, 100% { left: 0; opacity: 0; }
+  50% { left: 100%; opacity: 1; }
+}
+
+@keyframes waterFlow {
+  0% { transform: translateY(-100%) translateX(-20px); opacity: 0; }
+  50% { opacity: 0.7; }
+  100% { transform: translateY(100vh) translateX(20px); opacity: 0; }
+}
+
+@keyframes patternPulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.2; }
 }
