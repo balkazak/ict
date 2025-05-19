@@ -43,17 +43,18 @@ const isActive = (itemPath: string) => {
                   <ul class="eco-dropdown-content">
                     {item.subItems.map((subItem) =>
                       subItem.innerItems ? (
-                        <li>
+                        <li class="eco-dropdown-section">
                           <details class={`eco-dropdown-inner ${isActive(subItem.href) ? "open" : ""}`}>
-                            <summary class={`eco-link ${isActive(subItem.href) ? "active" : ""}`}>
+                            <summary class={`eco-section-header ${isActive(subItem.href) ? "active" : ""}`}>
                               {subItem.title}
+                              <Icon name="mdi:chevron-right" class="h-4 w-4 inline-block ml-auto transition-transform group-open:rotate-90" />
                             </summary>
                             <ul class="eco-dropdown-content-inner">
                               {subItem.innerItems.map((innerItem) => (
                                 <li>
                                   <a
                                     href={innerItem.href}
-                                    class={`hover:bg-[#0A7B76]/10 hover:text-[#0A7B76] active:!bg-[#0A7B76]/20 transition-colors ${
+                                    class={`eco-inner-link hover:bg-[#0A7B76]/10 hover:text-[#0A7B76] active:!bg-[#0A7B76]/20 transition-colors ${
                                       isActive(innerItem.href)
                                         ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium"
                                         : ""
@@ -124,16 +125,18 @@ const isActive = (itemPath: string) => {
             <li>
               {item.subItems ? (
                 <details class={isActive(item.href) ? "open" : ""}>
-                  <summary class="eco-mobile-link">
+                  <summary class="eco-mobile-link flex items-center justify-between">
                     {item.title}
+                    <Icon name="mdi:chevron-down" class="h-5 w-5" />
                   </summary>
                   <ul class="ml-4 mt-2 space-y-2">
                     {item.subItems.map((subItem) => (
                       <li>
                         {subItem.innerItems ? (
-                          <details class={isActive(subItem.href) ? "open" : ""}>
-                            <summary class="eco-mobile-link">
+                          <details class={`eco-mobile-section ${isActive(subItem.href) ? "open" : ""}`}>
+                            <summary class="eco-mobile-section-header">
                               {subItem.title}
+                              <Icon name="mdi:chevron-right" class="h-4 w-4" />
                             </summary>
                             <ul class="ml-4 mt-2 space-y-2">
                               {subItem.innerItems.map((innerItem) => (
@@ -321,6 +324,55 @@ const isActive = (itemPath: string) => {
     0%, 100% { left: 0; opacity: 0; }
     10%, 90% { opacity: 0; }
     50% { left: 100%; opacity: 0.5; }
+  }
+
+  .eco-dropdown-section {
+    border-left: 2px solid rgba(10, 123, 118, 0.2);
+    margin: 0.5rem 0;
+  }
+
+  .eco-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    color: rgba(10, 123, 118, 0.9);
+    font-weight: 500;
+    background: rgba(10, 123, 118, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .eco-section-header:hover, .eco-section-header.active {
+    background: rgba(10, 123, 118, 0.1);
+    color: rgba(10, 123, 118, 1);
+  }
+
+  .eco-dropdown-content-inner {
+    padding-left: 0.5rem;
+    border-left: 1px dashed rgba(10, 123, 118, 0.2);
+    margin-left: 1rem;
+  }
+
+  .eco-inner-link {
+    display: block;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  /* Mobile version */
+  .eco-mobile-section {
+    border-left: 2px solid rgba(10, 123, 118, 0.2);
+    margin: 0.5rem 0;
+    padding-left: 0.5rem;
+  }
+
+  .eco-mobile-section-header {
+    font-weight: 500;
+    color: rgba(10, 123, 118, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 </style>
 

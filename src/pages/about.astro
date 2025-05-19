@@ -1,227 +1,224 @@
 ---
 import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+// Import partner logos
+import ictLogo from "@/assets/partners/ict-international.png";
+import ictCentralLogo from "@/assets/partners/ict-central-asia.png";
+import proyectaeLogo from "@/assets/partners/proyectae.png";
 ---
 
-<Layout title="About Us | ICT Central Asia">
-  <!-- Mission & Vision Section -->
-  <section class="py-20">
-    <div class="container mx-auto max-w-5xl px-4">
-      <div class="mb-16 text-center">
-        <h2 class="mb-4 text-3xl font-bold md:text-4xl">
-          Our Mission & Vision
-        </h2>
-        <div class="bg-primary mx-auto h-1 w-24"></div>
-      </div>
-
-      <div class="grid gap-12 md:grid-cols-2">
-        <div
-          class="card bg-base-100 shadow-xl transition-all duration-300 hover:shadow-2xl"
-        >
-          <div class="card-body">
-            <div
-              class="bg-primary/20 mb-6 flex h-16 w-16 items-center justify-center rounded-full"
-            >
-              <Icon name="mdi:thunder" class="text-primary h-8 w-8" />
-            </div>
-            <h3 class="card-title mb-4 text-2xl">Our Mission</h3>
-            <p class="text-base-content/70">
-              To provide cutting-edge environmental monitoring solutions that
-              empower organizations to make informed decisions, optimize
-              resource management, and contribute to environmental
-              sustainability across Central Asia and beyond.
-            </p>
+<Layout title="О нас | ICT Central Asia">
+  <main class="overflow-hidden">
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-b from-[#004D40] to-[#003833] text-white py-32">
+      <!-- Animated background elements -->
+      <div class="circuit-pattern"></div>
+      <div class="eco-particles"></div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+          <div class="eco-badge mb-6 inline-block">
+            <span>О нас</span>
           </div>
-        </div>
-
-        <div
-          class="card bg-base-100 shadow-xl transition-all duration-300 hover:shadow-2xl"
-        >
-          <div class="card-body">
-            <div
-              class="bg-primary/20 mb-6 flex h-16 w-16 items-center justify-center rounded-full"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="text-primary h-8 w-8"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="card-title mb-4 text-2xl">Our Vision</h3>
-            <p class="text-base-content/70">
-              To be the leading provider of environmental monitoring technology
-              in Central Asia, driving innovation that addresses the unique
-              challenges of the region while setting new standards for
-              precision, reliability, and sustainability.
-            </p>
-          </div>
+          <h1 class="text-4xl md:text-6xl font-bold mb-8 leading-tight">
+            Инновационные решения для <span class="text-[#C9E265]">устойчивого будущего</span>
+          </h1>
+          <p class="text-xl md:text-2xl mb-12 text-gray-100 leading-relaxed">
+            Мы объединяем передовые технологии и экологическую экспертизу для создания эффективных решений
+          </p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Company History Timeline -->
-  <section class="bg-base-200 py-20">
-    <div class="container mx-auto max-w-5xl px-4">
-      <div class="mb-16 text-center">
-        <h2 class="mb-4 text-3xl font-bold md:text-4xl">Our Journey</h2>
-        <p class="text-base-content/70 mx-auto max-w-2xl text-lg">
-          From our humble beginnings to becoming a leader in environmental
-          monitoring technology
-        </p>
-        <div class="bg-primary mx-auto mt-4 h-1 w-24"></div>
+      
+      <!-- Animated wave overlay -->
+      <div class="absolute bottom-0 left-0 right-0">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+          <defs>
+            <path id="wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
+          </defs>
+          <g class="wave-parallax">
+            <use href="#wave" x="48" y="0" fill="rgba(240, 250, 249, 0.2)" />
+            <use href="#wave" x="48" y="3" fill="rgba(240, 250, 249, 0.15)" />
+            <use href="#wave" x="48" y="5" fill="rgba(240, 250, 249, 0.1)" />
+            <use href="#wave" x="48" y="7" fill="rgba(240, 250, 249, 0.05)" />
+          </g>
+        </svg>
       </div>
+    </section>
 
-      <div class="relative">
-        <!-- Timeline line -->
-        <div
-          class="bg-primary/30 absolute left-1/2 h-full w-1 -translate-x-1/2 transform"
-        >
-        </div>
-
-        <!-- Timeline items -->
-        <div class="grid grid-cols-1 gap-12">
-          <!-- 2008 -->
-          <div class="relative">
-            <div class="flex flex-col items-center md:flex-row">
-              <div class="md:w-1/2 md:pr-12 md:text-right">
-                <div class="bg-base-100 rounded-box inline-block p-6 shadow-lg">
-                  <h3 class="text-primary mb-2 text-xl font-bold">2008</h3>
-                  <h4 class="mb-2 text-lg font-semibold">Company Founded</h4>
-                  <p class="text-base-content/70">
-                    ICT Central Asia was established with a vision to develop
-                    specialized monitoring solutions for the unique
-                    environmental challenges of Central Asia.
-                  </p>
-                </div>
+    <!-- Partners Section -->
+    <section class="relative bg-gradient-to-b from-[#F0FAF9] to-white py-24">
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-5xl mx-auto">
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- ICT International -->
+            <div class="partner-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="partner-logo mb-6">
+                <Image src={ictLogo} alt="ICT International" width={200} height={100} class="object-contain mx-auto" />
               </div>
-              <div
-                class="bg-primary absolute left-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full"
-              >
-                <div class="bg-base-100 h-4 w-4 rounded-full"></div>
-              </div>
-              <div class="hidden md:block md:w-1/2 md:pl-12"></div>
+              <h3 class="text-2xl font-bold text-[#004D40] mb-4">ICT International</h3>
+              <p class="text-gray-700 mb-4">
+                Австралийская компания, специализирующаяся на разработке инновационных измерительных приборов и решений для мониторинга параметров почвы, растений и окружающей среды.
+              </p>
+              <p class="text-gray-700 font-medium">С более чем 40-летним опытом.</p>
             </div>
-          </div>
-
-          <!-- 2012 -->
-          <div class="relative">
-            <div class="flex flex-col items-center md:flex-row">
-              <div class="hidden md:block md:w-1/2 md:pr-12"></div>
-              <div
-                class="bg-primary absolute left-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full"
-              >
-                <div class="bg-base-100 h-4 w-4 rounded-full"></div>
+            
+            <!-- ICT Central Asia -->
+            <div class="partner-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="partner-logo mb-6">
+                <Image src={ictCentralLogo} alt="ICT Central Asia" width={200} height={100} class="object-contain mx-auto" />
               </div>
-              <div class="md:w-1/2 md:pl-12">
-                <div class="bg-base-100 rounded-box inline-block p-6 shadow-lg">
-                  <h3 class="text-primary mb-2 text-xl font-bold">2012</h3>
-                  <h4 class="mb-2 text-lg font-semibold">
-                    First Major Project
-                  </h4>
-                  <p class="text-base-content/70">
-                    Launched our first large-scale soil monitoring network
-                    across Kazakhstan, establishing our reputation for reliable
-                    environmental data collection.
-                  </p>
-                </div>
-              </div>
+              <h3 class="text-2xl font-bold text-[#004D40] mb-4">ICT Central Asia</h3>
+              <p class="text-gray-700 mb-4">
+                Наша компания объединяет передовые технологии мониторинга окружающей среды с инновационными решениями для устойчивого развития в Центральной Азии.
+              </p>
             </div>
-          </div>
-
-          <!-- 2016 -->
-          <div class="relative">
-            <div class="flex flex-col items-center md:flex-row">
-              <div class="md:w-1/2 md:pr-12 md:text-right">
-                <div class="bg-base-100 rounded-box inline-block p-6 shadow-lg">
-                  <h3 class="text-primary mb-2 text-xl font-bold">2016</h3>
-                  <h4 class="mb-2 text-lg font-semibold">Innovation Award</h4>
-                  <p class="text-base-content/70">
-                    Received international recognition for our innovative
-                    drought prediction system, combining soil moisture sensors
-                    with advanced analytics.
-                  </p>
-                </div>
+            
+            <!-- Proyectae -->
+            <div class="partner-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="partner-logo mb-6">
+                <Image src={proyectaeLogo} alt="Proyectae" width={200} height={100} class="object-contain mx-auto" />
               </div>
-              <div
-                class="bg-primary absolute left-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full"
-              >
-                <div class="bg-base-100 h-4 w-4 rounded-full"></div>
-              </div>
-              <div class="hidden md:block md:w-1/2 md:pl-12"></div>
-            </div>
-          </div>
-
-          <!-- 2020 -->
-          <div class="relative">
-            <div class="flex flex-col items-center md:flex-row">
-              <div class="hidden md:block md:w-1/2 md:pr-12"></div>
-              <div
-                class="bg-primary absolute left-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full"
-              >
-                <div class="bg-base-100 h-4 w-4 rounded-full"></div>
-              </div>
-              <div class="md:w-1/2 md:pl-12">
-                <div class="bg-base-100 rounded-box inline-block p-6 shadow-lg">
-                  <h3 class="text-primary mb-2 text-xl font-bold">2020</h3>
-                  <h4 class="mb-2 text-lg font-semibold">Regional Expansion</h4>
-                  <p class="text-base-content/70">
-                    Expanded operations to five countries across Central Asia,
-                    becoming the region's leading provider of environmental
-                    monitoring solutions.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Today -->
-          <div class="relative">
-            <div class="flex flex-col items-center md:flex-row">
-              <div class="md:w-1/2 md:pr-12 md:text-right">
-                <div class="bg-base-100 rounded-box inline-block p-6 shadow-lg">
-                  <h3 class="text-primary mb-2 text-xl font-bold">Today</h3>
-                  <h4 class="mb-2 text-lg font-semibold">Leading Innovation</h4>
-                  <p class="text-base-content/70">
-                    Continuing to pioneer new technologies for environmental
-                    monitoring, with a focus on AI-enhanced analytics and IoT
-                    integration for real-time data collection.
-                  </p>
-                </div>
-              </div>
-              <div
-                class="bg-primary absolute left-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full"
-              >
-                <div class="bg-base-100 h-4 w-4 rounded-full"></div>
-              </div>
-              <div class="hidden md:block md:w-1/2 md:pl-12"></div>
+              <h3 class="text-2xl font-bold text-[#004D40] mb-4">Proyectae</h3>
+              <p class="text-gray-700 mb-4">
+                Чилийская компания с более чем 20-летним опытом, специализирующаяся на консультациях в области устойчивого развития.
+              </p>
+              <p class="text-gray-700 font-medium">Более 500 проектов и более 9 000 аудитов для более чем 200 клиентов.</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Team Section -->
-  <section class="py-20">
-    <div class="container mx-auto max-w-5xl px-4">
-      <div class="mb-16 text-center">
-        <h2 class="mb-4 text-3xl font-bold md:text-4xl">Our Leadership Team</h2>
-        <p class="text-base-content/70 mx-auto max-w-2xl text-lg">
-          Meet the experts behind our innovative environmental monitoring
-          solutions
-        </p>
-        <div class="bg-primary mx-auto mt-4 h-1 w-24"></div>
+    <!-- CTA Section -->
+    <section class="relative bg-[#004D40] py-24">
+      <div class="leaf-particles"></div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-8" data-aos="fade-up">
+            Готовы начать сотрудничество?
+          </h2>
+          <p class="text-xl text-gray-100 mb-12" data-aos="fade-up" data-aos-delay="100">
+            Наши эксперты помогут вам найти оптимальное решение для ваших задач
+          </p>
+          <a href="/contact" class="inline-block bg-[#C9E265] text-[#004D40] font-bold py-4 px-8 rounded-lg transition-all transform hover:scale-105 hover:shadow-lg" data-aos="fade-up" data-aos-delay="200">
+            Связаться с нами
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  /* Circuit pattern animation */
+  .circuit-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='0.25' d='M10,10 L90,10 L90,90 L10,90 Z'/%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='0.25' d='M30,10 L30,30 L10,30 M70,10 L70,30 L90,30 M10,70 L30,70 L30,90 M90,70 L70,70 L70,90'/%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='0.25' d='M30,30 L70,30 L70,70 L30,70 Z'/%3E%3C/svg%3E");
+    background-size: 50px 50px;
+    opacity: 0.1;
+    animation: circuitPulse 8s ease-in-out infinite;
+  }
+
+  /* Eco particles */
+  .eco-particles {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(#C9E265 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.1;
+    animation: particlesFade 5s ease-in-out infinite;
+  }
+
+  /* Eco badge */
+  .eco-badge {
+    background: rgba(201, 226, 101, 0.2);
+    border-radius: 2rem;
+    padding: 0.5rem 1.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 226, 101, 0.3);
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  .eco-badge:hover {
+    background: rgba(201, 226, 101, 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* Partner cards */
+  .partner-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(10, 123, 118, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(10, 123, 118, 0.05);
+  }
+
+  .partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(10, 123, 118, 0.15);
+    border-color: rgba(10, 123, 118, 0.1);
+  }
+
+  .partner-logo {
+    transition: all 0.3s ease;
+  }
+
+  .partner-card:hover .partner-logo {
+    transform: scale(1.05);
+  }
+
+  /* Leaf particles */
+  .leaf-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0.1;
+  }
+
+  /* Animations */
+  @keyframes circuitPulse {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.15; transform: scale(1.05); }
+  }
+
+  @keyframes particlesFade {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.15; }
+  }
+
+  /* Wave animation */
+  .wave-parallax > use {
+    animation: wave-move 25s cubic-bezier(.55,.5,.45,.5) infinite;
+  }
+
+  .wave-parallax > use:nth-child(1) { animation-delay: -2s; }
+  .wave-parallax > use:nth-child(2) { animation-delay: -3s; }
+  .wave-parallax > use:nth-child(3) { animation-delay: -4s; }
+  .wave-parallax > use:nth-child(4) { animation-delay: -5s; }
+
+  @keyframes wave-move {
+    0% { transform: translate3d(-90px,0,0); }
+    100% { transform: translate3d(85px,0,0); }
+  }
+</style>
+
+<script>
+  // Initialize AOS animation library if available
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out',
+        once: false
+      });
+    }
+  });
+</script>

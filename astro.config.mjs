@@ -31,6 +31,8 @@ export default defineConfig({
           "weather-cloudy",
           "camera",
           "beaker",
+          "chevron-down",
+          "chevron-right"
         ],
       },
     }),

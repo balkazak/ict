@@ -1,0 +1,269 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+// Import logos
+import verraLogo from "@/assets/partners/verra-logo.png";
+import goldStandardLogo from "@/assets/partners/gold-standard-logo.png";
+---
+
+<Layout title="Углеродные проекты | EcoTech Solutions">
+  <main class="overflow-hidden">
+    <!-- Hero Section -->
+    <section class="relative min-h-screen bg-gradient-to-b from-[#004D40] to-[#003833] flex items-center">
+      <!-- Animated forest silhouette -->
+      <div class="forest-silhouette"></div>
+      
+      <!-- Floating particles -->
+      <div class="fireflies"></div>
+      
+      <!-- Content -->
+      <div class="container mx-auto px-4 relative z-10 py-32">
+        <div class="max-w-5xl mx-auto text-center">
+          <div class="eco-pill mb-8 inline-block" data-aos="fade-down">
+            <span style="color: white;">Углеродные проекты</span>
+          </div>
+          
+          <h1 class="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight" data-aos="fade-up">
+            Мы обладаем обширным опытом в реализации проектов по выращиванию лесов в соответствии с международными стандартами
+            <span class="text-[#C9E265]">Verra</span> и <span class="text-[#C9E265]">Gold Standard</span>.
+          </h1>
+          
+          <div class="mt-16 flex justify-center gap-12 items-center">
+            <div class="partner-badge" data-aos="fade-right">
+              <Image src={verraLogo} alt="Verra" width={180} height={70} class="object-contain" />
+            </div>
+            <div class="partner-badge" data-aos="fade-left">
+              <Image src={goldStandardLogo} alt="Gold Standard" width={180} height={70} class="object-contain" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animated wave overlay -->
+      <div class="absolute bottom-0 left-0 right-0">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+          <defs>
+            <path id="wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
+          </defs>
+          <g class="wave-parallax">
+            <use href="#wave" x="48" y="0" fill="rgba(201, 226, 101, 0.2)" />
+            <use href="#wave" x="48" y="3" fill="rgba(201, 226, 101, 0.15)" />
+            <use href="#wave" x="48" y="5" fill="rgba(201, 226, 101, 0.1)" />
+            <use href="#wave" x="48" y="7" fill="rgba(201, 226, 101, 0.05)" />
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Description Section -->
+    <section class="relative bg-gradient-to-b from-[#F0FAF9] to-white py-32">
+      <div class="eco-blob blob1"></div>
+      <div class="eco-blob blob2"></div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto bg-white/80 backdrop-blur-md p-12 rounded-2xl shadow-xl border border-[#0A7B76]/10" data-aos="fade-up">
+          <p class="text-xl md:text-2xl text-[#004D40] leading-relaxed">
+            Наши проекты направлены на восстановление природных экосистем, повышения биоразнообразия, улучшение социально-экономических условий, связывание углерода из атмосферы и создание высококачественных углеродных кредитов, востребованных на глобальном рынке.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="relative py-32 overflow-hidden bg-[#F5F9F9]">
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Card 1: Разработка проектов -->
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-[#004D40]">Разработка проектов</h3>
+            <p class="text-gray-700">Комплексный подход к разработке углеродных проектов с учетом всех требований международных стандартов</p>
+          </div>
+          
+          <!-- Card 2: Верификация и валидация -->
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-[#004D40]">Верификация и валидация</h3>
+            <p class="text-gray-700">Сопровождение процессов верификации и валидации проектов независимыми аудиторами</p>
+          </div>
+          
+          <!-- Card 3: IOT мониторинг CO2 -->
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-[#004D40]">IOT мониторинг CO2</h3>
+            <p class="text-gray-700">Внедрение современных технологий для точного мониторинга поглощения углерода</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative bg-[#004D40] py-24">
+      <div class="leaf-particles"></div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-8" data-aos="fade-up">
+            Готовы реализовать углеродный проект?
+          </h2>
+          <p class="text-xl text-gray-100 mb-12" data-aos="fade-up" data-aos-delay="100">
+            Наши эксперты помогут вам на всех этапах реализации проекта
+          </p>
+          <a href="/contact" class="inline-block bg-[#C9E265] text-[#004D40] font-bold py-4 px-8 rounded-lg transition-all transform hover:scale-105 hover:shadow-lg" data-aos="fade-up" data-aos-delay="200">
+            Обсудить проект
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Forest silhouette animation */
+  .forest-silhouette {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 200'%3E%3Cpath fill='%23002D23' d='...'/%3E%3C/svg%3E") repeat-x;
+    animation: forestMove 30s linear infinite;
+  }
+
+  /* Fireflies effect */
+  .fireflies {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .fireflies::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#C9E265 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: firefliesFade 3s ease-in-out infinite alternate;
+  }
+
+  /* Partner badges */
+  .partner-badge {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .partner-badge:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Feature cards */
+  .feature-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    border: none;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  }
+
+  .feature-icon {
+    background: rgba(201, 226, 101, 0.2);
+    color: #004D40;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover .feature-icon {
+    background: #C9E265;
+    transform: scale(1.1);
+  }
+
+  /* Eco patterns */
+  .eco-patterns {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background-image: 
+      linear-gradient(45deg, #0A7B76 25%, transparent 25%),
+      linear-gradient(-45deg, #0A7B76 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #0A7B76 75%),
+      linear-gradient(-45deg, transparent 75%, #0A7B76 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    animation: patternMove 20s linear infinite;
+    z-index: 0;
+  }
+
+  /* Leaf particles */
+  .leaf-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0.1;
+  }
+
+  /* Animations */
+  @keyframes forestMove {
+    from { background-position: 0 0; }
+    to { background-position: -1000px 0; }
+  }
+
+  @keyframes firefliesFade {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  @keyframes patternMove {
+    from { background-position: 0 0, 0 10px, 10px -10px, -10px 0px; }
+    to { background-position: 20px 0, 20px 10px, 30px -10px, 10px 0px; }
+  }
+
+  /* Wave animation */
+  .wave-parallax > use {
+    animation: wave-move 25s cubic-bezier(.55,.5,.45,.5) infinite;
+  }
+
+  .wave-parallax > use:nth-child(1) { animation-delay: -2s; }
+  .wave-parallax > use:nth-child(2) { animation-delay: -3s; }
+  .wave-parallax > use:nth-child(3) { animation-delay: -4s; }
+  .wave-parallax > use:nth-child(4) { animation-delay: -5s; }
+
+  @keyframes wave-move {
+    0% { transform: translate3d(-90px,0,0); }
+    100% { transform: translate3d(85px,0,0); }
+  }
+</style> 

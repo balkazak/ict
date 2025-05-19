@@ -8,73 +8,76 @@ export const WaterQualitySensors = [
   {
     id: "awq-ph",
     image: awqPh,
-    name: "AWQ-pH pH/Redox/Temp sensor",
+    name: "Датчик AWQ-pH pH/Redox/Temp",
     overview:
-      "AWQ-pH pH/Redox/Temp sensor designed to perform under hard conditions, from pure mountain water with conductivity as low as 20 μS/cm, lakes and rivers (100 – 2000 μS/cm), seawater with conductivities of 50 mS/cm, to wastewater with conductivity higher than 200 mS/cm.",
+      "Датчик AWQ-pH pH/Redox/Temp разработан для работы в сложных условиях: от чистой горной воды с проводимостью всего 20 мкСм/см, озер и рек (100–2000 мкСм/см), морской воды с проводимостью 50 мСм/см, до сточных вод с проводимостью выше 200 мСм/см.",
     features:
-      "The AWQ-pH pH/Redox/Temp sensor stores calibration and history data within the sensor and features long-life Plastogel® reference technology, increasing the lifetime of the probe and reducing the need to refill. Providing Modbus RS485 and SDI-12, the AWQ-pH sensor can be connected to most commonly used data collection devices.",
+      "Датчик AWQ-pH pH/Redox/Temp хранит данные калибровки и истории внутри датчика и оснащен долговечной референсной технологией Plastogel®, увеличивающей срок службы зонда и снижающей необходимость в повторном заполнении. Благодаря поддержке Modbus RS485 и SDI-12, датчик AWQ-pH может быть подключен к большинству распространенных устройств сбора данных.",
     specifications: [
-      { name: "pH", value: "0 to 14" },
-      { name: "Redox", value: "-1000 to +1000 mV" },
-      { name: "Temperature", value: "-10°C to +50°C" },
-      { name: "Type", value: "Combination pH/Redox/Temp sensor" },
-      { name: "Interface", value: "Digital Sensor: Modbus RS 485/SDI-12" },
-      { name: "Features", value: "Internal Calibration Data Storage" },
-      { name: "Maintenance", value: "pH/ORP Cartridge for simple maintenance" },
+      { name: "pH", value: "от 0 до 14" },
+      { name: "Redox", value: "от -1000 до +1000 мВ" },
+      { name: "Температура", value: "от -10°C до +50°C" },
+      { name: "Тип", value: "Комбинированный датчик pH/Redox/Temp" },
+      { name: "Интерфейс", value: "Цифровой датчик: Modbus RS 485/SDI-12" },
+      { name: "Особенности", value: "Внутреннее хранение данных калибровки" },
+      {
+        name: "Обслуживание",
+        value: "Картридж pH/ORP для простого обслуживания",
+      },
     ],
   },
   {
     id: "awq-ntu",
     image: awqNtu,
-    name: "AWQ-NTU sensor",
+    name: "Датчик AWQ-NTU",
     overview:
-      "AWQ-NTU sensor is an optical sensor for the measurement of Nephelometric Turbidity, based on IR nephelometry/850 nm.",
-    features: `The AWQ-NTU measurement principle is based on IR nephelometry/850 nm. The sensor can be calibrated with a formazine standard solution. The AWQ-NTU sensor uses low-cost optical technology, requiring very little maintenance and no consumables. The sensor can be connected to any types of transmitters, display units, controllers, or data loggers with Modbus RS-485 or SDI-12 inputs. The optical sensor saves its calibration data for better measurement management. All data concerning calibration, history, users and measurements are processed within the AWQ-NTU sensor and transmitted via RS-485 or SDI-12.
+      "Датчик AWQ-NTU — это оптический датчик для измерения нефелометрической мутности, основанный на ИК-нефелометрии/850 нм.",
+    features: `Принцип измерения AWQ-NTU основан на ИК-нефелометрии/850 нм. Датчик может быть откалиброван с помощью стандартного раствора формазина. Датчик AWQ-NTU использует недорогую оптическую технологию, требующую очень малого обслуживания и не требующую расходных материалов. Датчик может быть подключен к любым типам передатчиков, дисплеев, контроллеров или регистраторов данных с входами Modbus RS-485 или SDI-12. Оптический датчик сохраняет данные калибровки для лучшего управления измерениями. Все данные, касающиеся калибровки, истории, пользователей и измерений, обрабатываются внутри датчика AWQ-NTU и передаются через RS-485 или SDI-12.
 <br><br>
-<b>Applications include:</b>
+<b>Области применения включают:</b>
 <br>
-•	Urban wastewater treatment (inlet/ outlet controls)<br>
-•	Sanitation network<br>
-•	Industrial effluent treatment<br>
-•	Surface water monitoring<br>
-•	Drinking water
+• Очистка городских сточных вод (контроль на входе/выходе)<br>
+• Санитарная сеть<br>
+• Очистка промышленных стоков<br>
+• Мониторинг поверхностных вод<br>
+• Питьевая вода
 `,
     specifications: [
-      { name: "Range", value: "0 to 4000 NTU or 0-4500 mg/L" },
-      { name: "Protection", value: "Robust and waterproof (IP68)" },
-      { name: "Power", value: "Ultra low-power consumption" },
-      { name: "Interface", value: "Digital output: Modbus RS-485 or SDI-12" },
+      { name: "Диапазон", value: "от 0 до 4000 NTU или 0-4500 мг/л" },
+      { name: "Защита", value: "Прочный и водонепроницаемый (IP68)" },
+      { name: "Питание", value: "Сверхнизкое энергопотребление" },
+      { name: "Интерфейс", value: "Цифровой выход: Modbus RS-485 или SDI-12" },
     ],
   },
   {
     id: "awq-ctzn",
     image: awqCtzn,
-    name: "AWQ-CTZN Inductive Conductivity/Salinity sensor",
+    name: "Индуктивный датчик проводимости/солености AWQ-CTZN",
     overview:
-      "AWQ-CTZN Inductive Conductivity/Salinity sensor measures conductivity, salinity and temperature in water.",
+      "Индуктивный датчик проводимости/солености AWQ-CTZN измеряет проводимость, соленость и температуру в воде.",
     features: "",
     specifications: [
       {
-        name: "Measurement Principle",
-        value: "Inductive conductivity sensor, temperature regulated",
+        name: "Принцип измерения",
+        value: "Индуктивный датчик проводимости, с регулировкой температуры",
       },
-      { name: "Measurement Range (Conductivity)", value: "0 to 100 ms/cm" },
-      { name: "Resolution", value: "0.1 ms/cm" },
-      { name: "Measurement Range (Salinity)", value: "5-60 g/Kg" },
+      { name: "Диапазон измерения (Проводимость)", value: "от 0 до 100 мс/см" },
+      { name: "Разрешение", value: "0.1 мс/см" },
+      { name: "Диапазон измерения (Соленость)", value: "5-60 г/кг" },
       {
-        name: "Temperature Compensation",
-        value: "Inbuilt NTC or external measurement",
+        name: "Температурная компенсация",
+        value: "Встроенный NTC или внешнее измерение",
       },
-      { name: "Accuracy T°C", value: "± 0.1°C, range 0-40°C" },
+      { name: "Точность T°C", value: "± 0.1°C, диапазон 0-40°C" },
       {
-        name: "Response Time",
-        value: "90% of the value in less than 30 seconds",
+        name: "Время отклика",
+        value: "90% значения менее чем за 30 секунд",
       },
       {
-        name: "Signal Interface",
-        value: "Modbus RS-485 standard, SDI-12 optional",
+        name: "Интерфейс сигнала",
+        value: "Modbus RS-485 стандартный, SDI-12 опционально",
       },
-      { name: "Measurement Interval", value: "1Hz" },
+      { name: "Интервал измерения", value: "1Гц" },
     ],
   },
   {
@@ -82,65 +85,65 @@ export const WaterQualitySensors = [
     image: awqC4e,
     name: "AWQ-C4E",
     overview:
-      "AWQ-C4E is for measuring conductivity, salinity and temperature in water uses 4 electrodes for accurate measurements.",
+      "AWQ-C4E предназначен для измерения проводимости, солености и температуры в воде, использует 4 электрода для точных измерений.",
     features: "",
     specifications: [
       {
-        name: "Electrode Type",
-        value: "4 electrodes (2 graphite, 2 platinum)",
+        name: "Тип электрода",
+        value: "4 электрода (2 графитовых, 2 платиновых)",
       },
       {
-        name: "Measurement Range (Conductivity)",
-        value: "0-200 μS/cm, 0–2000 μS/cm, 0–20 mS/cm, 0–200 mS/cm",
+        name: "Диапазон измерения (Проводимость)",
+        value: "0-200 мкС/см, 0–2000 мкС/см, 0–20 мС/см, 0–200 мС/см",
       },
-      { name: "Resolution", value: "0.01 to 1, depending on range" },
-      { name: "Accuracy", value: "±1% of the full range" },
-      { name: "Measurement Range (Salinity)", value: "5-60 g/Kg" },
-      { name: "Measurement Range (TDS-KCl)", value: "0-133000 ppm" },
-      { name: "Response Time", value: "< 5s" },
+      { name: "Разрешение", value: "от 0.01 до 1, в зависимости от диапазона" },
+      { name: "Точность", value: "±1% от полного диапазона" },
+      { name: "Диапазон измерения (Соленость)", value: "5-60 г/кг" },
+      { name: "Диапазон измерения (TDS-KCl)", value: "0-133000 ppm" },
+      { name: "Время отклика", value: "< 5с" },
     ],
   },
   {
     id: "awq-do",
     image: awqDo,
-    name: "AWQ-DO Sensor for Dissolved Oxygen",
+    name: "Датчик AWQ-DO для растворенного кислорода",
     overview:
-      "AWQ-DO sensor measures dissolved oxygen in water using an optical luminescence measurement principle.",
-    features: `Measuring dissolved oxygen in water, the OPTOD sensor uses an optical luminescence measurement principle.
-With two versions, stainless steel and titanium, for different conditions:
+      "Датчик AWQ-DO измеряет растворенный кислород в воде, используя принцип оптической люминесценции.",
+    features: `Измеряя растворенный кислород в воде, датчик OPTOD использует принцип оптической люминесценции.
+Доступны две версии, из нержавеющей стали и титана, для различных условий:
 <br>
 <div class="px-4"> 
-•	The OPTOD stainless steel sensor is used for measurement of urban wastewater and industrial effluent treatment, as well as surface water monitoring.
+• Датчик OPTOD из нержавеющей стали используется для измерения городских сточных вод и очистки промышленных стоков, а также для мониторинга поверхностных вод.
 <br>
-•	The titanium version is designed for seawater and other corrosive environment.
+• Титановая версия предназначена для морской воды и других коррозионных сред.
 </div> 
-Both versions share the same RS485 and SDI-12 signal output options, as well as the Aqualabo stored calibration data system enabling simple change over for maintenance purposes.
+Обе версии имеют одинаковые опции выходного сигнала RS485 и SDI-12, а также систему хранения данных калибровки Aqualabo, обеспечивающую простую замену для целей обслуживания.
 
 <br><br>
-OPTICAL TECHNOLOGY
+ОПТИЧЕСКАЯ ТЕХНОЛОГИЯ
 <br>
-The AWQ-DO (Optical Dissolved Oxygen technology) is based on luminescent optical technology. The AWQ-DO sensor is in compliance with the ASTM International Method D888-05. AWQ-DO does not require calibration, and thanks to an ultra low power technology, the AWQ-DO sensor meets the demands of field work, short and long term installation. Without oxygen consumption, this technology allows you to accurate measure in all situations, especially in very low oxygen concentrations.
+AWQ-DO (технология оптического растворенного кислорода) основана на люминесцентной оптической технологии. Датчик AWQ-DO соответствует международному методу ASTM D888-05. AWQ-DO не требует калибровки, и благодаря сверхнизкому энергопотреблению, датчик AWQ-DO отвечает требованиям полевых работ, краткосрочной и долгосрочной установки. Без потребления кислорода эта технология позволяет точно измерять во всех ситуациях, особенно при очень низких концентрациях кислорода.
 <br><br>
-DIGITAL TECHNOLOGY
+ЦИФРОВАЯ ТЕХНОЛОГИЯ
 <br>
-The AWQ-DO sensor stores calibration and history data within the sensor. This allows for a plug and play system without the need for re-calibration.
-Thanks to Modbus RS485 and SDI-12, the AWQ-DO can be connected to most commonly used devices.
+Датчик AWQ-DO хранит данные калибровки и истории внутри датчика. Это позволяет использовать систему plug and play без необходимости повторной калибровки.
+Благодаря Modbus RS485 и SDI-12, AWQ-DO может быть подключен к большинству распространенных устройств.
 <br><br>
-CONSTRUCTION
+КОНСТРУКЦИЯ
 <br>
-Compact, strong and light, the sensor can be used for portable measurement, or installed for fixed/permanent use.
-Body in Stainless steel 316 L (passivation treated) or in Titanium for applications in corrosive environments.
+Компактный, прочный и легкий, датчик может использоваться для портативных измерений или устанавливаться для фиксированного/постоянного использования.
+Корпус из нержавеющей стали 316 L (с пассивацией) или из титана для применения в коррозионных средах.
 `,
     specifications: [
-      { name: "Measurement Range (ppm)", value: "0 to 20 ppm" },
-      { name: "Measurement Range (%)", value: "0-200%" },
-      { name: "Resolution", value: "0.01" },
-      { name: "Accuracy", value: "± 0.1 mg/L, ± 0.1 ppm, or ± 1%" },
+      { name: "Диапазон измерения (ppm)", value: "от 0 до 20 ppm" },
+      { name: "Диапазон измерения (%)", value: "0-200%" },
+      { name: "Разрешение", value: "0.01" },
+      { name: "Точность", value: "± 0.1 мг/л, ± 0.1 ppm, или ± 1%" },
       {
-        name: "Response Time",
-        value: "90% of the value in less than 60 seconds",
+        name: "Время отклика",
+        value: "90% значения менее чем за 60 секунд",
       },
-      { name: "Recommended Measurement Frequency", value: ">5 s" },
+      { name: "Рекомендуемая частота измерения", value: ">5 с" },
     ],
   },
 ];

@@ -17,11 +17,11 @@ export const NavItems: NavItem[] = [
   },
   {
     title: "Устойчивое развитие",
-    href: "/development",
+    href: "/esg",
   },
   {
     title: "Углеродные проекты",
-    href: "/projects",
+    href: "/carbon-projects",
   },
   {
     title: "О нас",

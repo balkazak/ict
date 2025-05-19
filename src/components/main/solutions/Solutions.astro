@@ -1,8 +1,9 @@
 ---
 import SolutionCard from "./SolutionCard.astro";
-import image1 from "@/assets/solutions/1.jpg";
-import image2 from "@/assets/solutions/2.jpg";
-import image3 from "@/assets/solutions/3.jpg";
+import image1 from "@/assets/solutions/1.png";
+import image2 from "@/assets/solutions/4.jpg";
+import image3 from "@/assets/solutions/5.jpg";
+import image4 from "@/assets/solutions/equipment.png";
 ---
 
 <section class="relative min-h-screen overflow-hidden bg-[#F0FAF9]">
@@ -42,11 +43,11 @@ import image3 from "@/assets/solutions/3.jpg";
         data-aos="fade-up"
         data-aos-delay="200"
       >
-        Технологии будущего для устойчивого развития
+      Передовые технологии для устойчивого развития
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
       {[
         {
           title: "ESG-стратегии и отчетность",
@@ -56,13 +57,14 @@ import image3 from "@/assets/solutions/3.jpg";
             "Подготовка ESG-отчетов",
             "Разработка дорожных карт",
             "Оценка экологических рисков",
+            "Подбор и поставка оборудования для достижения углеродной нейтральности",
           ],
           delay: 400,
         },
         {
           title: "Углеродные проекты",
           image: image2,
-          description: "Реализация проектов по стандартам VERRA и Gold Standard",
+          description: "Экономика будущего",
           points: [
             "Разработка проектов",
             "Верификация и валидация",
@@ -80,6 +82,19 @@ import image3 from "@/assets/solutions/3.jpg";
             "Умный мониторинг",
           ],
           delay: 800,
+        },
+        {
+          title: "Лабораторное и промышленное оборудование",
+          image: image4,
+          description: "Высокоточное оборудование от ведущих мировых производителей",
+          points: [
+            "ICT International",
+            "Soil Moisture",
+            "WALZ",
+            "Apogee",
+            "Milesight",
+          ],
+          delay: 1000,
         },
       ].map((solution) => (
         <div data-aos="fade-up" data-aos-delay={solution.delay}>
@@ -184,13 +199,18 @@ import image3 from "@/assets/solutions/3.jpg";
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
     
-    // Water ripple parameters
     const ripples: any[] = [];
     const maxRipples = 5;
     const baseRadius = Math.min(width, height) * 0.1;
     let mouseX = 0;
     let mouseY = 0;
     let isMoving = false;
+    
+    interface CustomWindow extends Window {
+      moveTimeout?: number;
+    }
+    
+    const customWindow = window as CustomWindow;
 
     class Ripple {
       x: number;
@@ -222,7 +242,6 @@ import image3 from "@/assets/solutions/3.jpg";
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // Inner glow
         const gradient = ctx.createRadialGradient(
           this.x, this.y, 0,
           this.x, this.y, this.radius
@@ -244,7 +263,6 @@ import image3 from "@/assets/solutions/3.jpg";
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
-      // Create ambient ripples
       if (Math.random() < 0.03) {
         createRipple(
           Math.random() * width,
@@ -252,12 +270,10 @@ import image3 from "@/assets/solutions/3.jpg";
         );
       }
 
-      // Create mouse-following ripples
       if (isMoving && Math.random() < 0.1) {
         createRipple(mouseX, mouseY);
       }
 
-      // Update and draw ripples
       for (let i = ripples.length - 1; i >= 0; i--) {
         if (!ripples[i].update()) {
           ripples.splice(i, 1);
@@ -269,26 +285,22 @@ import image3 from "@/assets/solutions/3.jpg";
       requestAnimationFrame(animate);
     }
 
-    // Handle window resize
     window.addEventListener('resize', () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     });
 
-    // Track mouse movement
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       isMoving = true;
 
-      // Reset moving state after delay
-      clearTimeout(window.moveTimeout);
-      window.moveTimeout = setTimeout(() => {
+      clearTimeout(customWindow.moveTimeout);
+      customWindow.moveTimeout = setTimeout(() => {
         isMoving = false;
-      }, 100);
+      }, 100) as unknown as number;
     });
 
-    // Start animation
     animate();
   });
 </script>

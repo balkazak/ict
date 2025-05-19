@@ -8,174 +8,177 @@ export const AirSensors: ProductCardProps[] = [
   {
     id: "apogee-cloudburst",
     image: apogeeCloudburst,
-    name: "Apogee Cloudburst Weighing Precipitation Gauge",
-    overview: `The Apogee Cloudburst weighing precipitation gauge is an SDI-12 all-weather weighing gauge with no moving parts. It collects and measures total precipitation from rain, snow, sleet, and hail and corrects for temperature, evaporation, and vibration.`,
-    features: `The Apogee Cloudburst weighing precipitation gauge is available as a WMO compatible rain, snow, sleet, and hail precipitation gauge.
+    name: "Осадкомер Apogee Cloudburst",
+    overview: `Весовой осадкомер Apogee Cloudburst — это всепогодный измерительный прибор с интерфейсом SDI-12, не имеющий движущихся частей. Он собирает и измеряет общее количество осадков в виде дождя, снега, мокрого снега и града, а также корректирует показания с учетом температуры, испарения и вибрации.`,
+    features: `Весовой осадкомер Apogee Cloudburst доступен как совместимый с требованиями ВМО прибор для измерения дождя, снега, мокрого снега и града.
 <br><br>
-Able to measure these parameters via a sensitive weighing platform, the Cloudburst gauge is a low power unit that contains no moving parts.
+Способный измерять эти параметры с помощью чувствительной весовой платформы, осадкомер Cloudburst является энергоэффективным устройством, не содержащим движущихся частей.
 `,
   },
   {
     id: "windsonic",
     image: windsonic,
-    name: "WindSonic sensor for wind speed and direction",
-    overview: `The WindSonic sensor is an ultrasonic anemometer with SDI-12 connection for the measurement of wind speed and direction.
-The WindSonic has no moving parts (allowing for long term maintenance free installations), low power consumption, making it ideal for integration into meteorological and hydrological monitoring systems.
-Designed for installation in temperatures between -35°C to +70°C and humidity up to 100%, the WindSonic can be installed in many situations.
-Compatible with any SDI-12 data logger or node, the WindSonic is a versatile sensor in a weather station or risk monitoring station.`,
-    features: `The WindSonic has no moving parts (allowing for long term maintenance free installations), low power consumption, making it ideal for integration into meteorological and hydrological monitoring systems.
-Designed for installation in temperatures between -35°C to +70°C and humidity up to 100%, the WindSonic can be installed in many situations.`,
+    name: "Датчик WindSonic для измерения скорости и направления ветра",
+    overview: `Датчик WindSonic — это ультразвуковой анемометр с подключением SDI-12 для измерения скорости и направления ветра.
+WindSonic не имеет движущихся частей (что позволяет проводить долгосрочные установки без обслуживания), отличается низким энергопотреблением, что делает его идеальным для интеграции в метеорологические и гидрологические системы мониторинга.
+Разработанный для установки при температурах от -35°C до +70°C и влажности до 100%, WindSonic может быть установлен в различных условиях.
+Совместимый с любым регистратором данных или узлом SDI-12, WindSonic является универсальным датчиком в метеостанции или станции мониторинга рисков.`,
+    features: `WindSonic не имеет движущихся частей (что позволяет проводить долгосрочные установки без обслуживания), отличается низким энергопотреблением, что делает его идеальным для интеграции в метеорологические и гидрологические системы мониторинга.
+Разработанный для установки при температурах от -35°C до +70°C и влажности до 100%, WindSonic может быть установлен в различных условиях.`,
     specifications: [
-      { name: "Wind Speed", value: "" },
-      { name: "Range", value: "0 – 60 m/s (116 knots)" },
-      { name: "Accuracy", value: "±2% @12 m/s" },
-      { name: "Resolution", value: "0.01 m/s (0.02 knots)" },
-      { name: "Response Time", value: "0.25 seconds" },
-      { name: "Threshold", value: "0.01 m/s" },
+      { name: "Скорость ветра", value: "" },
+      { name: "Диапазон", value: "0 – 60 м/с (116 узлов)" },
+      { name: "Точность", value: "±2% при 12 м/с" },
+      { name: "Разрешение", value: "0.01 м/с (0.02 узла)" },
+      { name: "Время отклика", value: "0.25 секунд" },
+      { name: "Порог срабатывания", value: "0.01 м/с" },
       { type: "divider" },
-      { name: "Direction", value: "" },
-      { name: "Range", value: "0 – 359° (No dead band)" },
-      { name: "Accuracy", value: "±2° @12 m/s" },
-      { name: "Resolution", value: "1°" },
-      { name: "Response Time", value: "0.25 seconds" },
+      { name: "Направление", value: "" },
+      { name: "Диапазон", value: "0 – 359° (без мертвой зоны)" },
+      { name: "Точность", value: "±2° при 12 м/с" },
+      { name: "Разрешение", value: "1°" },
+      { name: "Время отклика", value: "0.25 секунд" },
       { type: "divider" },
-      { name: "Measurements", value: "" },
-      { name: "Update rate", value: "1 Hz" },
+      { name: "Измерения", value: "" },
+      { name: "Частота обновления", value: "1 Гц" },
       {
-        name: "Parameters",
-        value: "Wind Speed & Direction or U and V (vectors)",
+        name: "Параметры",
+        value: "Скорость и направление ветра или U и V (векторы)",
       },
-      { name: "Units of Measure", value: "m/s" },
+      { name: "Единицы измерения", value: "м/с" },
     ],
   },
   {
     id: "hf4-hailflow",
     image: hf4Hailflow,
-    name: "HF4 HailFlow sensor for Hail Monitoring",
-    overview: `The HF4 HailFlow sensor for Hail Monitoring is a non-mechanical hail sensor. An acoustic instrument, the HF4 enables the
-•	detection of hail
-•	characterisation of hailstone size
-The sensor is able to distinguish between 15 classes of hailstone diameter, ranging from 0.5 to 8 cm, with a capability of counting up to 25 solid impacts per second.
-The HF4 is compatible with any SDI-12 logger or IoT Node (such as the MFR-Node or S-Node).`,
-    features: `The sensor is able to distinguish between 15 classes of hailstone diameter, ranging from 0.5 to 8 cm, with a capability of counting up to 25 solid impacts per second.
-The HF4 is compatible with any SDI-12 logger or IoT Node (such as the MFR-Node or S-Node).
-The HF4 HailFlow Sensors is:
-•	Non obstructable
-•	Instrument with no mobile parts – totally sealed acoustic instrument
-•	Universal mounting kit available
-•	Omni-directional – even under the highest winds
-•	Corrosion free and resistant to the highest winds and the most extreme conditions
-•	Plug-and-Play or totally configurable – microcontroller inside
-•	Can be connected to almost any external unit
-•	SDI-12 and IoT compatible – internal memory`,
+    name: "Датчик HF4 HailFlow для мониторинга града",
+    overview: `Датчик HF4 HailFlow для мониторинга града — это немеханический датчик града. Акустический прибор HF4 позволяет:
+• обнаруживать град
+• характеризовать размер градин
+Датчик способен различать 15 классов диаметра градин, от 0,5 до 8 см, с возможностью подсчета до 25 твердых ударов в секунду.
+HF4 совместим с любым регистратором SDI-12 или узлом IoT (таким как MFR-Node или S-Node).`,
+    features: `Датчик способен различать 15 классов диаметра градин, от 0,5 до 8 см, с возможностью подсчета до 25 твердых ударов в секунду.
+HF4 совместим с любым регистратором SDI-12 или узлом IoT (таким как MFR-Node или S-Node).
+Датчик HF4 HailFlow:
+• Не подвержен засорению
+• Прибор без подвижных частей — полностью герметичный акустический инструмент
+• Доступен универсальный монтажный комплект
+• Всенаправленный — даже при самых сильных ветрах
+• Устойчив к коррозии и выдерживает самые сильные ветры и экстремальные условия
+• Plug-and-Play или полностью настраиваемый — внутренний микроконтроллер
+• Может быть подключен практически к любому внешнему устройству
+• Совместим с SDI-12 и IoT — внутренняя память`,
     specifications: [
-      { name: "Measuring surface", value: "200 mm outer diameter disc" },
-      { name: "Precipitation detected", value: "Solid only (hail)" },
       {
-        name: "Hail size classes",
-        value:
-          "15 classes, from 0.5 cm (minimal detectable diameter) to >7.5 cm (possible saturation of the instrument)",
+        name: "Измерительная поверхность",
+        value: "Диск внешним диаметром 200 мм",
       },
-      { name: "Counting capacity", value: "Up to 25 impacts per second" },
+      { name: "Обнаруживаемые осадки", value: "Только твердые (град)" },
       {
-        name: "Measurement Accuracy",
+        name: "Классы размеров града",
         value:
-          "For a given controlled elastic momentum impact (such as spheres of equal diameter, density, Young modulus, falling speed and incidence angle), the response of the sensor varies typically by ± 10%, depending on the spatial position of the impact on the disc and on the sensor (± 10% variability between two sensors)",
+          "15 классов, от 0,5 см (минимальный обнаруживаемый диаметр) до >7,5 см (возможно насыщение прибора)",
+      },
+      { name: "Емкость подсчета", value: "До 25 ударов в секунду" },
+      {
+        name: "Точность измерения",
+        value:
+          "Для заданного контролируемого удара с упругим импульсом (например, шары одинакового диаметра, плотности, модуля Юнга, скорости падения и угла падения), отклик датчика обычно варьируется на ± 10%, в зависимости от пространственного положения удара на диске и на датчике (± 10% вариабельность между двумя датчиками)",
       },
     ],
   },
   {
     id: "sf4-sandflow",
-    name: "SF4 SandFlow sensor for Sand and Dust Monitoring",
-    overview: `The SF4 SandFlow sensor for sand and dust monitoring is a non-mechanical sensor that measures particles and wind when contact is made with the measuring surface of the sensor.
-An acoustic instrument, the SF4 enables the
-•	measurement of solid particle flux (such as sand) in grammes per square metre per second (g/m2/s)
-•	estimate of the wind speed
-The analogue voltage sensor is selectable to either 2.5 volt or 5 volt, with the maximum voltage output reflecting either 250 g/m2/s for particle flux or 250 km/h for wind speed.
-The SF4 is compatible with any SDI-12 logger or IoT Node (such as the MFR-Node or S-Node).`,
-    features: `The analogue voltage sensor is selectable to either 2.5 volt or 5 volt, with the maximum voltage output reflecting either 250 g/m2/s for particle flux or 250 km/h for wind speed.
-The SF4 is compatible with any SDI-12 logger or IoT Node (such as the MFR-Node or S-Node).`,
+    name: "Датчик SF4 SandFlow для мониторинга песка и пыли",
+    overview: `Датчик SF4 SandFlow для мониторинга песка и пыли — это немеханический датчик, который измеряет частицы и ветер при контакте с измерительной поверхностью датчика.
+Акустический прибор SF4 позволяет:
+• измерять поток твердых частиц (например, песка) в граммах на квадратный метр в секунду (г/м²/с)
+• оценивать скорость ветра
+Аналоговый датчик напряжения может быть настроен на 2,5 вольта или 5 вольт, при этом максимальное выходное напряжение отражает либо 250 г/м²/с для потока частиц, либо 250 км/ч для скорости ветра.
+SF4 совместим с любым регистратором SDI-12 или узлом IoT (таким как MFR-Node или S-Node).`,
+    features: `Аналоговый датчик напряжения может быть настроен на 2,5 вольта или 5 вольт, при этом максимальное выходное напряжение отражает либо 250 г/м²/с для потока частиц, либо 250 км/ч для скорости ветра.
+SF4 совместим с любым регистратором SDI-12 или узлом IoT (таким как MFR-Node или S-Node).`,
     specifications: [
       {
-        name: "Measuring surface",
-        value: "32 mm diameter, 920 mm long cylindrical tube",
+        name: "Измерительная поверхность",
+        value: "Цилиндрическая трубка диаметром 32 мм, длиной 920 мм",
       },
       {
-        name: "Physical phenomena detected",
+        name: "Обнаруживаемые физические явления",
         value:
-          "Flux of solid particles transported by the wind (sand flow, aeolian sand transport, and more generally all kind of solid particle fluxes of the same range of kinetic energy generating impacts on the measuring surface).",
+          "Поток твердых частиц, переносимых ветром (поток песка, эоловый перенос песка и, в более общем плане, все виды потоков твердых частиц того же диапазона кинетической энергии, создающих удары по измерительной поверхности).",
       },
       {
-        name: "Wind measurement",
+        name: "Измерение ветра",
         value:
-          "Wind speed (more generally, an estimation of the average speed of the laminar aeolian flux generating friction on measuring surface).",
+          "Скорость ветра (в более общем плане, оценка средней скорости ламинарного эолового потока, создающего трение на измерительной поверхности).",
       },
       { type: "divider" },
       {
-        name: "Measurement accuracy (Flux)",
+        name: "Точность измерения (Поток)",
         value:
-          "For a given controlled flux homogeneously distributed along the measuring surface of the sensor (such as particles of a given shape profile, density, Young modulus, falling speed and incidence angle), the response of the sensor varies of ± 5% and the variability between two sensors is below ± 10%.",
+          "Для заданного контролируемого потока, равномерно распределенного вдоль измерительной поверхности датчика (например, частицы с заданным профилем формы, плотностью, модулем Юнга, скоростью падения и углом падения), отклик датчика варьируется на ± 5%, а вариабельность между двумя датчиками составляет менее ± 10%.",
       },
       {
-        name: "Measurement accuracy (Wind)",
+        name: "Точность измерения (Ветер)",
         value:
-          "In laminar established conditions and without external parasitic turbulences or low-frequency noise, the wind speed accuracy is ±15%.",
+          "В установившихся ламинарных условиях и без внешних паразитных турбулентностей или низкочастотного шума, точность измерения скорости ветра составляет ±15%.",
       },
       {
-        name: "Particle velocity",
+        name: "Скорость частиц",
         value:
-          "Not measured. Can only be an interpretation of the wind speed measurement.",
+          "Не измеряется. Может быть только интерпретацией измерения скорости ветра.",
       },
     ],
   },
   {
     id: "rf4-rainflow",
-    name: "RF4 RainFlow for Rain and Hail Monitoring",
-    overview: `The RF4 RainFlow for Rain and Hail Monitoring is a non-mechanical rain and hail sensor. An acoustic instrument, the RF4 measures:
-•	rain and hail precipitation
-•	High-resolution disdrometry (number and size of raindrops)
-The RF4 is compatible with any SDI-12 logger or IoT Node (such as the MFR-Node or S-Node).`,
-    features: `The RF4 RainFall Sensors is:
-•	Non obstructable
-•	Instrument with no mobile parts – totally sealed acoustic instrument
-•	Universal mounting kit available
-•	Omni-directional – even under the highest winds
-•	Corrosion free and resistant to the highest winds and the most extreme conditions
-•	Plug-and-Play or totally configurable – microcontroller inside
-•	Can be connected to almost any external unit
-•	SDI-12 and IoT compatible – internal memory`,
+    name: "RF4 RainFlow для мониторинга дождя и града",
+    overview: `RF4 RainFlow для мониторинга дождя и града — это немеханический датчик дождя и града. Акустический прибор RF4 измеряет:
+• осадки в виде дождя и града
+• высокоточную дисдрометрию (количество и размер капель дождя)
+RF4 совместим с любым регистратором SDI-12 или узлом IoT (таким как MFR-Node или S-Node).`,
+    features: `Датчик RF4 RainFall:
+• Не подвержен засорению
+• Прибор без подвижных частей — полностью герметичный акустический инструмент
+• Доступен универсальный монтажный комплект
+• Всенаправленный — даже при самых сильных ветрах
+• Устойчив к коррозии и выдерживает самые сильные ветры и экстремальные условия
+• Plug-and-Play или полностью настраиваемый — внутренний микроконтроллер
+• Может быть подключен практически к любому внешнему устройству
+• Совместим с SDI-12 и IoT — внутренняя память`,
     specifications: [
       {
-        name: "Measuring surface",
-        value: "160 mm outer diameter hemisphere (402 cm²)",
+        name: "Измерительная поверхность",
+        value: "Полусфера внешним диаметром 160 мм (402 см²)",
       },
       {
-        name: "Precipitation detected",
+        name: "Обнаруживаемые осадки",
         value:
-          "Liquid (undifferentiated): rain, drizzle/rain, mixed rain/snow, sleet. Solid: hail.",
+          "Жидкие (недифференцированные): дождь, морось/дождь, смешанный дождь/снег, мокрый снег. Твердые: град.",
       },
       {
-        name: "Rain Intensity accuracy",
+        name: "Точность интенсивности дождя",
         value:
-          "15% at 100% duty-cycle (most global precision and accuracy criteria)",
+          "15% при 100% рабочем цикле (большинство глобальных критериев точности и аккуратности)",
       },
       {
-        name: "Rain DSD",
+        name: "Распределение размеров капель дождя",
         value:
-          "27 classes from ≤ 0.75 mm to 7.0mm with a detection threshold (minimum detectable diameter) of about 0.5 mm",
+          "27 классов от ≤ 0,75 мм до 7,0 мм с порогом обнаружения (минимальный обнаруживаемый диаметр) около 0,5 мм",
       },
       { type: "divider" },
       {
-        name: "Measurement accuracy (liquid only)",
+        name: "Точность измерения (только жидкие осадки)",
         value:
-          "A spatially distributed flux of controlled drops of a nominal diameter equal to the centre diameter of the class ± 20% produces an output centred in the corresponding class with typically 50% of the flux concentrated into the two lateral size-classes.",
+          "Пространственно распределенный поток контролируемых капель с номинальным диаметром, равным центральному диаметру класса ± 20%, дает выход, центрированный в соответствующем классе, с типично 50% потока, сконцентрированным в двух боковых классах размеров.",
       },
       {
-        name: "Hail detection",
+        name: "Обнаружение града",
         value:
-          "Counting of the number of hailstone impacts up to 5 impacts per second and for hailstone diameter detection threshold of 0.5 cm.",
+          "Подсчет количества ударов градин до 5 ударов в секунду и для порога обнаружения диаметра градин 0,5 см.",
       },
-      { name: "Particle velocity", value: "Not measured." },
+      { name: "Скорость частиц", value: "Не измеряется." },
     ],
   },
 ];
