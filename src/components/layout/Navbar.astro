@@ -11,391 +11,236 @@ const isActive = (itemPath: string) => {
 };
 ---
 
-<div id="main-navbar" class="sticky top-0 z-50 bg-[#FFFFFF] shadow-sm">
-  <div class="eco-noise absolute inset-0 opacity-5"></div>
-  <div class="eco-scanline"></div>
-  
-  <div class="container relative z-10 mx-auto flex max-w-6xl items-center justify-between gap-4  py-3">
-    <!-- Logo section - centered -->
-    <div class="flex items-center justify-center">
-      <a href="/" class="eco-brand group flex items-center gap-3">
-        <div class="eco-logo-frame relative">
-          <Image src={logo} alt="Logo" class="size-10" />
-          <div class="eco-logo-glow"></div>
+<nav class="sticky top-0 z-50 bg-white shadow-sm">
+  <div class="container mx-auto max-w-6xl px-4">
+    <div class="flex items-center justify-between py-3">
+      <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <div class="relative p-1 border border-[#0A7B76]/20 rounded bg-[#0A7B76]/5">
+          <Image src={logo} alt="Logo" class="w-8 h-8" />
         </div>
-        <span class="text-xl font-bold text-[#0A7B76] transition-all group-hover:text-[#0A5B56] whitespace-nowrap">
+        <span class="text-xl font-bold text-[#0A7B76] whitespace-nowrap">
           ICT Central Asia
         </span>
       </a>
-    </div>
 
-    <!-- Desktop menu - centered -->
-    <div class="hidden flex-1 xl:block">
-      <ul class="eco-menu flex items-center justify-center gap-4">
-        {
-          NavItems.map((item) =>
-            item.subItems ? (
-              <li class="flex items-center">
-                <details class={`eco-dropdown ${isActive(item.href) ? "open" : ""}`}>
-                  <summary class={`eco-link whitespace-nowrap ${isActive(item.href) ? "active" : ""}`}>
-                    {item.title}
-                  </summary>
-                  <ul class="eco-dropdown-content">
-                    {item.subItems.map((subItem) =>
-                      subItem.innerItems ? (
-                        <li class="eco-dropdown-section">
-                          <details class={`eco-dropdown-inner ${isActive(subItem.href) ? "open" : ""}`}>
-                            <summary class={`eco-section-header ${isActive(subItem.href) ? "active" : ""}`}>
-                              {subItem.title}
-                              <Icon name="mdi:chevron-right" class="h-4 w-4 inline-block ml-auto transition-transform group-open:rotate-90" />
-                            </summary>
-                            <ul class="eco-dropdown-content-inner">
-                              {subItem.innerItems.map((innerItem) => (
-                                <li>
-                                  <a
-                                    href={innerItem.href}
-                                    class={`eco-inner-link hover:bg-[#0A7B76]/10 hover:text-[#0A7B76] active:!bg-[#0A7B76]/20 transition-colors ${
-                                      isActive(innerItem.href)
-                                        ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium"
-                                        : ""
-                                    }`}
-                                  >
-                                    {innerItem.title}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          </details>
-                        </li>
-                      ) : (
-                        <li>
-                          <a
-                            href={subItem.href}
-                            class={`hover:bg-[#0A7B76]/10 hover:text-[#0A7B76] active:!bg-[#0A7B76]/20 transition-colors ${
-                              isActive(subItem.href)
-                                ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium"
-                                : ""
-                            }`}
-                          >
-                            {subItem.title}
-                          </a>
-                        </li>
-                      )
-                    )}
-                  </ul>
-                </details>
-              </li>
-            ) : (
-              <li>
-                <a
-                  href={item.href}
-                  class={`hover:bg-[#0A7B76]/10 hover:text-[#0A7B76] active:!bg-[#0A7B76]/20 rounded-lg px-4 py-2 transition-colors ${
-                    isActive(item.href)
-                      ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium px-4 py-2"
-                      : ""
-                  }`}
-                >
+      <div class="hidden lg:flex items-center space-x-6">
+        {NavItems.map((item) => (
+          <div class="relative group">
+            {item.subItems ? (
+              <div>
+                <button class="flex items-center gap-1 px-3 py-2 text-[#0A7B76] hover:text-[#0A5B56] transition-colors whitespace-nowrap">
                   {item.title}
-                </a>
-              </li>
-            )
-          )
-        }
-      </ul>
-    </div>
-
-    <!-- Mobile menu button -->
-    <div class="xl:hidden">
-      <button
-        id="mobile-menu-button"
-        class="eco-button flex items-center gap-2 rounded-lg px-3 py-2"
-      >
-        <span class="text-[#0A7B76]">Меню</span>
-        <Icon name="mdi:menu" class="h-6 w-6 text-[#0A7B76]" />
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden">
-    <div class="container mx-auto px-4 py-4">
-      <ul class="space-y-4">
-        {
-          NavItems.map((item) => (
-            <li>
-              {item.subItems ? (
-                <details class={isActive(item.href) ? "open" : ""}>
-                  <summary class="eco-mobile-link flex items-center justify-between">
-                    {item.title}
-                    <Icon name="mdi:chevron-down" class="h-5 w-5" />
-                  </summary>
-                  <ul class="ml-4 mt-2 space-y-2">
+                  <Icon name="mdi:chevron-down" class="w-4 h-4" />
+                </button>
+                <div class="absolute top-full left-0 mt-1 w-72 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div class="p-2">
                     {item.subItems.map((subItem) => (
-                      <li>
+                      <div>
                         {subItem.innerItems ? (
-                          <details class={`eco-mobile-section ${isActive(subItem.href) ? "open" : ""}`}>
-                            <summary class="eco-mobile-section-header">
+                          <div class="mb-3">
+                            <div class="px-3 py-2 text-sm font-medium text-[#0A7B76] border-b border-gray-100 whitespace-nowrap">
                               {subItem.title}
-                              <Icon name="mdi:chevron-right" class="h-4 w-4" />
-                            </summary>
-                            <ul class="ml-4 mt-2 space-y-2">
+                            </div>
+                            <div class="mt-1">
                               {subItem.innerItems.map((innerItem) => (
-                                <li>
-                                  <a
-                                    href={innerItem.href}
-                                    class={`block py-2 ${
-                                      isActive(innerItem.href)
-                                        ? "text-[#0A7B76] font-medium"
-                                        : "text-[#0A7B76]/80"
-                                    }`}
-                                  >
-                                    {innerItem.title}
-                                  </a>
-                                </li>
+                                <a
+                                  href={innerItem.href}
+                                  class={`block px-3 py-2 text-sm rounded hover:bg-[#0A7B76]/10 transition-colors whitespace-nowrap ${
+                                    isActive(innerItem.href) ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium" : "text-gray-700"
+                                  }`}
+                                >
+                                  {innerItem.title}
+                                </a>
                               ))}
-                            </ul>
-                          </details>
+                            </div>
+                          </div>
                         ) : (
                           <a
                             href={subItem.href}
-                            class={`block py-2 ${
-                              isActive(subItem.href)
-                                ? "text-[#0A7B76] font-medium"
-                                : "text-[#0A7B76]/80"
+                            class={`block px-3 py-2 text-sm rounded hover:bg-[#0A7B76]/10 transition-colors whitespace-nowrap ${
+                              isActive(subItem.href) ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium" : "text-gray-700"
                             }`}
                           >
                             {subItem.title}
                           </a>
                         )}
-                      </li>
+                      </div>
                     ))}
-                  </ul>
-                </details>
-              ) : (
-                <a
-                  href={item.href}
-                  class={`block py-2 ${
-                    isActive(item.href)
-                      ? "text-[#0A7B76] font-medium"
-                      : "text-[#0A7B76]/80"
-                  }`}
-                >
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a
+                href={item.href}
+                class={`px-3 py-2 rounded transition-colors whitespace-nowrap ${
+                  isActive(item.href)
+                    ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium"
+                    : "text-[#0A7B76] hover:text-[#0A5B56]"
+                }`}
+              >
+                {item.title}
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <button
+        id="mobile-menu-toggle"
+        class="lg:hidden flex items-center gap-2 px-3 py-2 text-[#0A7B76] border border-[#0A7B76]/20 rounded hover:bg-[#0A7B76]/10 transition-colors"
+      >
+        <span>Меню</span>
+        <Icon name="mdi:menu" class="w-5 h-5" />
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-gray-200 py-4">
+      <div class="space-y-1">
+        {NavItems.map((item) => (
+          <div>
+            {item.subItems ? (
+              <div>
+                <div class="px-3 py-2 text-[#0A7B76] font-semibold border-b border-gray-100 mb-2">
                   {item.title}
-                </a>
-              )}
-            </li>
-          ))
-        }
-      </ul>
+                </div>
+                <div class="ml-4 space-y-1">
+                  {item.subItems.map((subItem) => (
+                    <div>
+                      {subItem.innerItems ? (
+                        <div class="mb-3">
+                          <div class="px-3 py-1 text-sm font-medium text-[#0A7B76]/80">
+                            {subItem.title}
+                          </div>
+                          <div class="ml-4 space-y-1">
+                            {subItem.innerItems.map((innerItem) => (
+                              <a
+                                href={innerItem.href}
+                                class={`mobile-nav-link block px-3 py-2 text-sm rounded transition-colors ${
+                                  isActive(innerItem.href)
+                                    ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium"
+                                    : "text-gray-700 hover:bg-gray-100"
+                                }`}
+                              >
+                                {innerItem.title}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <a
+                          href={subItem.href}
+                          class={`mobile-nav-link block px-3 py-2 text-sm rounded transition-colors ${
+                            isActive(subItem.href)
+                              ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }`}
+                        >
+                          {subItem.title}
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <a
+                href={item.href}
+                class={`mobile-nav-link block px-3 py-3 rounded transition-colors border-b border-gray-100 ${
+                  isActive(item.href)
+                    ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                {item.title}
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   </div>
-</div>
+</nav>
 
 <style>
-  .eco-noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.05;
-  }
-
-  .eco-scanline {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(10, 123, 118, 0.5), transparent);
-    opacity: 0;
-    animation: scanline 4s linear infinite;
-  }
-
-  .eco-brand:hover .eco-scanline {
-    opacity: 1;
-  }
-
-  .eco-logo-frame {
-    position: relative;
-    border-radius: 50%;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .eco-logo-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(10, 123, 118, 0.3), transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .eco-brand:hover .eco-logo-glow {
-    opacity: 1;
-  }
-
-  .eco-menu {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .eco-link {
-    position: relative;
-    padding: 0.5rem 1rem;
-    color: rgba(10, 123, 118, 0.8);
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-
-  .eco-link:hover, .eco-link.active {
-    color: rgba(10, 123, 118, 1);
-  }
-
-  .eco-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: rgba(10, 123, 118, 0.5);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-  }
-
-  .eco-link:hover::after, .eco-link.active::after {
-    width: 80%;
-  }
-
-  .eco-dropdown {
-    position: relative;
-  }
-
-  .eco-dropdown-content {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 200px;
-    background: white;
-    border: 1px solid rgba(10, 123, 118, 0.1);
-    border-radius: 4px;
-    box-shadow: 0 10px 25px rgba(10, 123, 118, 0.1);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    z-index: 100;
-    overflow: hidden;
-  }
-
-  .eco-dropdown[open] .eco-dropdown-content {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .eco-dropdown-content a {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: rgba(10, 123, 118, 0.8);
-    transition: all 0.3s ease;
-  }
-
-  .eco-dropdown-content a:hover {
-    background: rgba(10, 123, 118, 0.05);
-  }
-
-  .eco-button {
-    background: rgba(10, 123, 118, 0.1);
-    border: 1px solid rgba(10, 123, 118, 0.2);
-    transition: all 0.3s ease;
-  }
-
-  .eco-button:hover {
-    background: rgba(10, 123, 118, 0.15);
-  }
-
-  .eco-mobile-link {
-    display: block;
-    padding: 0.5rem 0;
-    color: rgba(10, 123, 118, 0.8);
-    font-weight: 500;
-    cursor: pointer;
-  }
-
-  @keyframes scanline {
-    0%, 100% { left: 0; opacity: 0; }
-    10%, 90% { opacity: 0; }
-    50% { left: 100%; opacity: 0.5; }
-  }
-
-  .eco-dropdown-section {
-    border-left: 2px solid rgba(10, 123, 118, 0.2);
-    margin: 0.5rem 0;
-  }
-
-  .eco-section-header {
-    display: flex;
+  .mobile-nav-link {
+    display: block !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: rgba(10, 123, 118, 0.2) !important;
+    user-select: none;
+    touch-action: manipulation;
+    min-height: 44px;
+    display: flex !important;
     align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1rem;
-    color: rgba(10, 123, 118, 0.9);
-    font-weight: 500;
-    background: rgba(10, 123, 118, 0.05);
-    cursor: pointer;
-    transition: all 0.3s ease;
   }
 
-  .eco-section-header:hover, .eco-section-header.active {
-    background: rgba(10, 123, 118, 0.1);
-    color: rgba(10, 123, 118, 1);
+  .mobile-nav-link:active {
+    background-color: rgba(10, 123, 118, 0.2) !important;
+    transform: scale(0.98);
   }
 
-  .eco-dropdown-content-inner {
-    padding-left: 0.5rem;
-    border-left: 1px dashed rgba(10, 123, 118, 0.2);
-    margin-left: 1rem;
+  .mobile-nav-link:focus {
+    outline: 2px solid rgba(10, 123, 118, 0.5);
+    outline-offset: 2px;
   }
 
-  .eco-inner-link {
-    display: block;
-    padding: 0.6rem 1rem;
-    font-size: 0.95rem;
-  }
-
-  /* Mobile version */
-  .eco-mobile-section {
-    border-left: 2px solid rgba(10, 123, 118, 0.2);
-    margin: 0.5rem 0;
-    padding-left: 0.5rem;
-  }
-
-  .eco-mobile-section-header {
-    font-weight: 500;
-    color: rgba(10, 123, 118, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  @media (hover: none) and (pointer: coarse) {
+    .mobile-nav-link:hover {
+      background-color: rgba(10, 123, 118, 0.1) !important;
+    }
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', () => {
+    if (mobileMenuToggle && mobileMenu) {
+      mobileMenuToggle.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
       });
     }
 
-    // Handle dropdowns
-    const dropdowns = document.querySelectorAll('.eco-dropdown');
-    dropdowns.forEach(dropdown => {
-      const summary = dropdown.querySelector('summary');
-      if (summary) {
-        summary.addEventListener('click', (e) => {
-          e.preventDefault();
-          dropdown.toggleAttribute('open');
-        });
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    console.log('Mobile nav links found:', mobileNavLinks.length);
+
+    mobileNavLinks.forEach((link, index) => {
+      const href = link.getAttribute('href');
+      console.log(`Mobile link ${index}:`, href, link.textContent?.trim());
+
+      const handleNavigation = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        console.log('Mobile navigation triggered for:', href);
+        
+        if (href && href !== '#' && href !== '') {
+          if (mobileMenu) {
+            mobileMenu.classList.add('hidden');
+          }
+          
+          setTimeout(() => {
+            window.location.href = href;
+          }, 50);
+        }
+      };
+
+      link.addEventListener('click', handleNavigation);
+      link.addEventListener('touchend', handleNavigation);
+
+      link.addEventListener('touchstart', (e) => {
+        link.style.backgroundColor = 'rgba(10, 123, 118, 0.2)';
+      });
+
+      link.addEventListener('touchcancel', (e) => {
+        link.style.backgroundColor = '';
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (mobileMenu && !mobileMenu.contains(e.target) && !mobileMenuToggle?.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
       }
     });
   });

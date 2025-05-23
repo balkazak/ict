@@ -60,6 +60,8 @@ import image4 from "@/assets/solutions/equipment.png";
             "Подбор и поставка оборудования для достижения углеродной нейтральности",
           ],
           delay: 400,
+          route: "/solutions",
+          clickable: true,
         },
         {
           title: "Углеродные проекты",
@@ -71,6 +73,8 @@ import image4 from "@/assets/solutions/equipment.png";
             "IOT мониторинг CO2",
           ],
           delay: 600,
+          route: "/carbon-projects",
+          clickable: true,
         },
         {
           title: "Передовые технологии для устойчивого развития",
@@ -82,11 +86,13 @@ import image4 from "@/assets/solutions/equipment.png";
             "Умный мониторинг",
           ],
           delay: 800,
+          route: "/esg",
+          clickable: true,
         },
         {
           title: "Лабораторное и промышленное оборудование",
           image: image4,
-          description: "Высокоточное оборудование от ведущих мировых производителей",
+          description: "Высокоточное оборудование от ведущих мировых производителей: ICT International, Soil Moisture, WALZ, Apogee, Milesight",
           points: [
             "ICT International",
             "Soil Moisture",
@@ -95,9 +101,16 @@ import image4 from "@/assets/solutions/equipment.png";
             "Milesight",
           ],
           delay: 1000,
+          route: "/equipment",
+          clickable: false,
         },
-      ].map((solution) => (
-        <div data-aos="fade-up" data-aos-delay={solution.delay}>
+      ].map((solution, index) => (
+        <div 
+          data-aos="fade-up" 
+          data-aos-delay={solution.delay}
+          class={`solution-card-wrapper transform transition-transform duration-300 ${solution.clickable ? 'cursor-pointer hover:scale-105' : ''}`}
+          data-route={solution.clickable ? solution.route : ''}
+        >
           <SolutionCard {...solution} />
         </div>
       ))}
@@ -299,6 +312,16 @@ import image4 from "@/assets/solutions/equipment.png";
       customWindow.moveTimeout = setTimeout(() => {
         isMoving = false;
       }, 100) as unknown as number;
+    });
+
+    const solutionCards = document.querySelectorAll('.solution-card-wrapper[data-route]');
+    solutionCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const route = card.getAttribute('data-route');
+        if (route) {
+          window.location.href = route;
+        }
+      });
     });
 
     animate();
