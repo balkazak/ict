@@ -1,6 +1,5 @@
 ---
 import logo from "@/assets/logo.png";
-import { NavItems } from "@/lib/NavItems";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 
@@ -9,22 +8,50 @@ const { pathname } = Astro.url;
 const isActive = (itemPath: string) => {
   return pathname === itemPath || pathname.startsWith(itemPath + "/");
 };
+
+const navItems = [
+  {
+    title: "Главная",
+    href: "/",
+  },
+  {
+    title: "О нас",
+    href: "/about",
+  },
+  {
+    title: "Мониторинг окружающей среды",
+    href: "/monitoring",
+    subItems: [
+      { title: "Вода", href: "/monitoring/water/catalog" },
+      { title: "Воздух", href: "/monitoring/air/catalog" },
+      { title: "Земля", href: "/monitoring/soil/catalog" },
+      { title: "Растения", href: "/monitoring/plants/catalog" },
+    ],
+  },
+  {
+    title: "Контакты",
+    href: "/contact",
+  },
+];
 ---
 
 <nav class="sticky top-0 z-50 bg-white shadow-sm">
   <div class="container mx-auto max-w-6xl px-4">
     <div class="flex items-center justify-between py-3">
-      <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
-        <div class="relative p-1 border border-[#0A7B76]/20 rounded bg-[#0A7B76]/5">
-          <Image src={logo} alt="Logo" class="w-8 h-8" />
+      <a
+        href="/"
+        class="flex items-center gap-3 transition-opacity hover:opacity-80"
+      >
+        <div class="relative rounded border border-[#0A7B76]/20 bg-[#0A7B76]/5 p-1">
+          <Image src={logo} alt="Logo" class="h-8 w-8" />
         </div>
-        <span class="text-xl font-bold text-[#0A7B76] whitespace-nowrap">
+        <span class="whitespace-nowrap text-xl font-bold text-[#0A7B76]">
           ICT Central Asia
         </span>
       </a>
 
-      <div class="hidden lg:flex items-center space-x-6">
-        {NavItems.map((item) => (
+      <div class="hidden items-center space-x-6 lg:flex">
+        {navItems.map((item) => (
           <div class="relative group">
             {item.subItems ? (
               <div>
@@ -32,39 +59,19 @@ const isActive = (itemPath: string) => {
                   {item.title}
                   <Icon name="mdi:chevron-down" class="w-4 h-4" />
                 </button>
-                <div class="absolute top-full left-0 mt-1 w-72 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div class="invisible absolute top-full left-0 z-50 mt-1 w-64 rounded-lg border border-gray-200 bg-white opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
                   <div class="p-2">
                     {item.subItems.map((subItem) => (
-                      <div>
-                        {subItem.innerItems ? (
-                          <div class="mb-3">
-                            <div class="px-3 py-2 text-sm font-medium text-[#0A7B76] border-b border-gray-100 whitespace-nowrap">
-                              {subItem.title}
-                            </div>
-                            <div class="mt-1">
-                              {subItem.innerItems.map((innerItem) => (
-                                <a
-                                  href={innerItem.href}
-                                  class={`block px-3 py-2 text-sm rounded hover:bg-[#0A7B76]/10 transition-colors whitespace-nowrap ${
-                                    isActive(innerItem.href) ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium" : "text-gray-700"
-                                  }`}
-                                >
-                                  {innerItem.title}
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        ) : (
-                          <a
-                            href={subItem.href}
-                            class={`block px-3 py-2 text-sm rounded hover:bg-[#0A7B76]/10 transition-colors whitespace-nowrap ${
-                              isActive(subItem.href) ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium" : "text-gray-700"
-                            }`}
-                          >
-                            {subItem.title}
-                          </a>
-                        )}
-                      </div>
+                      <a
+                        href={subItem.href}
+                        class={`block rounded px-3 py-2 text-sm whitespace-nowrap transition-colors hover:bg-[#0A7B76]/10 ${
+                          isActive(subItem.href)
+                            ? "bg-[#0A7B76]/10 font-medium text-[#0A7B76]"
+                            : "text-gray-700"
+                        }`}
+                      >
+                        {subItem.title}
+                      </a>
                     ))}
                   </div>
                 </div>
@@ -72,9 +79,9 @@ const isActive = (itemPath: string) => {
             ) : (
               <a
                 href={item.href}
-                class={`px-3 py-2 rounded transition-colors whitespace-nowrap ${
+                class={`rounded px-3 py-2 whitespace-nowrap transition-colors ${
                   isActive(item.href)
-                    ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium"
+                    ? "bg-[#0A7B76]/10 font-medium text-[#0A7B76]"
                     : "text-[#0A7B76] hover:text-[#0A5B56]"
                 }`}
               >
@@ -87,67 +94,46 @@ const isActive = (itemPath: string) => {
 
       <button
         id="mobile-menu-toggle"
-        class="lg:hidden flex items-center gap-2 px-3 py-2 text-[#0A7B76] border border-[#0A7B76]/20 rounded hover:bg-[#0A7B76]/10 transition-colors"
+        class="flex items-center gap-2 rounded border border-[#0A7B76]/20 px-3 py-2 text-[#0A7B76] transition-colors hover:bg-[#0A7B76]/10 lg:hidden"
       >
         <span>Меню</span>
-        <Icon name="mdi:menu" class="w-5 h-5" />
+        <Icon name="mdi:menu" class="h-5 w-5" />
       </button>
     </div>
 
-    <div id="mobile-menu" class="lg:hidden hidden border-t border-gray-200 py-4">
+    <div
+      id="mobile-menu"
+      class="hidden border-t border-gray-200 py-4 lg:hidden"
+    >
       <div class="space-y-1">
-        {NavItems.map((item) => (
+        {navItems.map((item) => (
           <div>
             {item.subItems ? (
               <div>
-                <div class="px-3 py-2 text-[#0A7B76] font-semibold border-b border-gray-100 mb-2">
+                <div class="mb-2 border-b border-gray-100 px-3 py-2 font-semibold text-[#0A7B76]">
                   {item.title}
                 </div>
                 <div class="ml-4 space-y-1">
                   {item.subItems.map((subItem) => (
-                    <div>
-                      {subItem.innerItems ? (
-                        <div class="mb-3">
-                          <div class="px-3 py-1 text-sm font-medium text-[#0A7B76]/80">
-                            {subItem.title}
-                          </div>
-                          <div class="ml-4 space-y-1">
-                            {subItem.innerItems.map((innerItem) => (
-                              <a
-                                href={innerItem.href}
-                                class={`mobile-nav-link block px-3 py-2 text-sm rounded transition-colors ${
-                                  isActive(innerItem.href)
-                                    ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium"
-                                    : "text-gray-700 hover:bg-gray-100"
-                                }`}
-                              >
-                                {innerItem.title}
-                              </a>
-                            ))}
-                          </div>
-                        </div>
-                      ) : (
-                        <a
-                          href={subItem.href}
-                          class={`mobile-nav-link block px-3 py-2 text-sm rounded transition-colors ${
-                            isActive(subItem.href)
-                              ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium"
-                              : "text-gray-700 hover:bg-gray-100"
-                          }`}
-                        >
-                          {subItem.title}
-                        </a>
-                      )}
-                    </div>
+                    <a
+                      href={subItem.href}
+                      class={`mobile-nav-link block rounded px-3 py-2 text-sm transition-colors ${
+                        isActive(subItem.href)
+                          ? "bg-[#0A7B76]/10 font-medium text-[#0A7B76]"
+                          : "text-gray-700 hover:bg-gray-100"
+                      }`}
+                    >
+                      {subItem.title}
+                    </a>
                   ))}
                 </div>
               </div>
             ) : (
               <a
                 href={item.href}
-                class={`mobile-nav-link block px-3 py-3 rounded transition-colors border-b border-gray-100 ${
+                class={`mobile-nav-link block rounded border-b border-gray-100 px-3 py-3 transition-colors ${
                   isActive(item.href)
-                    ? "bg-[#0A7B76]/10 text-[#0A7B76] font-medium"
+                    ? "bg-[#0A7B76]/10 font-medium text-[#0A7B76]"
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
@@ -192,55 +178,55 @@ const isActive = (itemPath: string) => {
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
+  document.addEventListener("DOMContentLoaded", () => {
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
 
     if (mobileMenuToggle && mobileMenu) {
-      mobileMenuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
+      mobileMenuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
       });
     }
 
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    console.log('Mobile nav links found:', mobileNavLinks.length);
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
 
-    mobileNavLinks.forEach((link, index) => {
-      const href = link.getAttribute('href');
-      console.log(`Mobile link ${index}:`, href, link.textContent?.trim());
+    mobileNavLinks.forEach((link) => {
+      const href = link.getAttribute("href");
 
-      const handleNavigation = (e) => {
+      const handleNavigation = (e: Event) => {
         e.preventDefault();
         e.stopPropagation();
-        
-        console.log('Mobile navigation triggered for:', href);
-        
-        if (href && href !== '#' && href !== '') {
+
+        if (href && href !== "#" && href !== "") {
           if (mobileMenu) {
-            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.add("hidden");
           }
-          
+
           setTimeout(() => {
             window.location.href = href;
           }, 50);
         }
       };
 
-      link.addEventListener('click', handleNavigation);
-      link.addEventListener('touchend', handleNavigation);
+      link.addEventListener("click", handleNavigation);
+      link.addEventListener("touchend", handleNavigation);
 
-      link.addEventListener('touchstart', (e) => {
-        link.style.backgroundColor = 'rgba(10, 123, 118, 0.2)';
+      link.addEventListener("touchstart", (e) => {
+        (link as HTMLElement).style.backgroundColor = "rgba(10, 123, 118, 0.2)";
       });
 
-      link.addEventListener('touchcancel', (e) => {
-        link.style.backgroundColor = '';
+      link.addEventListener("touchcancel", (e) => {
+        (link as HTMLElement).style.backgroundColor = "";
       });
     });
 
-    document.addEventListener('click', (e) => {
-      if (mobileMenu && !mobileMenu.contains(e.target) && !mobileMenuToggle?.contains(e.target)) {
-        mobileMenu.classList.add('hidden');
+    document.addEventListener("click", (e) => {
+      if (
+        mobileMenu &&
+        !mobileMenu.contains(e.target as Node) &&
+        !mobileMenuToggle?.contains(e.target as Node)
+      ) {
+        mobileMenu.classList.add("hidden");
       }
     });
   });

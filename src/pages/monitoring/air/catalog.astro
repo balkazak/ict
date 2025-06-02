@@ -1,0 +1,507 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Каталог оборудования для мониторинга воздуха | ICT Central Asia">
+  <section class="bg-base-200 py-16">
+    <div class="container mx-auto max-w-7xl px-4 py-8">
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">Каталог оборудования для мониторинга воздуха</h1>
+        <p class="text-gray-600 mb-6">Профессиональное метеорологическое оборудование и датчики качества воздуха</p>
+        
+        <div class="flex flex-wrap gap-4 mb-6">
+          <button id="filter-all" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-blue-600 text-white">
+            Все категории
+          </button>
+          <button id="filter-weather" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Метеостанция
+          </button>
+          <button id="filter-quality" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Качество воздуха
+          </button>
+        </div>
+        
+        <div class="relative">
+          <input 
+            id="search-input"
+            type="text" 
+            placeholder="Поиск по названию или описанию..."
+            class="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+          <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <div id="equipment-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      </div>
+      
+      <div id="no-results" class="hidden text-center py-12">
+        <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47-.881-6.08-2.33"></path>
+        </svg>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">Ничего не найдено</h3>
+        <p class="text-gray-500">Попробуйте изменить критерии поиска</p>
+      </div>
+    </div>
+    
+    <div id="equipment-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black bg-opacity-50">
+      <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="sticky top-0 bg-white border-b p-6 flex justify-between items-center">
+          <h2 id="modal-title" class="text-2xl font-bold text-gray-900"></h2>
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div id="modal-content" class="p-6"></div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const allAirEquipment = [
+    {
+      id: 'cloudburst',
+      name: 'Apogee Cloudburst',
+      category: 'weather',
+      subcategory: 'Весоизмерительный осадкомер',
+      image: 'https://via.placeholder.com/400x300/3B82F6/FFFFFF?text=Cloudburst',
+      shortDescription: 'Всепогодный прибор с интерфейсом SDI-12 для измерения осадков',
+      features: [
+        'Отсутствие подвижных элементов',
+        'Коррекция по температуре, испарению и вибрациям',
+        'Измерение дождя, снега, мокрого снега и града',
+        'Совместимость со стандартами ВМО',
+        'Маломощное устройство'
+      ],
+      specifications: {
+        'Интерфейс': 'SDI-12',
+        'Тип осадков': 'Дождь, снег, мокрый снег, град',
+        'Коррекция': 'Температура, испарение, вибрации',
+        'Стандарты': 'ВМО совместимый',
+        'Энергопотребление': 'Низкое'
+      },
+      applications: [
+        'Метеорологические станции',
+        'Гидрологический мониторинг',
+        'Сельскохозяйственные исследования',
+        'Климатические наблюдения'
+      ]
+    },
+    {
+      id: 'windsonic',
+      name: 'WindSonic',
+      category: 'weather',
+      subcategory: 'Датчик скорости и направления ветра',
+      image: 'https://via.placeholder.com/400x300/10B981/FFFFFF?text=WindSonic',
+      shortDescription: 'Ультразвуковой анемометр с интерфейсом SDI-12',
+      features: [
+        'Отсутствие подвижных частей',
+        'Низкое энергопотребление',
+        'Работа при температуре от -35°C до +70°C',
+        'Влажность до 100%',
+        'Совместимость с любым SDI-12 логгером'
+      ],
+      specifications: {
+        'Скорость ветра': '0-60 м/с (116 узлов)',
+        'Точность скорости': '±2% при 12 м/с',
+        'Разрешение скорости': '0.01 м/с',
+        'Направление ветра': '0-359° (без мёртвой зоны)',
+        'Точность направления': '±2° при 12 м/с',
+        'Время отклика': '0.25 секунды',
+        'Рабочая температура': '-35°C до +70°C',
+        'Влажность': 'до 100%'
+      },
+      applications: [
+        'Метеорологические системы',
+        'Гидрологические системы мониторинга',
+        'Станции мониторинга рисков',
+        'Ветроэнергетика'
+      ]
+    },
+    {
+      id: 'hf4-hailflow',
+      name: 'HF4 HailFlow',
+      category: 'weather',
+      subcategory: 'Датчик мониторинга града',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=HF4+HailFlow',
+      shortDescription: 'Акустический датчик для обнаружения и определения размеров градин',
+      features: [
+        'Отсутствие механических частей',
+        'Различение 15 классов диаметров градин (0,5-8 см)',
+        'Фиксация до 25 твёрдых ударов в секунду',
+        'Всенаправленный - эффективен при сильном ветре',
+        'Устойчивость к экстремальным погодным условиям'
+      ],
+      specifications: {
+        'Измеряющая поверхность': 'Диск диаметром 200 мм',
+        'Тип осадков': 'Только твёрдые (град)',
+        'Классификация': '15 классов, от 0,5 см до 7,5+ см',
+        'Производительность': 'До 25 ударов в секунду',
+        'Интерфейс': 'SDI-12',
+        'Совместимость': 'IoT-узлы (MFR-Node, S-Node)'
+      },
+      applications: [
+        'Мониторинг экстремальных погодных явлений',
+        'Страхование сельскохозяйственных культур',
+        'Метеорологические исследования',
+        'Системы раннего предупреждения'
+      ]
+    },
+    {
+      id: 'ath-2',
+      name: 'ATH-2',
+      category: 'weather',
+      subcategory: 'Датчик температуры и влажности',
+      image: 'https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=ATH-2',
+      shortDescription: 'Высокоточный датчик температуры и относительной влажности',
+      features: [
+        'Высокая точность измерений',
+        'Широкий диапазон рабочих температур',
+        'Долговременная стабильность',
+        'Сменный калибровочный чип',
+        'Защищённый корпус'
+      ],
+      specifications: {
+        'Диапазон температуры': '-40°C до +60°C',
+        'Точность температуры': '±0.2°C',
+        'Диапазон влажности': '0-100% RH',
+        'Точность влажности': '±2% RH',
+        'Время отклика': '<10 секунд',
+        'Калибровка': 'Сменный чип'
+      },
+      applications: [
+        'Метеорологические станции',
+        'Теплицы и климатические камеры',
+        'Системы HVAC',
+        'Исследования окружающей среды'
+      ]
+    },
+    {
+      id: 'ee08-ss',
+      name: 'Apogee EE08-SS',
+      category: 'weather',
+      subcategory: 'Датчик температуры и влажности',
+      image: 'https://via.placeholder.com/400x300/06B6D4/FFFFFF?text=EE08-SS',
+      shortDescription: 'Датчик температуры и относительной влажности для метеорологии',
+      features: [
+        'Выход 0-2.5 В DC',
+        'Кабель длиной 5 м с разъемом',
+        'Угловой разъем M12 из нержавеющей стали IP67',
+        'Белый кабель с отражающим тепло покрытием',
+        'Прочный металлический фильтр с сетчатой структурой'
+      ],
+      specifications: {
+        'Выходной сигнал': '0-2.5 В DC',
+        'Длина кабеля': '5 м',
+        'Разъем': 'M12 нержавеющая сталь',
+        'Защита': 'IP67',
+        'Фильтр': 'Металлический сетчатый'
+      },
+      applications: [
+        'Метеорологические станции',
+        'Теплицы',
+        'Климатические камеры',
+        'IoT-решения для мониторинга окружающей среды'
+      ]
+    },
+    {
+      id: 'spectroradiometer',
+      name: 'Apogee Спектрорадиометры',
+      category: 'weather',
+      subcategory: 'Спектральные измерения',
+      image: 'https://via.placeholder.com/400x300/EF4444/FFFFFF?text=Спектрорадиометр',
+      shortDescription: 'Спектрорадиометры для абсолютных спектральных измерений',
+      features: [
+        'Диапазон измерений 300-1000 нм',
+        'Полевые и лабораторные варианты',
+        'Автономный переносной спектрорадиометр MS-100',
+        'Лабораторные модели PS-100, 200, 300',
+        'USB подключение к компьютеру'
+      ],
+      specifications: {
+        'Диапазон': '300-1000 нм',
+        'MS-100': 'Полевой, 380-780 нм',
+        'PS-100': 'Лабораторный, 350-1000 нм',
+        'PS-200': 'Лабораторный, 300-850 нм',
+        'PS-300': 'Лабораторный, 300-1000 нм',
+        'Подключение': 'USB (лабораторные модели)'
+      },
+      applications: [
+        'Анализ растительных ламп',
+        'Спектральные измерения излучения',
+        'Измерения отражения поверхностей',
+        'Лабораторные исследования'
+      ]
+    },
+    {
+      id: 'pyranometer',
+      name: 'Термопарные пиранометры Apogee',
+      category: 'weather',
+      subcategory: 'Измерение солнечной радиации',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=Пиранометр',
+      shortDescription: 'Термопарные пиранометры для измерения коротковолнового излучения',
+      features: [
+        'Соответствие классу C по ISO 9060:2018',
+        'Высокая точность в условиях облачности',
+        'Варианты с направленностью вверх или вниз',
+        'Портативные решения и датчики',
+        'Альбедометры для комплексных измерений'
+      ],
+      specifications: {
+        'Стандарт': 'ISO 9060:2018 класс C',
+        'PP-500': 'Портативный с AT-100 microCache',
+        'SP-510-SS': 'Аналоговый, кабель 5 м',
+        'SP-522-SS': 'Modbus выход',
+        'SP-610-SS': 'Направленность вниз',
+        'SP-710-SS': 'Альбедометр комплект'
+      },
+      applications: [
+        'Сельскохозяйственные метеосети',
+        'Экологический мониторинг',
+        'Гидрологические исследования',
+        'Оптимизация фотоэлектрических систем'
+      ]
+    },
+    {
+      id: 'uv-sensors',
+      name: 'Датчики УФ-излучения Apogee',
+      category: 'weather',
+      subcategory: 'Ультрафиолетовое излучение',
+      image: 'https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=УФ+датчик',
+      shortDescription: 'Датчики УФ-А и УФ-В излучения для комплексного мониторинга',
+      features: [
+        'Измерение УФ-А и УФ-В излучения',
+        'Различные типы выходных сигналов',
+        'Портативные и стационарные варианты',
+        'Интеграция в IoT-решения',
+        'USB и SDI-12 интерфейсы'
+      ],
+      specifications: {
+        'MU-250': 'Измеритель УФ-А, кабель 2 м',
+        'SU-200-SS': 'Датчик УФ-А, кабель 5 м',
+        'SU-202-SS': 'УФ-А, выход 0-2,5 В',
+        'SU-205-SS': 'УФ-А, выход 0-5 В',
+        'SU-220': 'УФ-А, USB-выход',
+        'SU-221-SS': 'УФ-А, SDI-12',
+        'SU-300-SS': 'УФ-В / УФ-индекс',
+        'SU-321-SS': 'УФ-В, SDI-12'
+      },
+      applications: [
+        'Мониторинг солнечной радиации',
+        'Медицинские исследования',
+        'Сельскохозяйственные применения',
+        'Системы мониторинга окружающей среды'
+      ]
+    }
+  ];
+
+  let currentFilter = 'all';
+  let currentSearch = '';
+
+  function createEquipmentCard(equipment) {
+    const categoryName = equipment.category === 'weather' ? 'Метеостанция' : 'Качество воздуха';
+    
+    return `
+      <div class="equipment-card bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-id="${equipment.id}">
+        <div class="relative">
+          <img src="${equipment.image}" alt="${equipment.name}" class="w-full h-48 object-cover rounded-t-lg bg-gray-200">
+          <div class="absolute top-2 right-2">
+            <span class="bg-green-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+              ${categoryName}
+            </span>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">${equipment.name}</h3>
+          <p class="text-sm text-green-600 mb-3">${equipment.subcategory}</p>
+          <p class="text-gray-700 mb-4 line-clamp-3">${equipment.shortDescription}</p>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            ${equipment.features.slice(0, 2).map(feature => 
+              `<span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                ${feature.length > 30 ? feature.substring(0, 30) + '...' : feature}
+              </span>`
+            ).join('')}
+            ${equipment.features.length > 2 ? 
+              `<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">
+                +${equipment.features.length - 2} еще
+              </span>` : ''
+            }
+          </div>
+          
+          <button class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200">
+            Подробнее
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function createModalContent(equipment) {
+    return `
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div>
+          <img src="${equipment.image}" alt="${equipment.name}" class="w-full h-64 object-cover rounded-lg mb-4">
+          <div class="bg-green-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-green-900 mb-2">Категория</h3>
+            <p class="text-green-800">${equipment.subcategory}</p>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Описание</h3>
+          <p class="text-gray-700 mb-6">${equipment.shortDescription}</p>
+          
+          <h3 class="text-xl font-semibold mb-4">Ключевые особенности</h3>
+          <ul class="space-y-2 mb-6">
+            ${equipment.features.map(feature => 
+              `<li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">${feature}</span>
+              </li>`
+            ).join('')}
+          </ul>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Технические характеристики</h3>
+          <div class="bg-gray-50 rounded-lg p-4">
+            <table class="w-full">
+              <tbody>
+                ${Object.entries(equipment.specifications).map(([key, value]) => 
+                  `<tr class="border-b border-gray-200 last:border-b-0">
+                    <td class="py-2 pr-4 font-medium text-gray-900">${key}</td>
+                    <td class="py-2 text-gray-700">${value}</td>
+                  </tr>`
+                ).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Области применения</h3>
+          <ul class="space-y-2">
+            ${equipment.applications.map(application => 
+              `<li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">${application}</span>
+              </li>`
+            ).join('')}
+          </ul>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderEquipment() {
+    const equipmentGrid = document.getElementById('equipment-grid');
+    const noResults = document.getElementById('no-results');
+    
+    let filtered = allAirEquipment;
+    
+    if (currentFilter !== 'all') {
+      filtered = filtered.filter(item => item.category === currentFilter);
+    }
+    
+    if (currentSearch.trim()) {
+      const query = currentSearch.toLowerCase().trim();
+      filtered = filtered.filter(item => 
+        item.name.toLowerCase().includes(query) ||
+        item.shortDescription.toLowerCase().includes(query) ||
+        item.subcategory.toLowerCase().includes(query) ||
+        item.features.some(feature => feature.toLowerCase().includes(query))
+      );
+    }
+    
+    if (filtered.length === 0) {
+      equipmentGrid.innerHTML = '';
+      noResults.classList.remove('hidden');
+    } else {
+      equipmentGrid.innerHTML = filtered.map(createEquipmentCard).join('');
+      noResults.classList.add('hidden');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const equipmentGrid = document.getElementById('equipment-grid');
+    const modal = document.getElementById('equipment-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const closeModal = document.getElementById('close-modal');
+    const searchInput = document.getElementById('search-input');
+
+    renderEquipment();
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('bg-blue-600', 'text-white');
+          b.classList.add('bg-gray-200', 'text-gray-700');
+        });
+        
+        e.target.classList.remove('bg-gray-200', 'text-gray-700');
+        e.target.classList.add('bg-blue-600', 'text-white');
+        
+        currentFilter = e.target.id.replace('filter-', '');
+        renderEquipment();
+      });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      renderEquipment();
+    });
+
+    equipmentGrid.addEventListener('click', (e) => {
+      const card = e.target.closest('.equipment-card');
+      if (card) {
+        const equipmentId = card.dataset.id;
+        const equipment = allAirEquipment.find(eq => eq.id === equipmentId);
+        
+        if (equipment) {
+          modalTitle.textContent = equipment.name;
+          modalContent.innerHTML = createModalContent(equipment);
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+
+    const closeModalHandler = () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    };
+
+    closeModal.addEventListener('click', closeModalHandler);
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModalHandler();
+      }
+    });
+  });
+</script>
+
+<style>
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style> 

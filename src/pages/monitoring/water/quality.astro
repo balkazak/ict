@@ -1,15 +1,265 @@
 ---
-import ProductCard from "@/components/ProductCard.astro";
 import Layout from "@/layouts/Layout.astro";
-import { WaterQualitySensors } from "@/lib/WaterQualitySensors";
 ---
 
 <Layout title="Water Quality Monitoring | ICT Central Asia">
   <section class="bg-base-200 py-16">
-    <div class="container mx-auto max-w-5xl px-4">
-      <div class="mx-auto grid grid-cols-1 gap-8">
-        {WaterQualitySensors.map((item) => <ProductCard {...item} />)}
+    <div class="container mx-auto max-w-7xl px-4 py-8">
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">Мониторинг качества воды</h1>
+        <p class="text-gray-600 mb-6">Профессиональное оборудование для контроля параметров качества воды</p>
+      </div>
+      
+      <div id="equipment-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      </div>
+    </div>
+    
+    <div id="equipment-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black bg-opacity-50">
+      <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="sticky top-0 bg-white border-b p-6 flex justify-between items-center">
+          <h2 id="modal-title" class="text-2xl font-bold text-gray-900"></h2>
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div id="modal-content" class="p-6"></div>
       </div>
     </div>
   </section>
 </Layout>
+
+<script>
+  const waterQualityEquipment = [
+    {
+      id: 'awq-ph',
+      name: 'AWQ-pH',
+      category: 'quality',
+      subcategory: 'Окислительно-восстановительный потенциал / температура',
+      image: 'https://via.placeholder.com/400x300/3B82F6/FFFFFF?text=AWQ-pH',
+      shortDescription: 'Датчик pH/ОВП/температура для работы в сложных условиях',
+      features: [
+        'Встроенное хранение данных (калибровка и история измерений)',
+        'Долговечная технология Plastogel® - увеличенный срок службы',
+        'Цифровой интерфейс (Modbus RS485 и SDI-12)',
+        'Комбинированный датчик pH + ОВП + температура',
+        'Простое обслуживание благодаря сменным картриджам'
+      ],
+      specifications: {
+        'pH': '0-14',
+        'ОВП (Redox)': '-1000...+1000 мВ',
+        'Температура': '-10...+50 °C'
+      },
+      applications: [
+        'Чистая горная вода (проводимость от 20 мкСм/см)',
+        'Озера и реки (100-2000 мкСм/см)',
+        'Морская вода (проводимость до 50 мСм/см)',
+        'Сточные воды (проводимость свыше 200 мСм/см)'
+      ]
+    },
+    {
+      id: 'awq-ntu',
+      name: 'AWQ-NTU',
+      category: 'quality',
+      subcategory: 'Нефелометрическая мутность',
+      image: 'https://via.placeholder.com/400x300/10B981/FFFFFF?text=AWQ-NTU',
+      shortDescription: 'Оптический сенсор для измерения нефелометрической мутности',
+      features: [
+        'Метод измерения: ИК-нефелометрия (850 нм)',
+        'Калибровка по стандартному раствору формазина',
+        'Низкая стоимость обслуживания',
+        'Отсутствие расходных материалов',
+        'Встроенная память для данных калибровки'
+      ],
+      specifications: {
+        'Диапазон измерений': '0-4000 NTU или 0-4500 мг/л',
+        'Защита': 'IP68 (водонепроницаемый корпус)',
+        'Энергопотребление': 'Сверхнизкое',
+        'Цифровой выход': 'Modbus RS-485 / SDI-12'
+      },
+      applications: [
+        'Мониторинг качества питьевой воды',
+        'Контроль процессов очистки воды',
+        'Экологический мониторинг водоемов',
+        'Промышленные процессы фильтрации'
+      ]
+    },
+    {
+      id: 'awq-cond',
+      name: 'AWQ-COND',
+      category: 'quality',
+      subcategory: 'Электропроводность / температура',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=AWQ-COND',
+      shortDescription: 'Датчик электропроводности с автоматической температурной компенсацией',
+      features: [
+        'Четырехэлектродная технология измерения',
+        'Автоматическая температурная компенсация',
+        'Широкий диапазон измерений',
+        'Устойчивость к загрязнениям',
+        'Цифровой интерфейс SDI-12 и Modbus'
+      ],
+      specifications: {
+        'Электропроводность': '0-200 мСм/см',
+        'Температура': '-5...+50 °C',
+        'Точность': '±1% от измеренного значения',
+        'Материал электродов': 'Графит'
+      },
+      applications: [
+        'Мониторинг солености воды',
+        'Контроль качества питьевой воды',
+        'Промышленные процессы',
+        'Экологический мониторинг'
+      ]
+    }
+  ];
+
+  function createEquipmentCard(equipment) {
+    return `
+      <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer equipment-card" data-id="${equipment.id}">
+        <div class="relative">
+          <img src="${equipment.image}" alt="${equipment.name}" class="w-full h-48 object-cover rounded-t-lg bg-gray-200">
+          <div class="absolute top-2 right-2">
+            <span class="bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+              Качество
+            </span>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">${equipment.name}</h3>
+          <p class="text-sm text-blue-600 mb-3">${equipment.subcategory}</p>
+          <p class="text-gray-700 mb-4 line-clamp-3">${equipment.shortDescription}</p>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            ${equipment.features.slice(0, 2).map(feature => 
+              `<span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                ${feature.length > 30 ? feature.substring(0, 30) + '...' : feature}
+              </span>`
+            ).join('')}
+            ${equipment.features.length > 2 ? 
+              `<span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">
+                +${equipment.features.length - 2} еще
+              </span>` : ''
+            }
+          </div>
+          
+          <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+            Подробнее
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function createModalContent(equipment) {
+    return `
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div>
+          <img src="${equipment.image}" alt="${equipment.name}" class="w-full h-64 object-cover rounded-lg mb-4">
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-blue-900 mb-2">Категория</h3>
+            <p class="text-blue-800">${equipment.subcategory}</p>
+          </div>
+        </div>
+        
+        <div>
+          <p class="text-gray-700 mb-6">${equipment.shortDescription}</p>
+          
+          <h3 class="text-xl font-semibold mb-4">Основные характеристики</h3>
+          <ul class="space-y-2 mb-6">
+            ${equipment.features.map(feature => 
+              `<li class="flex items-start">
+                <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">${feature}</span>
+              </li>`
+            ).join('')}
+          </ul>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Технические характеристики</h3>
+          <div class="bg-gray-50 rounded-lg p-4">
+            <table class="w-full">
+              <tbody>
+                ${Object.entries(equipment.specifications).map(([key, value]) => 
+                  `<tr class="border-b border-gray-200 last:border-b-0">
+                    <td class="py-2 pr-4 font-medium text-gray-900">${key}</td>
+                    <td class="py-2 text-gray-700">${value}</td>
+                  </tr>`
+                ).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Области применения</h3>
+          <ul class="space-y-2">
+            ${equipment.applications.map(application => 
+              `<li class="flex items-start">
+                <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">${application}</span>
+              </li>`
+            ).join('')}
+          </ul>
+        </div>
+      </div>
+    `;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const equipmentGrid = document.getElementById('equipment-grid');
+    const modal = document.getElementById('equipment-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const closeModal = document.getElementById('close-modal');
+
+    equipmentGrid.innerHTML = waterQualityEquipment.map(createEquipmentCard).join('');
+
+    equipmentGrid.addEventListener('click', (e) => {
+      const card = e.target.closest('.equipment-card');
+      if (card) {
+        const equipmentId = card.dataset.id;
+        const equipment = waterQualityEquipment.find(eq => eq.id === equipmentId);
+        
+        if (equipment) {
+          modalTitle.textContent = equipment.name;
+          modalContent.innerHTML = createModalContent(equipment);
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+
+    const closeModalHandler = () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    };
+
+    closeModal.addEventListener('click', closeModalHandler);
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModalHandler();
+      }
+    });
+  });
+</script>
+
+<style>
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>

@@ -1,0 +1,621 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Каталог оборудования для мониторинга растений | ICT Central Asia">
+  <section class="bg-base-200 py-16">
+    <div class="container mx-auto max-w-7xl px-4 py-8">
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">Каталог оборудования для мониторинга растений</h1>
+        <p class="text-gray-600 mb-6">Профессиональное оборудование для анализа физиологии растений, водопотребления и диагностики</p>
+        
+        <div class="flex flex-wrap gap-4 mb-6">
+          <button id="filter-all" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-blue-600 text-white">
+            Все категории
+          </button>
+          <button id="filter-water" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Потребление воды
+          </button>
+          <button id="filter-canopy" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Измерение крон
+          </button>
+          <button id="filter-diagnostics" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Диагностика деревьев
+          </button>
+          <button id="filter-analysis" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Анализ пыльцы
+          </button>
+        </div>
+        
+        <div class="relative">
+          <input 
+            id="search-input"
+            type="text" 
+            placeholder="Поиск по названию или описанию..."
+            class="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+          <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <div id="equipment-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      </div>
+      
+      <div id="no-results" class="hidden text-center py-12">
+        <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47-.881-6.08-2.33"></path>
+        </svg>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">Ничего не найдено</h3>
+        <p class="text-gray-500">Попробуйте изменить критерии поиска</p>
+      </div>
+    </div>
+    
+    <div id="equipment-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black bg-opacity-50">
+      <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="sticky top-0 bg-white border-b p-6 flex justify-between items-center">
+          <h2 id="modal-title" class="text-2xl font-bold text-gray-900"></h2>
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div id="modal-content" class="p-6"></div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const allPlantsEquipment = [
+    {
+      id: 'sdi12-sap-flow',
+      name: 'SDI-12 Sap Flow Sensor',
+      category: 'water',
+      subcategory: 'Датчики сокодвижения',
+      image: 'https://via.placeholder.com/400x300/10B981/FFFFFF?text=SDI-12+Sap+Flow',
+      shortDescription: 'Датчик сокодвижения для измерения водопотребления растений',
+      features: [
+        'Измерение водопотребления в литрах',
+        'Совместимость с SDI-12 v1.4 и RS485',
+        'Сменные иглы для различных видов растений',
+        'Метод теплового соотношения (HRM)',
+        'Минимальное энергопотребление'
+      ],
+      specifications: {
+        'Интерфейс': 'SDI-12 v1.4 / RS485',
+        'Метод измерения': 'Heat Ratio Method (HRM)',
+        'Применение': 'Сельскохозяйственные культуры и деревья',
+        'Иглы': 'Сменные для разных видов растений',
+        'Энергопотребление': 'Минимальное'
+      },
+      applications: [
+        'Планирование полива',
+        'Подбор видов растений',
+        'Экофизиологические исследования',
+        'Изучение изменения климата',
+        'Оценка запасов углерода в лесах'
+      ]
+    },
+    {
+      id: 'sfmx-iot',
+      name: 'SFMx Sap Flow Meter с IoT',
+      category: 'water',
+      subcategory: 'Измерители сокодвижения',
+      image: 'https://via.placeholder.com/400x300/10B981/FFFFFF?text=SFMx+IoT',
+      shortDescription: 'Измеритель сокодвижения с поддержкой IoT-подключения',
+      features: [
+        'IoT-подключение для удаленного мониторинга',
+        'Портативный дизайн',
+        'Расширенные возможности анализа',
+        'Автоматическая передача данных',
+        'Совместимость с облачными платформами'
+      ],
+      specifications: {
+        'Подключение': 'IoT / Wi-Fi / Cellular',
+        'Тип': 'Портативный',
+        'Метод': 'Heat Ratio Method',
+        'Передача данных': 'Автоматическая',
+        'Платформы': 'Облачные сервисы'
+      },
+      applications: [
+        'Удаленный мониторинг лесов',
+        'Автоматизированные системы полива',
+        'Исследования водного стресса',
+        'Мониторинг городских насаждений',
+        'Научные исследования'
+      ]
+    },
+    {
+      id: 'mc100-chlorophyll',
+      name: 'Apogee MC-100 Chlorophyll Meter',
+      category: 'canopy',
+      subcategory: 'Измерители хлорофилла',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=MC-100',
+      shortDescription: 'Портативный измеритель концентрации хлорофилла в листьях',
+      features: [
+        'Неразрушающие измерения',
+        'Переменная площадь выборки',
+        'База данных с 30+ видами растений',
+        'Встроенный GPS',
+        'Емкость для хранения данных'
+      ],
+      specifications: {
+        'Выходные единицы': 'µmol m⁻² листа, CCI, SPAD',
+        'Виды растений': '30+ предустановленных настроек',
+        'GPS': 'Встроенный',
+        'Тип измерений': 'Неразрушающие',
+        'Площадь выборки': 'Переменная'
+      },
+      applications: [
+        'Оценка состояния растений',
+        'Мониторинг питания растений',
+        'Сельскохозяйственные исследования',
+        'Контроль качества урожая',
+        'Экологические исследования'
+      ]
+    },
+    {
+      id: 'gas-exchange-3010',
+      name: '3010-GWK1 Gas-Exchange Chamber',
+      category: 'canopy',
+      subcategory: 'Камеры газообмена',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=Gas+Exchange',
+      shortDescription: 'Камера газообмена для измерений фотосинтеза и дыхания растений',
+      features: [
+        'Контроль температуры элементами Пельтье',
+        'Рабочая зона 14 см x 10 см',
+        'Датчики температуры листа и кюветы',
+        'Измерение PAR внутри и снаружи',
+        'Поперечная вентиляция кюветы'
+      ],
+      specifications: {
+        'Рабочая зона': '14 см x 10 см',
+        'Контроль температуры': '10°C ниже окружающей до +50°C',
+        'Внутренний объем': '840 мл + 250 мл',
+        'Материал': 'Никелированный алюминий, латунь',
+        'Охлаждение': 'Воздушно-охлаждаемые элементы Пельтье'
+      },
+      applications: [
+        'Измерение фотосинтеза',
+        'Исследование дыхания растений',
+        'Лабораторные эксперименты',
+        'Физиологические исследования',
+        'Изучение газообмена'
+      ]
+    },
+    {
+      id: 'gfs3000-system',
+      name: 'GFS-3000 Gas Exchange System',
+      category: 'canopy',
+      subcategory: 'Системы газообмена',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=GFS-3000',
+      shortDescription: 'Система газообмена и флуоресценции для комплексного анализа',
+      features: [
+        'Измерение CO2 и H2O',
+        'Хлорофилловая флуоресценция',
+        'Контролируемые климатические условия',
+        'Цветной сенсорный дисплей',
+        'Li-ion батареи на 6-9 часов работы'
+      ],
+      specifications: {
+        'Анализатор газа': '4-канальный CO2/H2O',
+        'CO2 диапазон': '0-3000 ppm',
+        'H2O диапазон': '0-75000 ppm',
+        'Поток': '300-1400 μmol s⁻¹',
+        'Площадь листа': 'до 8 см²'
+      },
+      applications: [
+        'Исследования фотосинтеза',
+        'Анализ флуоресценции хлорофилла',
+        'Полевые измерения',
+        'Лабораторные исследования',
+        'Физиология растений'
+      ]
+    },
+    {
+      id: 'ci110-canopy',
+      name: 'CI-110 Plant Canopy Imager',
+      category: 'canopy',
+      subcategory: 'Измерители полога',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=CI-110',
+      shortDescription: 'Измеритель полога растений с 24 PAR-щупами',
+      features: [
+        '24 PAR-щупа для точных измерений',
+        'Измерение индекса площади листьев (LAI)',
+        'Фотосинтетически активное излучение (PAR)',
+        'Зонд для съемки изображений',
+        'Сенсорный экран с ПО'
+      ],
+      specifications: {
+        'PAR-щупы': '24 штуки',
+        'Измерения': 'LAI и PAR',
+        'Интерфейс': 'Сенсорный экран',
+        'ПО': 'Встроенное для захвата изображений',
+        'Комплектация': 'Зонд, экран, руководство, чехол'
+      },
+      applications: [
+        'Оценка темпов роста растений',
+        'Измерение LAI',
+        'Анализ структуры полога',
+        'Сельскохозяйственные исследования',
+        'Лесные исследования'
+      ]
+    },
+    {
+      id: 'sf110-frost',
+      name: 'SF-110/SF-421 Frost Sensor',
+      category: 'canopy',
+      subcategory: 'Датчики температуры листа',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=Frost+Sensor',
+      shortDescription: 'Датчик мороза, имитирующий структуру листа',
+      features: [
+        'Имитация структуры листа',
+        'Точный термистр',
+        'Диапазон -50 до +70°C',
+        'Кабель 5 метров',
+        'Выбор аналогового или SDI-12 выхода'
+      ],
+      specifications: {
+        'Диапазон температур': '-50 до +70°C',
+        'Кабель': '5 метров',
+        'SF-110-SS': 'Аналоговый выход',
+        'SF-421-SS': 'SDI-12 выход',
+        'Сенсор': 'Точный термистр'
+      },
+      applications: [
+        'Мониторинг заморозков',
+        'Сельскохозяйственные поля',
+        'Сады и виноградники',
+        'Защита от заморозков',
+        'Метеорологические станции'
+      ]
+    },
+    {
+      id: 'arbotom-tomography',
+      name: 'ARBOTOM Tomography System',
+      category: 'diagnostics',
+      subcategory: 'Томография деревьев',
+      image: 'https://via.placeholder.com/400x300/EF4444/FFFFFF?text=ARBOTOM',
+      shortDescription: 'Система сонографической томографии для диагностики деревьев',
+      features: [
+        'Сонографическая томография',
+        'Неразрушающая диагностика',
+        'Визуализация внутренней структуры',
+        'Обнаружение гнили и полостей',
+        'Профессиональное программное обеспечение'
+      ],
+      specifications: {
+        'Метод': 'Сонографическая томография',
+        'Тип диагностики': 'Неразрушающая',
+        'Применение': 'Стволы и корни деревьев',
+        'ПО': 'Специализированное для анализа',
+        'Точность': 'Высокая детализация'
+      },
+      applications: [
+        'Арбористика',
+        'Научные исследования',
+        'Оценка состояния деревьев',
+        'Городское лесоводство',
+        'Диагностика повреждений'
+      ]
+    },
+    {
+      id: 'resistograph',
+      name: 'RESISTOGRAPH Tree Analyzer',
+      category: 'diagnostics',
+      subcategory: 'Анализаторы сопротивления',
+      image: 'https://via.placeholder.com/400x300/EF4444/FFFFFF?text=RESISTOGRAPH',
+      shortDescription: 'Прецизионный анализатор сопротивления древесины при сверлении',
+      features: [
+        'Глубина сверления до 50 см',
+        'Вес всего 4 кг',
+        'Работа одной рукой',
+        'Встроенный принтер',
+        'Память на 10,000 измерений'
+      ],
+      specifications: {
+        'Глубина сверления': 'до 50 см',
+        'Общая длина': '70 см',
+        'Вес': '4 кг',
+        'Память': '10,000 измерений',
+        'Принтер': 'Встроенный, масштаб 1:1'
+      },
+      applications: [
+        'Оценка прочности древесины',
+        'Обнаружение гнили',
+        'Инспекция деревьев',
+        'Строительная экспертиза',
+        'Научные исследования'
+      ]
+    },
+    {
+      id: 'ampha-p20',
+      name: 'Ampha P20 Pollen Analyzer',
+      category: 'analysis',
+      subcategory: 'Анализаторы пыльцы',
+      image: 'https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=Ampha+P20',
+      shortDescription: 'Портативный анализатор пыльцы с микрочипами',
+      features: [
+        'Портативный и автономный',
+        'Специализированные микрочипы',
+        'Сенсорный экран',
+        'Пошаговый помощник',
+        'Сохранение и анализ данных'
+      ],
+      specifications: {
+        'Тип': 'Портативный анализатор',
+        'Микрочипы': 'Томат, перец, кукуруза, пшеница',
+        'Интерфейс': 'Сенсорный экран',
+        'ПО': 'AmphaSoft для детального анализа',
+        'Применение': 'Фенотипирование и контроль качества'
+      },
+      applications: [
+        'Селекция растений',
+        'Научные исследования',
+        'Производство пыльцы',
+        'Контроль качества',
+        'Фенотипирование'
+      ]
+    },
+    {
+      id: 'ampha-z40',
+      name: 'Ampha Z40 Flow Cytometer',
+      category: 'analysis',
+      subcategory: 'Проточные цитометры',
+      image: 'https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=Ampha+Z40',
+      shortDescription: 'Импедансный проточный цитометр для анализа пыльцы',
+      features: [
+        'Анализ жизнеспособности пыльцы',
+        'Определение концентрации',
+        'Стадии развития микроспор',
+        'Анализ плоидности',
+        'Поддержка 250+ видов растений'
+      ],
+      specifications: {
+        'Виды растений': '250+ поддерживаемых',
+        'Чипы': 'AmphaChip 12-400 μm',
+        'Анализ': 'Жизнеспособность, концентрация, плоидность',
+        'ПО': 'AmphaSoft для анализа данных',
+        'Применение': 'Селекция и производство семян'
+      },
+      applications: [
+        'Селекция растений',
+        'Производство семян',
+        'Генетический отбор',
+        'Контроль качества пыльцы',
+        'Научные исследования'
+      ]
+    },
+    {
+      id: 'ci600-root',
+      name: 'CI-600/CI-602 Root Imager',
+      category: 'diagnostics',
+      subcategory: 'Визуализация корней',
+      image: 'https://via.placeholder.com/400x300/EF4444/FFFFFF?text=Root+Imager',
+      shortDescription: 'Импедансные корневые имиджеры для визуализации корневой системы',
+      features: [
+        'Неразрушающая визуализация корней',
+        'Высокое разрешение изображений',
+        'Анализ архитектуры корней',
+        'Мониторинг роста корней',
+        'Портативный дизайн'
+      ],
+      specifications: {
+        'Метод': 'Импедансная визуализация',
+        'Разрешение': 'Высокое',
+        'Применение': 'In-situ измерения',
+        'Анализ': 'Архитектура и рост корней',
+        'Тип': 'Неразрушающий'
+      },
+      applications: [
+        'Исследования корневых систем',
+        'Мониторинг роста корней',
+        'Сельскохозяйственные исследования',
+        'Экологические исследования',
+        'Селекция растений'
+      ]
+    }
+  ];
+
+  let currentFilter = 'all';
+  let currentSearch = '';
+
+  const getCategoryName = (category) => {
+    const names = {
+      water: 'Потребление воды',
+      canopy: 'Измерение крон',
+      diagnostics: 'Диагностика',
+      analysis: 'Анализ'
+    };
+    return names[category] || category;
+  };
+
+  const createEquipmentCard = (equipment) => {
+    return `
+      <div class="equipment-card bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-id="${equipment.id}">
+        <div class="relative">
+          <img src="${equipment.image}" alt="${equipment.name}" class="w-full h-48 object-cover rounded-t-lg bg-gray-200">
+          <div class="absolute top-2 right-2">
+            <span class="bg-green-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+              ${getCategoryName(equipment.category)}
+            </span>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">${equipment.name}</h3>
+          <p class="text-sm text-green-600 mb-3">${equipment.subcategory}</p>
+          <p class="text-gray-700 mb-4 line-clamp-3">${equipment.shortDescription}</p>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            ${equipment.features.slice(0, 2).map(feature => 
+              `<span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                ${feature.length > 30 ? feature.substring(0, 30) + '...' : feature}
+              </span>`
+            ).join('')}
+            ${equipment.features.length > 2 ? 
+              `<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">
+                +${equipment.features.length - 2} еще
+              </span>` : ''
+            }
+          </div>
+          
+          <button class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200">
+            Подробнее
+          </button>
+        </div>
+      </div>
+    `;
+  };
+
+  const createModalContent = (equipment) => {
+    return `
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div>
+          <img src="${equipment.image}" alt="${equipment.name}" class="w-full h-64 object-cover rounded-lg mb-4">
+          <div class="bg-green-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-green-900 mb-2">Категория</h3>
+            <p class="text-green-800">${equipment.subcategory}</p>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Описание</h3>
+          <p class="text-gray-700 mb-6">${equipment.shortDescription}</p>
+          
+          <h3 class="text-xl font-semibold mb-4">Ключевые особенности</h3>
+          <ul class="space-y-2 mb-6">
+            ${equipment.features.map(feature => 
+              `<li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">${feature}</span>
+              </li>`
+            ).join('')}
+          </ul>
+          
+          <h3 class="text-xl font-semibold mb-4">Технические характеристики</h3>
+          <div class="bg-gray-50 p-4 rounded-lg mb-6">
+            ${Object.entries(equipment.specifications).map(([key, value]) => 
+              `<div class="flex justify-between py-2 border-b border-gray-200 last:border-b-0">
+                <span class="font-medium text-gray-600">${key}:</span>
+                <span class="text-gray-900">${value}</span>
+              </div>`
+            ).join('')}
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4">Области применения</h3>
+          <div class="flex flex-wrap gap-2">
+            ${equipment.applications.map(app => 
+              `<span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">${app}</span>`
+            ).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  };
+
+  const renderEquipment = () => {
+    const equipmentGrid = document.getElementById('equipment-grid');
+    const noResults = document.getElementById('no-results');
+    
+    let filtered = allPlantsEquipment;
+    
+    if (currentFilter !== 'all') {
+      filtered = filtered.filter(item => item.category === currentFilter);
+    }
+    
+    if (currentSearch.trim()) {
+      const query = currentSearch.toLowerCase().trim();
+      filtered = filtered.filter(item => 
+        item.name.toLowerCase().includes(query) ||
+        item.shortDescription.toLowerCase().includes(query) ||
+        item.subcategory.toLowerCase().includes(query) ||
+        item.features.some(feature => feature.toLowerCase().includes(query))
+      );
+    }
+    
+    if (filtered.length === 0) {
+      equipmentGrid.innerHTML = '';
+      noResults.classList.remove('hidden');
+    } else {
+      equipmentGrid.innerHTML = filtered.map(createEquipmentCard).join('');
+      noResults.classList.add('hidden');
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const equipmentGrid = document.getElementById('equipment-grid');
+    const modal = document.getElementById('equipment-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const closeModal = document.getElementById('close-modal');
+    const searchInput = document.getElementById('search-input');
+    const noResults = document.getElementById('no-results');
+
+    renderEquipment();
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('bg-blue-600', 'text-white');
+          b.classList.add('bg-gray-200', 'text-gray-700');
+        });
+        
+        e.target.classList.remove('bg-gray-200', 'text-gray-700');
+        e.target.classList.add('bg-blue-600', 'text-white');
+        
+        currentFilter = e.target.id.replace('filter-', '');
+        renderEquipment();
+      });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      renderEquipment();
+    });
+
+    equipmentGrid.addEventListener('click', (e) => {
+      const card = e.target.closest('.equipment-card');
+      if (card) {
+        const equipmentId = card.dataset.id;
+        const equipment = allPlantsEquipment.find(eq => eq.id === equipmentId);
+        
+        if (equipment) {
+          modalTitle.textContent = equipment.name;
+          modalContent.innerHTML = createModalContent(equipment);
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+
+    const closeModalHandler = () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    };
+
+    closeModal.addEventListener('click', closeModalHandler);
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModalHandler();
+      }
+    });
+  });
+</script>
+
+<style>
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style> 

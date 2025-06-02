@@ -1,0 +1,551 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Каталог оборудования для мониторинга почвы | ICT Central Asia">
+  <section class="bg-base-200 py-16">
+    <div class="container mx-auto max-w-7xl px-4 py-8">
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">Каталог оборудования для мониторинга почвы</h1>
+        <p class="text-gray-600 mb-6">Профессиональное оборудование для анализа влажности, структуры и свойств почвы</p>
+        
+        <div class="flex flex-wrap gap-4 mb-6">
+          <button id="filter-all" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-blue-600 text-white">
+            Все категории
+          </button>
+          <button id="filter-neutron" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Нейтронная детекция
+          </button>
+          <button id="filter-moisture" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Влажность почвы
+          </button>
+          <button id="filter-tension" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Тензиометры
+          </button>
+        </div>
+        
+        <div class="relative">
+          <input 
+            id="search-input"
+            type="text" 
+            placeholder="Поиск по названию или описанию..."
+            class="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+          <svg class="absolute left-3 top-2.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <div id="equipment-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      </div>
+      
+      <div id="no-results" class="hidden text-center py-12">
+        <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47-.881-6.08-2.33"></path>
+        </svg>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">Ничего не найдено</h3>
+        <p class="text-gray-500">Попробуйте изменить критерии поиска</p>
+      </div>
+    </div>
+    
+    <div id="equipment-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black bg-opacity-50">
+      <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="sticky top-0 bg-white border-b p-6 flex justify-between items-center">
+          <h2 id="modal-title" class="text-2xl font-bold text-gray-900"></h2>
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div id="modal-content" class="p-6"></div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const allSoilEquipment = [
+    {
+      id: 'soil-auger',
+      name: 'Почвенный бур ICT Central Asia',
+      category: 'neutron',
+      subcategory: 'Буровое оборудование',
+      image: 'https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=Soil+Auger',
+      shortDescription: 'Специализированный бур для установки датчиков влажности почвы',
+      features: [
+        'Спиральный бур для глинистых почв',
+        'Чашечный бур для песчаных или сухих глинистых почв',
+        'Удлинитель и Т-образная ручка в комплекте',
+        'Совместимость с алюминиевыми трубками 50 мм',
+        'Работа с легким мотором TIA350S'
+      ],
+      specifications: {
+        'Диаметр трубок': '50 мм',
+        'Двигатель': 'TIA350S, 1.5 л.с., двухтактный',
+        'Управление': 'Двумя ручками',
+        'Крутящий момент': 'Высокий для большинства типов грунта',
+        'Гарантия': 'Один год обслуживания Tanaka'
+      },
+      applications: [
+        'Установка нейтронных зондов',
+        'Установка влагомеров MP306/MP406',
+        'Бурение в глинистых почвах',
+        'Бурение в песчаных почвах',
+        'Полевые исследования почвы'
+      ]
+    },
+    {
+      id: 'finapp-crns',
+      name: 'Finapp CRNS',
+      category: 'neutron',
+      subcategory: 'Датчик нейтронов космических лучей',
+      image: 'https://via.placeholder.com/400x300/10B981/FFFFFF?text=Finapp+CRNS',
+      shortDescription: 'Датчик нейтронов космических лучей для измерения влаги в почве',
+      features: [
+        'Технология нейтронной детекции космических лучей (CRNS)',
+        'Измерение на больших площадях',
+        'Подключение к Интернету вещей (IoT)',
+        'Встроенный логгер данных',
+        'Система самодиагностики'
+      ],
+      specifications: {
+        'Подсчёт нейтронов (SM)': '900/ч',
+        'Подсчёт нейтронов (SMPlus)': '1600/ч',
+        'Подсчёт мюонов (SM)': '4000/ч',
+        'Подсчёт мюонов (SMPlus)': '5000/ч',
+        'Температурный диапазон': '-45°C до +55°C',
+        'Корпус': 'Анти-УФ поликарбонат, IP67'
+      },
+      applications: [
+        'Сельское хозяйство',
+        'Лесное хозяйство',
+        'Мониторинг оползней',
+        'Предупреждение наводнений',
+        'Контроль лесных пожаров'
+      ],
+      versions: [
+        {
+          name: 'Finapp-SM',
+          specs: '40x30x17 см, 900/ч нейтронов',
+          application: 'Сельское хозяйство, леса'
+        },
+        {
+          name: 'Finapp-SMPlus',
+          specs: '50x40x21 см, 1600/ч нейтронов',
+          application: 'Оползни, наводнения, пожары'
+        }
+      ]
+    },
+    {
+      id: 'gypsum-blocks',
+      name: 'Гипсовые блоки GB59',
+      category: 'moisture',
+      subcategory: 'Измерители влажности почвы',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=Gypsum+Blocks',
+      shortDescription: 'Гипсовые блоки для измерения влажности почвы',
+      features: [
+        'Портативный и легкий',
+        'Простота использования',
+        'Прямое считывание показаний',
+        'Мгновенные результаты измерений',
+        'Сменный аккумулятор'
+      ],
+      specifications: {
+        'Комплектация': 'GB59K - стартовый набор',
+        'Измеритель': 'GB59M (соответствует CE)',
+        'Батарея': 'Тип #216, 9V, транзисторная',
+        'Дополнительные блоки': 'Доступны отдельно',
+        'Стандарты': 'CE совместимый'
+      },
+      applications: [
+        'Полевые измерения влажности',
+        'Сельскохозяйственный мониторинг',
+        'Исследования почвы',
+        'Контроль орошения',
+        'Экологические исследования'
+      ]
+    },
+    {
+      id: 'tensiometer-ts25-l6',
+      name: 'Тензиометр TS25-L6',
+      category: 'tension',
+      subcategory: 'Jetfill Tensiometer 15 см',
+      image: 'https://via.placeholder.com/400x300/EF4444/FFFFFF?text=TS25-L6',
+      shortDescription: 'Тензиометр для измерения матричного потенциала почвенной влаги на глубине 15 см',
+      features: [
+        'Резервуар Jetfill для удобного пополнения',
+        'Модульная конструкция',
+        'Пористый керамический наконечник',
+        'Аналоговый манометр 1 бар',
+        'Минимизация вмешательства в почву'
+      ],
+      specifications: {
+        'Глубина установки': '150 мм (6")',
+        'Диаметр': '22 мм (0.875")',
+        'Манометр': '1 бар (опционально 0.5 бар)',
+        'Материал трубки': 'Пластик',
+        'Наконечник': 'Пористая керамика'
+      },
+      applications: [
+        'Измерение водного потенциала почвы',
+        'Контроль орошения',
+        'Исследования корневой зоны',
+        'Сельскохозяйственный мониторинг',
+        'Экологические исследования'
+      ]
+    },
+    {
+      id: 'tensiometer-ts25-l12',
+      name: 'Тензиометр TS25-L12',
+      category: 'tension',
+      subcategory: 'Jetfill Tensiometer 30 см',
+      image: 'https://via.placeholder.com/400x300/EF4444/FFFFFF?text=TS25-L12',
+      shortDescription: 'Тензиометр для измерения матричного потенциала почвенной влаги на глубине 30 см',
+      features: [
+        'Резервуар Jetfill для удобного пополнения',
+        'Модульная конструкция',
+        'Пористый керамический наконечник',
+        'Аналоговый манометр 1 бар',
+        'Совместимость с IoT системами'
+      ],
+      specifications: {
+        'Глубина установки': '300 мм (12")',
+        'Диаметр': '22 мм (0.875")',
+        'Манометр': '1 бар (опционально 0.5 бар)',
+        'IoT совместимость': 'GT3-15, Trafag датчики',
+        'Система': 'SNiP-MPS с MFR-NODE'
+      },
+      applications: [
+        'Глубокий мониторинг корневой зоны',
+        'Контроль орошения деревьев',
+        'Исследования миграции влаги',
+        'Долгосрочный мониторинг',
+        'IoT интеграция'
+      ]
+    },
+    {
+      id: 'tensiometer-ts25-l24',
+      name: 'Тензиометр TS25-L24',
+      category: 'tension',
+      subcategory: 'Jetfill Tensiometer 60 см',
+      image: 'https://via.placeholder.com/400x300/EF4444/FFFFFF?text=TS25-L24',
+      shortDescription: 'Тензиометр для измерения матричного потенциала почвенной влаги на глубине 60 см',
+      features: [
+        'Глубокое проникновение в почву',
+        'Резервуар Jetfill',
+        'Модульная конструкция',
+        'Возможность установки удлинителей',
+        'Совместимость с регистраторами данных'
+      ],
+      specifications: {
+        'Глубина установки': '600 мм (24")',
+        'Диаметр': '22 мм (0.875")',
+        'Манометр': '1 бар (опционально 0.5 бар)',
+        'Регистрация данных': 'Совместим с датчиками давления',
+        'Мониторинг': 'Долгосрочный (long-term)'
+      },
+      applications: [
+        'Глубокий анализ почвенной влаги',
+        'Мониторинг грунтовых вод',
+        'Исследования засухи',
+        'Контроль глубокого орошения',
+        'Научные исследования'
+      ]
+    },
+    {
+      id: 'tensiometer-ts25-l36',
+      name: 'Тензиометр TS25-L36',
+      category: 'tension',
+      subcategory: 'Jetfill Tensiometer 90 см',
+      image: 'https://via.placeholder.com/400x300/EF4444/FFFFFF?text=TS25-L36',
+      shortDescription: 'Тензиометр для измерения матричного потенциала почвенной влаги на глубине 90 см',
+      features: [
+        'Максимальная глубина проникновения',
+        'Резервуар Jetfill',
+        'Модульная конструкция',
+        'Профессиональное применение',
+        'Высокая точность измерений'
+      ],
+      specifications: {
+        'Глубина установки': '900 мм (36")',
+        'Диаметр': '22 мм (0.875")',
+        'Манометр': '1 бар (опционально 0.5 бар)',
+        'Применение': 'Профессиональные исследования',
+        'Точность': 'Высокая для глубоких слоев'
+      },
+      applications: [
+        'Исследования глубоких почвенных слоев',
+        'Мониторинг грунтовых вод',
+        'Гидрологические исследования',
+        'Контроль глубокого дренажа',
+        'Научные эксперименты'
+      ]
+    },
+    {
+      id: 'snip-mps',
+      name: 'Система SNiP-MPS',
+      category: 'tension',
+      subcategory: 'IoT система мониторинга',
+      image: 'https://via.placeholder.com/400x300/06B6D4/FFFFFF?text=SNiP-MPS',
+      shortDescription: 'IoT система для мониторинга тензиометров на разных глубинах',
+      features: [
+        'IoT-узел MFR-NODE',
+        'Поддержка до 3 датчиков GT3-15',
+        'Совместимость с тензиометрами Jetfill',
+        'Беспроводная передача данных',
+        'Многоуровневый мониторинг'
+      ],
+      specifications: {
+        'Узел': 'MFR-NODE',
+        'Датчики': 'До 3x GT3-15',
+        'Совместимость': 'Jetfill тензиометры',
+        'Глубины': 'Множественные уровни',
+        'Передача данных': 'IoT протоколы'
+      },
+      applications: [
+        'Многоуровневый мониторинг влаги',
+        'Автоматизированное орошение',
+        'Удаленный контроль',
+        'Исследовательские проекты',
+        'Точное земледелие'
+      ]
+    }
+  ];
+
+  let currentFilter = 'all';
+  let currentSearch = '';
+
+  function getCategoryName(category) {
+    const names = {
+      neutron: 'Нейтронная детекция',
+      moisture: 'Влажность',
+      tension: 'Тензиометры'
+    };
+    return names[category] || category;
+  }
+
+  function createEquipmentCard(equipment) {
+    const featuresHtml = equipment.features.slice(0, 2).map(feature => 
+      `<span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+        ${feature.length > 30 ? feature.substring(0, 30) + '...' : feature}
+      </span>`
+    ).join('');
+    
+    const moreFeatures = equipment.features.length > 2 ? 
+      `<span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">+${equipment.features.length - 2} еще</span>` : '';
+
+    return `
+      <div class="equipment-card bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-id="${equipment.id}">
+        <div class="relative">
+          <img src="${equipment.image}" alt="${equipment.name}" class="w-full h-48 object-cover rounded-t-lg bg-gray-200">
+          <div class="absolute top-2 right-2">
+            <span class="bg-amber-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+              ${getCategoryName(equipment.category)}
+            </span>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">${equipment.name}</h3>
+          <p class="text-sm text-amber-600 mb-3">${equipment.subcategory}</p>
+          <p class="text-gray-700 mb-4 line-clamp-3">${equipment.shortDescription}</p>
+          
+          <div class="flex flex-wrap gap-2 mb-4">
+            ${featuresHtml}
+            ${moreFeatures}
+          </div>
+          
+          <button class="w-full bg-amber-600 text-white py-2 px-4 rounded-lg hover:bg-amber-700 transition-colors duration-200">
+            Подробнее
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function createModalContent(equipment) {
+    const specificationsHtml = Object.entries(equipment.specifications).map(([key, value]) => 
+      `<tr class="border-b border-gray-200 last:border-b-0">
+        <td class="py-2 pr-4 font-medium text-gray-900">${key}</td>
+        <td class="py-2 text-gray-700">${value}</td>
+      </tr>`
+    ).join('');
+
+    const featuresHtml = equipment.features.map(feature => 
+      `<li class="flex items-start">
+        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+        </svg>
+        <span class="text-gray-700">${feature}</span>
+      </li>`
+    ).join('');
+
+    const applicationsHtml = equipment.applications.map(app => 
+      `<li class="flex items-start">
+        <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+        </svg>
+        <span class="text-gray-700">${app}</span>
+      </li>`
+    ).join('');
+
+    const versionsHtml = equipment.versions ? 
+      `<div class="mt-8">
+        <h3 class="text-xl font-semibold mb-4">Доступные версии</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          ${equipment.versions.map(version => 
+            `<div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-gray-900 mb-2">${version.name}</h4>
+              <p class="text-sm text-gray-600 mb-1"><strong>Характеристики:</strong> ${version.specs || version.material}</p>
+              <p class="text-sm text-gray-600"><strong>Применение:</strong> ${version.application}</p>
+            </div>`
+          ).join('')}
+        </div>
+      </div>` : '';
+
+    return `
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div>
+          <img src="${equipment.image}" alt="${equipment.name}" class="w-full h-64 object-cover rounded-lg mb-4">
+          <div class="bg-amber-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-amber-900 mb-2">Категория</h3>
+            <p class="text-amber-800">${equipment.subcategory}</p>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Описание</h3>
+          <p class="text-gray-700 mb-6">${equipment.shortDescription}</p>
+          
+          <h3 class="text-xl font-semibold mb-4">Ключевые особенности</h3>
+          <ul class="space-y-2 mb-6">
+            ${featuresHtml}
+          </ul>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Технические характеристики</h3>
+          <div class="bg-gray-50 rounded-lg p-4">
+            <table class="w-full">
+              <tbody>
+                ${specificationsHtml}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Области применения</h3>
+          <ul class="space-y-2">
+            ${applicationsHtml}
+          </ul>
+        </div>
+      </div>
+      
+      ${versionsHtml}
+    `;
+  }
+
+  function renderEquipment() {
+    const equipmentGrid = document.getElementById('equipment-grid');
+    const noResults = document.getElementById('no-results');
+    
+    let filtered = allSoilEquipment;
+    
+    if (currentFilter !== 'all') {
+      filtered = filtered.filter(item => item.category === currentFilter);
+    }
+    
+    if (currentSearch.trim()) {
+      const query = currentSearch.toLowerCase().trim();
+      filtered = filtered.filter(item => 
+        item.name.toLowerCase().includes(query) ||
+        item.shortDescription.toLowerCase().includes(query) ||
+        item.subcategory.toLowerCase().includes(query) ||
+        item.features.some(feature => feature.toLowerCase().includes(query))
+      );
+    }
+    
+    if (filtered.length === 0) {
+      equipmentGrid.innerHTML = '';
+      noResults.classList.remove('hidden');
+    } else {
+      equipmentGrid.innerHTML = filtered.map(createEquipmentCard).join('');
+      noResults.classList.add('hidden');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const equipmentGrid = document.getElementById('equipment-grid');
+    const modal = document.getElementById('equipment-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const closeModal = document.getElementById('close-modal');
+    const searchInput = document.getElementById('search-input');
+
+    renderEquipment();
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('bg-blue-600', 'text-white');
+          b.classList.add('bg-gray-200', 'text-gray-700');
+        });
+        
+        e.target.classList.remove('bg-gray-200', 'text-gray-700');
+        e.target.classList.add('bg-blue-600', 'text-white');
+        
+        currentFilter = e.target.id.replace('filter-', '');
+        renderEquipment();
+      });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      renderEquipment();
+    });
+
+    equipmentGrid.addEventListener('click', (e) => {
+      const card = e.target.closest('.equipment-card');
+      if (card) {
+        const equipmentId = card.dataset.id;
+        const equipment = allSoilEquipment.find(eq => eq.id === equipmentId);
+        
+        if (equipment) {
+          modalTitle.textContent = equipment.name;
+          modalContent.innerHTML = createModalContent(equipment);
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    });
+
+    const closeModalHandler = () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    };
+
+    closeModal.addEventListener('click', closeModalHandler);
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModalHandler();
+      }
+    });
+  });
+</script>
+
+<style>
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style> 
