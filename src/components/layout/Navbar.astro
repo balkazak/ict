@@ -11,12 +11,20 @@ const isActive = (itemPath: string) => {
 
 const navItems = [
   {
-    title: "Главная",
-    href: "/",
-  },
-  {
     title: "О нас",
     href: "/about",
+  },
+  {
+    title: "Решения",
+    href: "/solutions",
+  },
+  {
+    title: "Устойчивое развитие",
+    href: "/esg",
+  },
+  {
+    title: "Углеродные проекты",
+    href: "/carbon-projects",
   },
   {
     title: "Мониторинг окружающей среды",
@@ -36,38 +44,106 @@ const navItems = [
 ---
 
 <nav class="sticky top-0 z-50 bg-white shadow-sm">
-  <div class="container mx-auto max-w-6xl px-4">
-    <div class="flex items-center justify-between py-3">
+  <div class="container mx-auto max-w-8xl px-6">
+    <div class="flex items-center justify-between py-4">
       <a
         href="/"
         class="flex items-center gap-3 transition-opacity hover:opacity-80"
       >
-        <div class="relative rounded border border-[#0A7B76]/20 bg-[#0A7B76]/5 p-1">
-          <Image src={logo} alt="Logo" class="h-8 w-8" />
+        <div class="relative rounded border border-[#0A7B76]/20 bg-[#0A7B76]/5 p-2">
+          <Image src={logo} alt="ICT Central Asia Logo" class="h-10 w-10" />
         </div>
-        <span class="whitespace-nowrap text-xl font-bold text-[#0A7B76]">
+        <span class="text-2xl font-bold whitespace-nowrap text-[#0A7B76]">
           ICT Central Asia
         </span>
       </a>
 
-      <div class="hidden items-center space-x-6 lg:flex">
-        {navItems.map((item) => (
-          <div class="relative group">
-            {item.subItems ? (
-              <div>
-                <button class="flex items-center gap-1 px-3 py-2 text-[#0A7B76] hover:text-[#0A5B56] transition-colors whitespace-nowrap">
+      <div class="hidden items-center space-x-8 lg:flex">
+        {
+          navItems.map((item) => (
+            <div class="group relative">
+              {item.subItems ? (
+                <div>
+                  <button class="flex items-center gap-1 px-4 py-3 text-[#0A7B76] whitespace-nowrap transition-colors hover:text-[#0A5B56] font-medium">
+                    {item.title}
+                    <Icon name="mdi:chevron-down" class="h-4 w-4" />
+                  </button>
+                  <div class="invisible absolute left-0 top-full z-50 mt-1 w-64 rounded-lg border border-gray-200 bg-white opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                    <div class="p-2">
+                      {item.subItems.map((subItem) => (
+                        <a
+                          href={subItem.href}
+                          class={`block rounded px-3 py-2 text-sm whitespace-nowrap transition-colors hover:bg-[#0A7B76]/10 ${
+                            isActive(subItem.href)
+                              ? "bg-[#0A7B76]/10 font-medium text-[#0A7B76]"
+                              : "text-gray-700"
+                          }`}
+                        >
+                          {subItem.title}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <a
+                  href={item.href}
+                  class={`rounded px-4 py-3 whitespace-nowrap transition-colors font-medium ${
+                    isActive(item.href)
+                      ? "bg-[#0A7B76]/10 font-semibold text-[#0A7B76]"
+                      : "text-gray-700 hover:text-[#0A7B76]"
+                  }`}
+                >
                   {item.title}
-                  <Icon name="mdi:chevron-down" class="w-4 h-4" />
-                </button>
-                <div class="invisible absolute top-full left-0 z-50 mt-1 w-64 rounded-lg border border-gray-200 bg-white opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                  <div class="p-2">
+                </a>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <button
+        id="mobile-menu-toggle"
+        class="flex items-center justify-center rounded-md p-2 text-[#0A7B76] hover:bg-gray-100 lg:hidden"
+        aria-label="Toggle mobile menu"
+      >
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <div
+      id="mobile-menu"
+      class="hidden border-t border-gray-200 bg-white pb-4 lg:hidden"
+    >
+      <div class="space-y-1">
+        {
+          navItems.map((item) => (
+            <div>
+              {item.subItems ? (
+                <div>
+                  <div class="mb-2 border-b border-gray-100 px-3 py-2 font-semibold text-[#0A7B76]">
+                    {item.title}
+                  </div>
+                  <div class="ml-4 space-y-1">
                     {item.subItems.map((subItem) => (
                       <a
                         href={subItem.href}
-                        class={`block rounded px-3 py-2 text-sm whitespace-nowrap transition-colors hover:bg-[#0A7B76]/10 ${
+                        class={`mobile-nav-link block rounded px-3 py-2 text-sm transition-colors ${
                           isActive(subItem.href)
                             ? "bg-[#0A7B76]/10 font-medium text-[#0A7B76]"
-                            : "text-gray-700"
+                            : "text-gray-700 hover:bg-gray-100"
                         }`}
                       >
                         {subItem.title}
@@ -75,73 +151,21 @@ const navItems = [
                     ))}
                   </div>
                 </div>
-              </div>
-            ) : (
-              <a
-                href={item.href}
-                class={`rounded px-3 py-2 whitespace-nowrap transition-colors ${
-                  isActive(item.href)
-                    ? "bg-[#0A7B76]/10 font-medium text-[#0A7B76]"
-                    : "text-[#0A7B76] hover:text-[#0A5B56]"
-                }`}
-              >
-                {item.title}
-              </a>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <button
-        id="mobile-menu-toggle"
-        class="flex items-center gap-2 rounded border border-[#0A7B76]/20 px-3 py-2 text-[#0A7B76] transition-colors hover:bg-[#0A7B76]/10 lg:hidden"
-      >
-        <span>Меню</span>
-        <Icon name="mdi:menu" class="h-5 w-5" />
-      </button>
-    </div>
-
-    <div
-      id="mobile-menu"
-      class="hidden border-t border-gray-200 py-4 lg:hidden"
-    >
-      <div class="space-y-1">
-        {navItems.map((item) => (
-          <div>
-            {item.subItems ? (
-              <div>
-                <div class="mb-2 border-b border-gray-100 px-3 py-2 font-semibold text-[#0A7B76]">
+              ) : (
+                <a
+                  href={item.href}
+                  class={`mobile-nav-link block rounded border-b border-gray-100 px-3 py-3 transition-colors ${
+                    isActive(item.href)
+                      ? "bg-[#0A7B76]/10 font-medium text-[#0A7B76]"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
                   {item.title}
-                </div>
-                <div class="ml-4 space-y-1">
-                  {item.subItems.map((subItem) => (
-                    <a
-                      href={subItem.href}
-                      class={`mobile-nav-link block rounded px-3 py-2 text-sm transition-colors ${
-                        isActive(subItem.href)
-                          ? "bg-[#0A7B76]/10 font-medium text-[#0A7B76]"
-                          : "text-gray-700 hover:bg-gray-100"
-                      }`}
-                    >
-                      {subItem.title}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <a
-                href={item.href}
-                class={`mobile-nav-link block rounded border-b border-gray-100 px-3 py-3 transition-colors ${
-                  isActive(item.href)
-                    ? "bg-[#0A7B76]/10 font-medium text-[#0A7B76]"
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
-              >
-                {item.title}
-              </a>
-            )}
-          </div>
-        ))}
+                </a>
+              )}
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
@@ -149,10 +173,7 @@ const navItems = [
 
 <style>
   .mobile-nav-link {
-    display: block !important;
-    text-decoration: none !important;
-    cursor: pointer !important;
-    -webkit-tap-highlight-color: rgba(10, 123, 118, 0.2) !important;
+    -webkit-tap-highlight-color: transparent;
     user-select: none;
     touch-action: manipulation;
     min-height: 44px;
