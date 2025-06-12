@@ -16,6 +16,9 @@ import Layout from "@/layouts/Layout.astro";
           <button id="filter-weather" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
             Метеостанция
           </button>
+          <button id="filter-radiation" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Свет и радиация
+          </button>
           <button id="filter-quality" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
             Качество воздуха
           </button>
@@ -297,6 +300,259 @@ import Layout from "@/layouts/Layout.astro";
         'Сельскохозяйственные применения',
         'Системы мониторинга окружающей среды'
       ]
+    },
+    {
+      id: 'ims305-pyranometer',
+      name: 'IMS305 Пиранометр',
+      category: 'radiation',
+      subcategory: 'Измерение солнечной радиации',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=IMS305',
+      shortDescription: 'Высокоточный пиранометр для измерения глобальной солнечной радиации',
+      features: [
+        'Измерение глобальной солнечной радиации',
+        'Спектральный диапазон 300-2800 нм',
+        'Высокая точность и стабильность',
+        'Защита от воздействия окружающей среды',
+        'Калибровка по стандартам WMO'
+      ],
+      specifications: {
+        'Спектральный диапазон': '300-2800 нм',
+        'Чувствительность': '10-50 мкВ/(Вт/м²)',
+        'Точность': '±5%',
+        'Рабочая температура': '-40°C до +80°C',
+        'Выход': 'Аналоговый милливольт'
+      },
+      applications: [
+        'Метеорологические станции',
+        'Солнечная энергетика',
+        'Сельскохозяйственные исследования',
+        'Климатические наблюдения'
+      ]
+    },
+    {
+      id: 'ims300-pyranometer',
+      name: 'IMS300 Пиранометр экономичный',
+      category: 'radiation',
+      subcategory: 'Базовое измерение радиации',
+      image: 'https://via.placeholder.com/400x300/10B981/FFFFFF?text=IMS300',
+      shortDescription: 'Экономичный пиранометр для базового измерения солнечной радиации',
+      features: [
+        'Базовое измерение солнечной радиации',
+        'Простота установки и эксплуатации',
+        'Надежная конструкция',
+        'Подходит для образовательных целей',
+        'Доступная цена'
+      ],
+      specifications: {
+        'Спектральный диапазон': '400-1100 нм',
+        'Чувствительность': '5-20 мкВ/(Вт/м²)',
+        'Точность': '±10%',
+        'Рабочая температура': '-30°C до +70°C',
+        'Выход': 'Аналоговый милливольт'
+      },
+      applications: [
+        'Образовательные учреждения',
+        'Базовый мониторинг',
+        'Исследовательские проекты',
+        'Простые метеостанции'
+      ]
+    },
+    {
+      id: 'aqs300-quantum-sensor',
+      name: 'AQS300 Квантовый датчик PAR',
+      category: 'radiation',
+      subcategory: 'Фотосинтетически активная радиация',
+      image: 'https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=AQS300',
+      shortDescription: 'Датчик для измерения фотосинтетически активной радиации (PAR)',
+      features: [
+        'Измерение PAR (400-700 нм)',
+        'Важно для сельского хозяйства',
+        'Высокая точность',
+        'Водонепроницаемый корпус',
+        'Совместимость с регистраторами данных'
+      ],
+      specifications: {
+        'Спектральный диапазон': '400-700 нм',
+        'Измеряемый параметр': 'PPFD (мкмоль/м²/с)',
+        'Точность': '±5%',
+        'Рабочая температура': '-40°C до +70°C',
+        'Выход': 'Аналоговый милливольт'
+      },
+      applications: [
+        'Сельское хозяйство',
+        'Тепличные хозяйства',
+        'Экологические исследования',
+        'Фотобиологические исследования'
+      ]
+    },
+    {
+      id: 'sf4-sandflow',
+      name: 'Датчик SF4 SandFlow',
+      category: 'weather',
+      subcategory: 'Мониторинг песка и пыли',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=SF4',
+      shortDescription: 'Акустический датчик для мониторинга песка и пыли без механических частей',
+      features: [
+        'Измерение потока твёрдых частиц',
+        'Оценка скорости ветра',
+        'Акустический принцип работы',
+        'Отсутствие механических частей',
+        'Совместимость с SDI-12 и IoT'
+      ],
+      specifications: {
+        'Измеряющая поверхность': 'Цилиндр ø32 мм, длина 920 мм',
+        'Поток частиц': 'До 250 г/м²/с',
+        'Скорость ветра': 'До 250 км/ч',
+        'Точность потока': '±5%',
+        'Точность ветра': '±15%',
+        'Выход': 'Аналоговый 2.5В или 5В'
+      },
+      price: 'По запросу',
+      availability: 'В наличии'
+    },
+    {
+      id: 'rf4-rainflow',
+      name: 'Датчик RF4 RainFlow',
+      category: 'weather',
+      subcategory: 'Мониторинг дождя и града',
+      image: 'https://via.placeholder.com/400x300/10B981/FFFFFF?text=RF4',
+      shortDescription: 'Акустический датчик для мониторинга дождя и града с высокоразрешающей дисдрометрией',
+      features: [
+        'Измерение дождя и града',
+        'Высокоразрешающая дисдрометрия',
+        'Отсутствие механических частей',
+        'Всенаправленный датчик',
+        'Встроенная память'
+      ],
+      specifications: {
+        'Измеряющая поверхность': 'Полусфера ø160 мм (402 см²)',
+        'Точность дождя': '15% при 100% рабочем цикле',
+        'Дисдрометрия': '27 классов от ≤0,75 мм до 7,0 мм',
+        'Обнаружение града': 'До 5 ударов/сек, порог 0,5 см',
+        'Интерфейс': 'SDI-12, IoT'
+      },
+      price: 'По запросу',
+      availability: 'В наличии'
+    },
+    {
+      id: 'apogee-par-full-spectrum',
+      name: 'Датчики PAR полного спектра Apogee',
+      category: 'radiation',
+      subcategory: 'Фотосинтетически активная радиация',
+      image: 'https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=PAR',
+      shortDescription: 'Точные измерения PAR от всех источников света, включая LED',
+      features: [
+        'Измерение диапазона 400-700 нм',
+        'Совместимость со всеми источниками света',
+        'Точность при узкополосных LED',
+        'Наружное и тепличное применение',
+        'Различные типы выходов'
+      ],
+      specifications: {
+        'Спектральный диапазон': '400-700 нм',
+        'Применение': 'Наружные условия, теплицы, камеры роста',
+        'Выходы': 'Аналоговый, SDI-12, Modbus, USB, 4-20mA',
+        'Кабель': '5 м с разъёмом',
+        'Точность': 'Высокая для всех источников света'
+      },
+      price: 'По запросу',
+      availability: 'В наличии'
+    },
+    {
+      id: 'apogee-epar-sensors',
+      name: 'Датчики ePAR Apogee',
+      category: 'radiation',
+      subcategory: 'Расширенная фотосинтетически активная радиация',
+      image: 'https://via.placeholder.com/400x300/EC4899/FFFFFF?text=ePAR',
+      shortDescription: 'Измерение расширенного диапазона PAR 400-750 нм для LED нового поколения',
+      features: [
+        'Диапазон 400-750 нм',
+        'Совместимость с LED нового поколения',
+        'Портативные и стационарные версии',
+        'Различные выходы',
+        'Подводные модели'
+      ],
+      specifications: {
+        'Спектральный диапазон': '400-750 нм',
+        'Модели': 'DLI-600, MQ-610, MQ-650, SQ-610-SS',
+        'Выходы': 'Аналоговый, SDI-12, Modbus, USB',
+        'Кабель': '2 м или 5 м',
+        'Применение': 'Все условия выращивания'
+      },
+      price: 'По запросу',
+      availability: 'В наличии'
+    },
+    {
+      id: 'apogee-pyranometers',
+      name: 'Пиранометры Apogee',
+      category: 'radiation',
+      subcategory: 'Измерение солнечной радиации',
+      image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=Pyranometer',
+      shortDescription: 'Термопарные и кремниевые пиранометры класса C по ISO 9060:2018',
+      features: [
+        'Соответствие стандарту ISO 9060:2018',
+        'Термопарные и кремниевые версии',
+        'Направленность вверх и вниз',
+        'Портативные и стационарные',
+        'Различные выходы'
+      ],
+      specifications: {
+        'Стандарт': 'ISO 9060:2018, класс C',
+        'Типы': 'Термопарные (SP-510-SS), кремниевые (SP-110-SS)',
+        'Направленность': 'Вверх или вниз',
+        'Выходы': 'Аналоговый, SDI-12, Modbus, USB, 4-20mA',
+        'Применение': 'Метеосети, фотоэлектрические системы'
+      },
+      price: 'По запросу',
+      availability: 'В наличии'
+    },
+    {
+      id: 'apogee-uv-sensors',
+      name: 'Датчики УФ-излучения Apogee',
+      category: 'radiation',
+      subcategory: 'Ультрафиолетовое излучение',
+      image: 'https://via.placeholder.com/400x300/EC4899/FFFFFF?text=UV',
+      shortDescription: 'Комплексное решение для измерения УФ-А и УФ-В солнечной радиации',
+      features: [
+        'Измерение УФ-А и УФ-В',
+        'Портативные и стационарные версии',
+        'Различные выходы',
+        'Интеграция с IoT',
+        'Высокая точность'
+      ],
+      specifications: {
+        'Типы': 'УФ-А (SU-200-SS), УФ-В/УФ-индекс (SU-300-SS)',
+        'Выходы': 'Аналоговый 0-2,5В, 0-5В, USB, SDI-12',
+        'Кабель': '5 м с разъёмом',
+        'Портативные': 'MU-250 с выносным датчиком',
+        'Применение': 'Экологический мониторинг, IoT'
+      },
+      price: 'По запросу',
+      availability: 'В наличии'
+    },
+    {
+      id: 'apogee-spectroradiometers',
+      name: 'Спектрорадиометры Apogee',
+      category: 'radiation',
+      subcategory: 'Спектральные измерения',
+      image: 'https://via.placeholder.com/400x300/06B6D4/FFFFFF?text=Spectro',
+      shortDescription: 'Абсолютные спектральные измерения в диапазоне 300-1000 нм',
+      features: [
+        'Диапазон 300-1000 нм',
+        'Полевые и лабораторные модели',
+        'Анализ растительных ламп',
+        'Измерение отражения поверхностей',
+        'USB подключение'
+      ],
+      specifications: {
+        'MS-100': 'Полевой, 380-780 нм',
+        'PS-100': 'Лабораторный, 350-1000 нм',
+        'PS-200': 'Лабораторный, 300-850 нм',
+        'PS-300': 'Лабораторный, 300-1000 нм',
+        'Подключение': 'USB к компьютеру Windows'
+      },
+      price: 'По запросу',
+      availability: 'В наличии'
     }
   ];
 
@@ -304,7 +560,16 @@ import Layout from "@/layouts/Layout.astro";
   let currentSearch = '';
 
   function createEquipmentCard(equipment) {
-    const categoryName = equipment.category === 'weather' ? 'Метеостанция' : 'Качество воздуха';
+    const getCategoryName = (category) => {
+      const names = {
+        weather: 'Метеостанция',
+        radiation: 'Свет и радиация',
+        quality: 'Качество воздуха'
+      };
+      return names[category] || category;
+    };
+    
+    const categoryName = getCategoryName(equipment.category);
     
     return `
       <div class="equipment-card bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer" data-id="${equipment.id}">

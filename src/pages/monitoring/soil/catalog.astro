@@ -13,14 +13,23 @@ import Layout from "@/layouts/Layout.astro";
           <button id="filter-all" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-blue-600 text-white">
             Все категории
           </button>
-          <button id="filter-neutron" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
-            Нейтронная детекция
-          </button>
           <button id="filter-moisture" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
             Влажность почвы
           </button>
+          <button id="filter-oxygen" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Кислород почвы
+          </button>
+          <button id="filter-temperature" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Температура и тепловые свойства
+          </button>
+          <button id="filter-hydraulic" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Гидравлическая проводимость
+          </button>
           <button id="filter-tension" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
-            Тензиометры
+            Натяжение и матричный потенциал
+          </button>
+          <button id="filter-neutron" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Нейтронные технологии
           </button>
         </div>
         
@@ -311,6 +320,93 @@ import Layout from "@/layouts/Layout.astro";
         'Исследовательские проекты',
         'Точное земледелие'
       ]
+    },
+    {
+      id: 'oxygen-sensor-o2',
+      name: 'Датчик кислорода почвы O2-PT',
+      category: 'oxygen',
+      subcategory: 'Измеритель кислорода в почве',
+      image: 'https://via.placeholder.com/400x300/06B6D4/FFFFFF?text=O2+Sensor',
+      shortDescription: 'Специализированный датчик для измерения содержания кислорода в почве',
+      features: [
+        'Измерение растворённого кислорода',
+        'Мониторинг аэрации почвы',
+        'Анализ корневой активности',
+        'Оценка микробной активности',
+        'Цифровой выход данных'
+      ],
+      specifications: {
+        'Диапазон измерения': '0-100% насыщения O₂',
+        'Точность': '±2% от измеренного значения',
+        'Время отклика': '< 30 секунд',
+        'Рабочая температура': '0-50°C',
+        'Выход': 'Аналоговый/цифровой'
+      },
+      applications: [
+        'Мониторинг корневой системы',
+        'Исследование почвенной микробиологии',
+        'Контроль аэрации почвы',
+        'Оптимизация орошения',
+        'Экологические исследования'
+      ]
+    },
+    {
+      id: 'thermal-conductivity-mtn02',
+      name: 'MTN02 Датчик теплопроводности',
+      category: 'temperature',
+      subcategory: 'Мультиигольчатый датчик теплопроводности',
+      image: 'https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=MTN02',
+      shortDescription: 'Датчик для измерения теплопроводности и термодиффузивности почвы',
+      features: [
+        'Три иглы теплопроводности',
+        'Соответствие стандартам ASTM D5334 и IEEE 442',
+        'Лабораторные и полевые измерения',
+        'Подключение к контроллеру CRU02',
+        'Быстрое время измерения'
+      ],
+      specifications: {
+        'Диапазон измерения': '0,1 до 6 Вт/(м·К)',
+        'Температурный диапазон': '0 до +50°C',
+        'Стандарты': 'ASTM D5334-14, IEEE 442-1981',
+        'Точность': '±(6% от показаний + 0,04) Вт/(м·К)',
+        'Время измерения': '50 секунд'
+      },
+      applications: [
+        'Лабораторные измерения образцов',
+        'Анализ тепловых свойств почвы',
+        'Исследование термодиффузивности',
+        'Геотехнические исследования',
+        'Материаловедение'
+      ]
+    },
+    {
+      id: 'infiltrometer-aim1',
+      name: 'AIM1 Автоматический инфильтрометр',
+      category: 'hydraulic',
+      subcategory: 'Измеритель инфильтрации',
+      image: 'https://via.placeholder.com/400x300/10B981/FFFFFF?text=AIM1',
+      shortDescription: 'Автоматическое измерение скорости инфильтрации воды в почву',
+      features: [
+        'Автоматическое определение скорости инфильтрации',
+        'Работа с тензиометрами',
+        'Высокая точность измерений',
+        'SD-карта для хранения данных',
+        'Защита IP65'
+      ],
+      specifications: {
+        'Диаметры инфильтрометра': '20 см и 8 см',
+        'Точность измерения': '±0,1 мм',
+        'Время измерения': 'От 1 минуты до 24 часов',
+        'Хранение данных': 'SD-карта 8 ГБ',
+        'Защита': 'IP65'
+      },
+      applications: [
+        'Измерение скорости инфильтрации',
+        'Исследование водного баланса',
+        'Определение гидравлической проводимости',
+        'Сельскохозяйственные исследования',
+        'Экологический мониторинг'
+      ]
     }
   ];
 
@@ -319,9 +415,12 @@ import Layout from "@/layouts/Layout.astro";
 
   function getCategoryName(category) {
     const names = {
-      neutron: 'Нейтронная детекция',
-      moisture: 'Влажность',
-      tension: 'Тензиометры'
+      moisture: 'Влажность почвы',
+      oxygen: 'Кислород почвы',
+      temperature: 'Температура и тепловые свойства',
+      hydraulic: 'Гидравлическая проводимость',
+      tension: 'Натяжение и матричный потенциал',
+      neutron: 'Нейтронные технологии'
     };
     return names[category] || category;
   }
