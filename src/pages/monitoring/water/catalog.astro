@@ -13,11 +13,20 @@ import Layout from "@/layouts/Layout.astro";
           <button id="filter-all" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-blue-600 text-white">
             Все категории
           </button>
-          <button id="filter-quality" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
-            Качество воды
+          <button id="filter-redox" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            ОВП/температура
+          </button>
+          <button id="filter-turbidity" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Мутность (нефелометрия)
+          </button>
+          <button id="filter-conductivity" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Электропроводность/Солёность
+          </button>
+          <button id="filter-oxygen" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Растворённый кислород
           </button>
           <button id="filter-level" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
-            Уровень воды
+            Измерение уровня и глубины
           </button>
           <button id="filter-pressure" class="filter-btn px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300">
             Давление и температура
@@ -67,11 +76,10 @@ import Layout from "@/layouts/Layout.astro";
 
 <script>
   const allWaterEquipment = [
-    // Качество воды
     {
       id: 'awq-ph',
       name: 'AWQ-pH',
-      category: 'quality',
+      category: 'redox',
       subcategory: 'pH/ОВП/Температура',
       image: 'https://via.placeholder.com/400x300/3B82F6/FFFFFF?text=AWQ-pH',
       shortDescription: 'Датчик pH/ОВП/температура для работы в сложных условиях',
@@ -95,36 +103,9 @@ import Layout from "@/layouts/Layout.astro";
       ]
     },
     {
-      id: 'awq-do',
-      name: 'AWQ-DO',
-      category: 'quality',
-      subcategory: 'Растворенный кислород',
-      image: 'https://via.placeholder.com/400x300/10B981/FFFFFF?text=AWQ-DO',
-      shortDescription: 'Оптический датчик растворенного кислорода',
-      features: [
-        'Оптическая технология измерения - без расходных материалов',
-        'Автоматическая компенсация по температуре и давлению',
-        'Встроенная система самодиагностики',
-        'Цифровой интерфейс Modbus RS485 и SDI-12',
-        'Долгосрочная стабильность измерений'
-      ],
-      specifications: {
-        'Диапазон O2': '0-50 мг/л',
-        'Точность': '±0.1 мг/л',
-        'Температура': '0...+50 °C',
-        'Давление': '0.5...5 атм'
-      },
-      applications: [
-        'Мониторинг качества воды в реках и озерах',
-        'Контроль процессов очистки сточных вод',
-        'Аквакультура и рыбоводство',
-        'Питьевое водоснабжение'
-      ]
-    },
-    {
       id: 'awq-turb',
       name: 'AWQ-TURB',
-      category: 'quality',
+      category: 'turbidity',
       subcategory: 'Мутность',
       image: 'https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=AWQ-TURB',
       shortDescription: 'Датчик мутности для контроля качества воды',
@@ -151,8 +132,8 @@ import Layout from "@/layouts/Layout.astro";
     {
       id: 'awq-cond',
       name: 'AWQ-COND',
-      category: 'quality',
-      subcategory: 'Электропроводность',
+      category: 'conductivity',
+      subcategory: 'Электропроводность/Солесодержание',
       image: 'https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=AWQ-COND',
       shortDescription: 'Датчик электропроводности и солесодержания',
       features: [
@@ -175,8 +156,33 @@ import Layout from "@/layouts/Layout.astro";
         'Сельскохозяйственное орошение'
       ]
     },
-
-    // Уровень воды
+    {
+      id: 'awq-do',
+      name: 'AWQ-DO',
+      category: 'oxygen',
+      subcategory: 'Растворенный кислород',
+      image: 'https://via.placeholder.com/400x300/10B981/FFFFFF?text=AWQ-DO',
+      shortDescription: 'Оптический датчик растворенного кислорода',
+      features: [
+        'Оптическая технология измерения - без расходных материалов',
+        'Автоматическая компенсация по температуре и давлению',
+        'Встроенная система самодиагностики',
+        'Цифровой интерфейс Modbus RS485 и SDI-12',
+        'Долгосрочная стабильность измерений'
+      ],
+      specifications: {
+        'Диапазон O2': '0-50 мг/л',
+        'Точность': '±0.1 мг/л',
+        'Температура': '0...+50 °C',
+        'Давление': '0.5...5 атм'
+      },
+      applications: [
+        'Мониторинг качества воды в реках и озерах',
+        'Контроль процессов очистки сточных вод',
+        'Аквакультура и рыбоводство',
+        'Питьевое водоснабжение'
+      ]
+    },
     {
       id: 'stevens-sdx',
       name: 'Stevens SDX',
@@ -201,60 +207,6 @@ import Layout from "@/layouts/Layout.astro";
         'Контроль сточных вод и промышленных жидкостей'
       ]
     },
-    {
-      id: 'stevens-hydraprobe',
-      name: 'Stevens HydraProbe',
-      category: 'level',
-      subcategory: 'Цифровой датчик уровня',
-      image: 'https://via.placeholder.com/400x300/0EA5E9/FFFFFF?text=HydraProbe',
-      shortDescription: 'Цифровой датчик уровня воды с высокой точностью',
-      features: [
-        'Цифровой выход SDI-12',
-        'Встроенная температурная компенсация',
-        'Керамическая мембрана для долговечности',
-        'Простая калибровка и настройка',
-        'Защита от молнии'
-      ],
-      specifications: {
-        'Диапазон': '0-30 м',
-        'Точность': '±0.1% FS',
-        'Разрешение': '1 мм',
-        'Интерфейс': 'SDI-12'
-      },
-      applications: [
-        'Гидрологические исследования',
-        'Мониторинг грунтовых вод',
-        'Системы раннего предупреждения о наводнениях'
-      ]
-    },
-    {
-      id: 'ultrasonic-level',
-      name: 'Ультразвуковой уровнемер ULS-100',
-      category: 'level',
-      subcategory: 'Бесконтактный измеритель уровня',
-      image: 'https://via.placeholder.com/400x300/14B8A6/FFFFFF?text=ULS-100',
-      shortDescription: 'Бесконтактный ультразвуковой датчик уровня',
-      features: [
-        'Бесконтактное измерение уровня',
-        'Компенсация температуры воздуха',
-        'Узкий луч для точных измерений',
-        'Защита от конденсата',
-        'Простая установка'
-      ],
-      specifications: {
-        'Дальность': '0.3-15 м',
-        'Точность': '±3 мм',
-        'Угол луча': '8°',
-        'Выход': '4-20 мА, RS485'
-      },
-      applications: [
-        'Измерение уровня в открытых каналах',
-        'Мониторинг резервуаров',
-        'Контроль уровня в колодцах'
-      ]
-    },
-
-    // Давление и температура
     {
       id: 'ecl-8430',
       name: 'ECL 8430',
@@ -283,64 +235,15 @@ import Layout from "@/layouts/Layout.astro";
         'Промышленные процессы',
         'Системы отопления и охлаждения'
       ]
-    },
-    {
-      id: 'pressure-transmitter-pt100',
-      name: 'Датчик давления PT-100',
-      category: 'pressure',
-      subcategory: 'Промышленный датчик давления',
-      image: 'https://via.placeholder.com/400x300/EF4444/FFFFFF?text=PT-100',
-      shortDescription: 'Промышленный датчик давления с высокой надежностью',
-      features: [
-        'Мембрана из нержавеющей стали',
-        'Защита от перегрузки',
-        'Цифровая обработка сигнала',
-        'Взрывозащищенное исполнение',
-        'Длительный срок службы'
-      ],
-      specifications: {
-        'Диапазон': '0-100 Бар',
-        'Точность': '±0.25% FS',
-        'Выход': '4-20 мА, HART',
-        'Защита': 'IP67'
-      },
-      applications: [
-        'Промышленные системы водоснабжения',
-        'Нефтегазовая промышленность',
-        'Химические процессы'
-      ]
-    },
-    {
-      id: 'temp-sensor-pt1000',
-      name: 'Датчик температуры PT-1000',
-      category: 'pressure',
-      subcategory: 'Высокоточный термометр',
-      image: 'https://via.placeholder.com/400x300/DC2626/FFFFFF?text=PT-1000',
-      shortDescription: 'Платиновый термометр сопротивления для точных измерений',
-      features: [
-        'Платиновый чувствительный элемент',
-        'Высокая долговременная стабильность',
-        'Широкий температурный диапазон',
-        'Различные варианты монтажа',
-        'Сертификация по международным стандартам'
-      ],
-      specifications: {
-        'Диапазон': '-50...+200 °C',
-        'Точность': '±0.1 °C',
-        'Тип': 'PT1000',
-        'Класс': 'A'
-      },
-      applications: [
-        'Точные температурные измерения',
-        'Калибровочные лаборатории',
-        'Научные исследования'
-      ]
     }
   ];
 
   function getCategoryName(category) {
     const names = {
-      quality: 'Качество',
+      redox: 'pH/ОВП/Температура',
+      turbidity: 'Мутность',
+      conductivity: 'Электропроводность/Солесодержание',
+      oxygen: 'Растворенный кислород',
       level: 'Уровень',
       pressure: 'Давление/Температура'
     };
@@ -349,7 +252,10 @@ import Layout from "@/layouts/Layout.astro";
 
   function getCategoryColor(category) {
     const colors = {
-      quality: 'bg-blue-600',
+      redox: 'bg-blue-600',
+      turbidity: 'bg-cyan-600',
+      conductivity: 'bg-orange-600',
+      oxygen: 'bg-pink-600',
       level: 'bg-cyan-600',
       pressure: 'bg-orange-600'
     };
