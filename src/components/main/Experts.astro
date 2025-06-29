@@ -25,6 +25,18 @@ const experts = [
     bio: "Кандидат сельскохозяйственных наук, известный своей деятельностью в области сохранения биоразнообразия и управления экосистемами. Внес значительный вклад в создание нескольких особо охраняемых природных территорий Казахстана. Активно участвует в развитии углеродных проектов в Казахстане.",
     image: TalgatKerteshev,
   },
+  {
+    name: "Станислав Усиченко",
+    position: "Коммерческий директор",
+    bio: "Специалист с опытом в горной инженерии и оценке активов. Работал с оборудованием TOMRA и DERRICK, проводил промышленные тесты на месторождениях, занимался финансовым консалтингом и оценкой в KPMG.",
+    image: "/stas.jpg",
+  },
+  {
+    name: "Курманов Ануар",
+    position: "Директор по развитию",
+    bio: "Специалист с опытом работы в сфере экологии, лесного хозяйства и устойчивого управления особо охраняемыми природными территориями (ООПТ). Участвовал в проектах по восстановлению лесов, мониторингу биоразнообразия и экосистем, а также по развитию природоохранной инфраструктуры на ООПТ. Обладает знаниями в области экологического законодательства, оценки воздействия на окружающую среду и взаимодействия с государственными и международными структурами.",
+    image: "/anuar.jpg",
+  },
 ];
 ---
 
@@ -72,13 +84,21 @@ const experts = [
                 <div class="eco-expert-card__corners">
                   <span></span><span></span><span></span><span></span>
                 </div>
-                <Image 
-                  src={expert.image} 
-                  alt={expert.name}
-                  class="eco-expert-card__image"
-                  width={400}
-                  height={400}
-                />
+                {expert.image instanceof Object ? (
+                  <Image 
+                    src={expert.image} 
+                    alt={expert.name}
+                    class="eco-expert-card__image"
+                    width={400}
+                    height={400}
+                  />
+                ) : (
+                  <img 
+                    src={expert.image} 
+                    alt={expert.name}
+                    class="eco-expert-card__image"
+                  />
+                )}
                 <div class="eco-expert-card__scan"></div>
               </div>
               <div class="eco-expert-card__content p-6">
@@ -203,6 +223,7 @@ const experts = [
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 15%;
     transition: transform 0.5s ease;
   }
 
